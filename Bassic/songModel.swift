@@ -15,13 +15,17 @@ class songModel: NSObject {
     var album:String     = ""
     var length:Int       = 0
     var albumArt:UIImage
+    var year:Int         = 0
+    var composer:String  = ""
     
-    init(title:String, artist:String, album:String, length:Int, albumArt:UIImage) {
+    init(title:String, artist:String, album:String, length:Int, albumArt:UIImage, year:Int, composer:String) {
         self.title    = title
         self.artist   = artist
         self.album    = album
         self.length   = length
         self.albumArt = albumArt
+        self.year     = year
+        self.composer = composer
     }
     
     
