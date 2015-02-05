@@ -7,3 +7,37 @@
 //
 
 import Foundation
+import UIKit
+
+class playlistModel: NSObject {
+    var name: String
+    var list: [songModel] = []
+    
+    init(name:String, list: [songModel]) {
+        self.name = name
+        self.list = list
+    }
+    
+    func add(newSong:songModel){
+        list.append(newSong)
+    }
+    func remove(toRemove:Int){
+        list.removeAtIndex(toRemove)
+    }
+    func listAllSongs()->[String]{
+        var allSong: [String] = []
+        for i in list{
+            allSong.append(i.title)
+        }
+        return allSong
+    }
+    func listArtistSong(artist:String)->[String]{
+        var artistList: [String] = []
+        for i in list{
+            if(artist == i.artist){
+                artistList.append(i.title)
+            }
+        }
+        return artistList
+    }
+}
