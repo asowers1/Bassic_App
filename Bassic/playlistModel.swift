@@ -26,6 +26,17 @@ class playlistModel: NSObject {
         list.removeAtIndex(toRemove)
         list.sort({ $0.title < $1.title })
     }
+    func removeByTitle(toRemove:String){
+        var index:Int=0
+        for song in list{
+            if song.title == toRemove {
+                list.removeAtIndex(index)
+                list.sort({ $0.title < $1.title })
+            }
+            index++
+        }
+    }
+    
     func listAllSongs()->[String]{
         var allSong: [String] = []
         for i in list{

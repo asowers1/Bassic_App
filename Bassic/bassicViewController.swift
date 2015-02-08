@@ -35,9 +35,18 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     var playlistPickerData:[String] = []
     var songList:[String] = []
     
+    // playlist input field
     var playlistTextField:UITextField = UITextField()
     
+    // song input fields
+    var titleTextField:UITextField    = UITextField()
+    var artistTextField:UITextField   = UITextField()
+    var albumTextField:UITextField    = UITextField()
+    var lengthTextField:UITextField   = UITextField()
+    var yearTextField:UITextField     = UITextField()
+    var composerTextField:UITextField = UITextField()
     
+    // build test set of playlist and music data
     func buildTestSet() {
         
         // initial playlists
@@ -83,6 +92,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         songListStepperValue = Double(songList.count)
         
         playlistStepper.value = playlistStepperValue
+        songStepper.value = songListStepperValue
         
     }
     
@@ -126,8 +136,23 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             let selectedPlaylist:playlistModel = playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
             songList = selectedPlaylist.listAllSongs()
             songPickerView.reloadAllComponents()
+            songListStepperValue = Double(songList.count)
+            songStepper.value = songListStepperValue
+            
             if let currentSong:songModel = selectedPlaylist.accessSong(0) as songModel! {
-                
+                titleLabel.text = currentSong.title
+                artistLabel.text = currentSong.artist
+                albumLabel.text = currentSong.album
+                lengthLabel.text = String(format: "%.02f", currentSong.length)
+                yearLabel.text = String(format: "%d", currentSong.year)
+                composerLabel.text = currentSong.composer
+            }else{
+                titleLabel.text = ""
+                artistLabel.text = ""
+                albumLabel.text = ""
+                lengthLabel.text = ""
+                yearLabel.text = ""
+                composerLabel.text = ""
             }
             
             
@@ -139,11 +164,11 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             // add playlist
             
             
-            var alert = UIAlertController(title: "Alert Title", message: "Alert Message", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Add Playlist", message: "Enter playlist name:", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addTextFieldWithConfigurationHandler(configurationTextField)
             
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler:handleCancel))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
                 println("User click Ok button")
                 println(self.playlistTextField.text)
@@ -169,7 +194,6 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 if(playlists.removePlaylist(playlistPickerData[index])==true){
                     playlistPickerData = playlists.getPlaylistList()
                     playlistPickerView.reloadAllComponents()
-                    
                     let selectedPlaylist:playlistModel = playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
                     songList = selectedPlaylist.listAllSongs()
                     songPickerView.reloadAllComponents()
@@ -188,12 +212,39 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 presentViewController(alert, animated: true, completion: nil)
             }
         }
-        //println("playlistStepperValue: \(playlistStepperValue)")
     }
     
     
     @IBAction func songStepperCallback(sender: UIStepper) {
         println("song stepper")
+        if sender.value >= songListStepperValue {
+            // add song
+            
+        } else if sender.value <= songListStepperValue {
+            // delete song
+            let playlistIndex:Int = playlistPickerView.selectedRowInComponent(0)
+            if playlistIndex == 0 {
+                // remove song in current playlist and update UI
+                let songIndex = songPickerView.selectedRowInComponent(0)
+                let playlist:playlistModel = playlists.playlistDict[playlistPickerData[playlistIndex]]!
+                let songTitle = playlist.accessSong(songIndex)?.title
+                playlist.remove(songIndex)
+                songList = playlist.listAllSongs()
+                songPickerView.reloadAllComponents()
+                
+                // remove in other playlists
+                for list in playlists.playlistDict {
+                    list.1.removeByTitle(songTitle!)
+                }
+                
+            }else{
+                let playlist:playlistModel = playlists.playlistDict[playlistPickerData[playlistIndex]]!
+                playlist.remove(songPickerView.selectedRowInComponent(0))
+                songList = playlist.listAllSongs()
+                songPickerView.reloadAllComponents()
+            }
+            
+        }
     }
     
     
