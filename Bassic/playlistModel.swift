@@ -45,4 +45,13 @@ class playlistModel: NSObject {
     func accessSong(index:Int) -> songModel {
         return list[index]
     }
+    
+    func accessSongByTitle(title:String) -> songModel?{
+        for song in list {
+            if song.title == title {
+                return song
+            }
+        }
+        return nil
+    }
 }

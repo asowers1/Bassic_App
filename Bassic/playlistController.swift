@@ -43,4 +43,14 @@ class playlistController: NSObject {
         playlistDict[playlistName]?.add(song)
         return true
     }
+    
+    func pointSongFromPLaylistToPlaylist(sourcePLaylistName:String,destPlaylistName:String,songName:String) -> Bool{
+        let sourcePlaylist = playlistDict[sourcePLaylistName]
+        let destPlaylist   = playlistDict[destPlaylistName]
+        if let song:songModel = sourcePlaylist?.accessSongByTitle(songName) as songModel! {
+            destPlaylist?.add(song)
+            return true
+        }
+        return false
+    }
 }
