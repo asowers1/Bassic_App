@@ -143,12 +143,14 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             if playlist.name != "All songs"{
                 playlistStepperValue--
                 if(playlists.removePlaylist(playlistPickerData[index])==true){
-                    println("REMOVED \(playlistPickerData[index])")
+                    playlistPickerData = playlists.getPlaylistList()
+                    let newPlaylist:playlistModel = playlists.playlistDict[playlistPickerData[playlistPickerView.selectedRowInComponent(0)]]!
+                    songList = newPlaylist.listAllSongs()
+                    playlistPickerView.reloadAllComponents()
+                    songPickerView.reloadAllComponents()
                 }else{
-                    println("COULD NOT REMOVE \(playlistPickerData[index])")
                 }
-                playlistPickerData = playlists.getPlaylistList()
-                playlistPickerView.reloadAllComponents()
+                
                 
             }else{
                 sender.value = playlistStepperValue
