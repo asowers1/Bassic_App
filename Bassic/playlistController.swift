@@ -13,7 +13,7 @@ class playlistController: NSObject {
     var playlistDict:[String: playlistModel] = ["All songs":playlistModel(name: "All songs",list: [])]
     
     func addPlaylist(name:String) -> Bool {
-        if (playlistDict["name"]==nil){
+        if (playlistDict[name]==nil){
             playlistDict[name] = playlistModel(name: name, list: [])
             return true
         }
@@ -21,8 +21,8 @@ class playlistController: NSObject {
     }
     
     func removePlaylist(name:String) -> Bool {
-        if (playlistDict["name"] != nil && playlistDict["name"] != "All songs") {
-            playlistDict["name"] = nil
+        if (playlistDict[name] != nil && playlistDict[name] != "All songs") {
+            playlistDict[name] = nil
             return true
         }
         return false
