@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495E1A521A86D02B006AA76E /* bassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E1A511A86D02B006AA76E /* bassicViewController.swift */; };
 		4961DDAD1A812C2A009939ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961DDAC1A812C2A009939ED /* AppDelegate.swift */; };
-		4961DDAF1A812C2A009939ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961DDAE1A812C2A009939ED /* ViewController.swift */; };
 		4961DDB21A812C2A009939ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4961DDB01A812C2A009939ED /* Main.storyboard */; };
 		4961DDB41A812C2A009939ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4961DDB31A812C2A009939ED /* Images.xcassets */; };
 		4961DDB71A812C2A009939ED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4961DDB51A812C2A009939ED /* LaunchScreen.xib */; };
@@ -29,10 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		495E1A511A86D02B006AA76E /* bassicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bassicViewController.swift; sourceTree = "<group>"; };
 		4961DDA71A812C2A009939ED /* Bassic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4961DDAB1A812C2A009939ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4961DDAC1A812C2A009939ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4961DDAE1A812C2A009939ED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4961DDB11A812C2A009939ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4961DDB31A812C2A009939ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4961DDB61A812C2A009939ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -84,10 +84,10 @@
 			isa = PBXGroup;
 			children = (
 				4961DDD21A813030009939ED /* playlistController.swift */,
+				495E1A511A86D02B006AA76E /* bassicViewController.swift */,
 				4961DDD31A813030009939ED /* playlistModel.swift */,
 				4961DDD41A813030009939ED /* songModel.swift */,
 				4961DDAC1A812C2A009939ED /* AppDelegate.swift */,
-				4961DDAE1A812C2A009939ED /* ViewController.swift */,
 				4961DDB01A812C2A009939ED /* Main.storyboard */,
 				4961DDB31A812C2A009939ED /* Images.xcassets */,
 				4961DDB51A812C2A009939ED /* LaunchScreen.xib */,
@@ -221,9 +221,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4961DDAF1A812C2A009939ED /* ViewController.swift in Sources */,
 				4961DDD61A813030009939ED /* playlistModel.swift in Sources */,
 				4961DDD51A813030009939ED /* playlistController.swift in Sources */,
+				495E1A521A86D02B006AA76E /* bassicViewController.swift in Sources */,
 				4961DDAD1A812C2A009939ED /* AppDelegate.swift in Sources */,
 				4961DDD71A813030009939ED /* songModel.swift in Sources */,
 			);
@@ -379,6 +379,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = BassicTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bassic.app/Bassic";
@@ -394,6 +395,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = BassicTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bassic.app/Bassic";

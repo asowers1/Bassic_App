@@ -7,3 +7,40 @@
 //
 
 import Foundation
+
+class playlistController: NSObject {
+    
+    var playlistDict:[String: playlistModel] = ["All songs":playlistModel(name: "All songs",list: [])]
+    
+    func addPlaylist(name:String) -> Bool {
+        if (playlistDict["name"]==nil){
+            playlistDict[name] = playlistModel(name: name, list: [])
+            return true
+        }
+        return false
+    }
+    
+    func removePlaylist(name:String) -> Bool {
+        if (playlistDict["name"] != nil && playlistDict["name"] != "All songs") {
+            playlistDict["name"] = nil
+            return true
+        }
+        return false
+    }
+    
+    func accessPlaylist(name:String)->playlistModel {
+        return playlistDict[name]!
+    }
+    
+    func getPlaylistList() -> [String] {
+        let sortedKeys = Array(playlistDict.keys).sorted(<)
+        return sortedKeys
+    }
+    
+    func addSongToPlaylist(playlistName:String, songTitle:String, songArtist:String, songAlbum:String, songLength:Float, songYear:Int, songComposer:String) -> Bool {
+
+        var song:songModel = songModel(title: songTitle, artist: songArtist, album: songAlbum, length: songLength, year: songYear, composer: songComposer)
+        playlistDict[playlistName]?.add(song)
+        return true
+    }
+}

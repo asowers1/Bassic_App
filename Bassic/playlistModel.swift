@@ -20,9 +20,11 @@ class playlistModel: NSObject {
     
     func add(newSong:songModel){
         list.append(newSong)
+        list.sort({ $0.title < $1.title })
     }
     func remove(toRemove:Int){
         list.removeAtIndex(toRemove)
+        list.sort({ $0.title < $1.title })
     }
     func listAllSongs()->[String]{
         var allSong: [String] = []
@@ -39,5 +41,8 @@ class playlistModel: NSObject {
             }
         }
         return artistList
+    }
+    func accessSong(index:Int) -> songModel {
+        return list[index]
     }
 }
