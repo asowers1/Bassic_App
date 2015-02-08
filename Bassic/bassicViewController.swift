@@ -166,7 +166,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             
             var alert = UIAlertController(title: "Add Playlist", message: "Enter playlist name:", preferredStyle: UIAlertControllerStyle.Alert)
             
-            alert.addTextFieldWithConfigurationHandler(configurationTextField)
+            alert.addTextFieldWithConfigurationHandler(playlistConfigurationTextField)
             
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
@@ -219,6 +219,24 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         println("song stepper")
         if sender.value >= songListStepperValue {
             // add song
+            var alert = UIAlertController(title: "Add song", message: "Enter song details:", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addTextFieldWithConfigurationHandler(titleConfigurationTextField)
+            alert.addTextFieldWithConfigurationHandler(artistConfigurationTextField)
+            alert.addTextFieldWithConfigurationHandler(albumConfigureationTextField)
+            alert.addTextFieldWithConfigurationHandler(lengthConfigurationTextField)
+            alert.addTextFieldWithConfigurationHandler(yearConfigurationTextField)
+            alert.addTextFieldWithConfigurationHandler(composerConfigurationTextField)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
+                println("User click Ok button")
+                               
+            }))
+            self.presentViewController(alert, animated: true, completion: {
+                println("completion block")
+            })
+
             
         } else if sender.value <= songListStepperValue {
             // delete song
@@ -256,8 +274,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     
     //MARK alertView input
     
-    func configurationTextField(textField: UITextField!)
-    {
+    func playlistConfigurationTextField(textField: UITextField!) {
         
         if let tField = textField {
             
@@ -266,10 +283,57 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
+    func titleConfigurationTextField(textField:UITextField!){
+        if let tField = textField {
+            
+            self.titleTextField = textField!
+            self.titleTextField.placeholder = "Song Title"
+        }
+    }
     
-    func handleCancel(alertView: UIAlertAction!)
-    {
-        println("Canceled playlist add: \(self.playlistTextField.text))")
+    func artistConfigurationTextField(textField:UITextField!) {
+        if let tField = textField {
+            
+            self.artistTextField = textField!
+            self.artistTextField.placeholder = "Artist Name"
+        }
+    }
+    
+    func albumConfigureationTextField(textField:UITextField!) {
+        if let tField = textField {
+            
+            self.albumTextField = textField!
+            self.albumTextField.placeholder = "Album Title"
+        }
+    }
+    
+    func lengthConfigurationTextField(textField:UITextField!) {
+        if let tField = textField {
+            
+            self.lengthTextField = textField!
+            self.lengthTextField.placeholder = "Song Length"
+        }
+    }
+    
+    func yearConfigurationTextField(textField:UITextField!){
+        if let tField = textField {
+            
+            self.yearTextField = textField!
+            self.yearTextField.placeholder = "Song Year"
+        }
+    }
+    
+    func composerConfigurationTextField(textField:UITextField!){
+        if let tField = textField {
+            
+            self.composerTextField = textField!
+            self.composerTextField.placeholder = "Composer Name"
+        }
+    }
+    
+    
+    func handleCancel(alertView: UIAlertAction!) {
+        println("Canceled add")
     }
 
 }
