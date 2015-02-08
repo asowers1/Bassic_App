@@ -42,8 +42,8 @@ class playlistModel: NSObject {
         }
         return artistList
     }
-    func accessSong(index:Int) -> songModel {
-        return list[index]
+    func accessSong(index:Int) -> songModel? {
+        return index >= list.count ? nil : list[index]
     }
     
     func accessSongByTitle(title:String) -> songModel?{

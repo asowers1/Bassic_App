@@ -44,7 +44,7 @@ class playlistController: NSObject {
         return true
     }
     
-    func pointSongFromPLaylistToPlaylist(sourcePLaylistName:String,destPlaylistName:String,songName:String) -> Bool{
+    func referenceSongFromPLaylistToPlaylist(sourcePLaylistName:String,destPlaylistName:String,songName:String) -> Bool{
         let sourcePlaylist = playlistDict[sourcePLaylistName]
         let destPlaylist   = playlistDict[destPlaylistName]
         if let song:songModel = sourcePlaylist?.accessSongByTitle(songName) as songModel! {
