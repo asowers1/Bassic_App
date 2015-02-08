@@ -9,7 +9,9 @@
 import UIKit
 import Foundation
 
-class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate  {
+class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIAlertViewDelegate {
+
+
 
 
     //MARK: - IBOutlets for user interface
@@ -32,6 +34,9 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     var playlists: playlistController = playlistController()
     var playlistPickerData:[String] = []
     var songList:[String] = []
+    
+    var playlistTextField:UITextField = UITextField()
+    
     
     func buildTestSet() {
         
@@ -132,7 +137,27 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     @IBAction func playlistStepperCallback(sender: UIStepper) {
         if sender.value >= playlistStepperValue {
             // add playlist
-            playlistStepperValue++
+            
+            
+            var alert = UIAlertController(title: "Alert Title", message: "Alert Message", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addTextFieldWithConfigurationHandler(configurationTextField)
+            
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler:handleCancel))
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
+                println("User click Ok button")
+                println(self.playlistTextField.text)
+                if(self.playlists.addPlaylist(self.playlistTextField.text)){
+                    self.playlistPickerData = self.playlists.getPlaylistList()
+                    self.playlistPickerView.reloadAllComponents()
+                    self.playlistStepperValue++
+                }
+                
+            }))
+            self.presentViewController(alert, animated: true, completion: {
+                println("completion block")
+            })
+            
             
             
         }else if sender.value <= playlistStepperValue {
@@ -141,17 +166,19 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             let playlist:playlistModel = playlists.playlistDict[playlistPickerData[index]]!
             println("Playlist name: \(playlist.name)")
             if playlist.name != "All songs"{
-                playlistStepperValue--
                 if(playlists.removePlaylist(playlistPickerData[index])==true){
                     playlistPickerData = playlists.getPlaylistList()
-                    let newPlaylist:playlistModel = playlists.playlistDict[playlistPickerData[playlistPickerView.selectedRowInComponent(0)]]!
-                    songList = newPlaylist.listAllSongs()
                     playlistPickerView.reloadAllComponents()
+                    
+                    let selectedPlaylist:playlistModel = playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
+                    songList = selectedPlaylist.listAllSongs()
                     songPickerView.reloadAllComponents()
+                    if let currentSong:songModel = selectedPlaylist.accessSong(0) as songModel! {
+                        
+                    }
                 }else{
+                    println("no songs here, buddy")
                 }
-                
-                
             }else{
                 sender.value = playlistStepperValue
                 var alert = UIAlertController(title: "Cannot remove main playlist", message: "\"All songs\" is the main playlist and it cannot be removed", preferredStyle: UIAlertControllerStyle.Alert)
@@ -161,13 +188,37 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 presentViewController(alert, animated: true, completion: nil)
             }
         }
-        println("playlistStepperValue: \(playlistStepperValue)")
-
-        
+        //println("playlistStepperValue: \(playlistStepperValue)")
     }
     
     
     @IBAction func songStepperCallback(sender: UIStepper) {
-        
+        println("song stepper")
     }
+    
+    
+    //MARK UIAlertView Delegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        println("test")
+    }
+    
+    
+    //MARK alertView input
+    
+    func configurationTextField(textField: UITextField!)
+    {
+        
+        if let tField = textField {
+            
+            self.playlistTextField = textField!
+            self.playlistTextField.placeholder = "Playlist Title"
+        }
+    }
+    
+    
+    func handleCancel(alertView: UIAlertAction!)
+    {
+        println("Canceled playlist add: \(self.playlistTextField.text))")
+    }
+
 }

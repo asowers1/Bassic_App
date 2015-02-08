@@ -159,10 +159,6 @@
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vir-vS-a1i">
                                 <rect key="frame" x="462" y="101" width="94" height="29"/>
-                                <connections>
-                                    <action selector="songSteper:" destination="vXZ-lx-hvc" eventType="valueChanged" id="8DT-qu-KdM"/>
-                                    <action selector="songStepperCallback:" destination="vXZ-lx-hvc" eventType="valueChanged" id="ydC-CC-tnz"/>
-                                </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlists:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlQ-Qp-wBL">
                                 <rect key="frame" x="54" y="72" width="68" height="21"/>
@@ -490,9 +486,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Bassic" id="6U4-3G-VMj">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="1Xd-Uc-VJz"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Bassic" id="6U4-3G-VMj"/>
                     <connections>
                         <outlet property="albumLabel" destination="diy-U0-DNf" id="nFz-RP-DNZ"/>
                         <outlet property="artistLabel" destination="KNH-GQ-gVW" id="icI-jT-QHM"/>
