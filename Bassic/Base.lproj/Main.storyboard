@@ -223,7 +223,7 @@
                             <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ud-eC-3MT">
                                 <rect key="frame" x="0.0" y="-162" width="320" height="162"/>
                             </pickerView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0S4-ia-hjS">
+                            <pickerView tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0S4-ia-hjS">
                                 <rect key="frame" x="0.0" y="-162" width="320" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="6he-Hu-E31"/>
@@ -242,7 +242,7 @@
                                     </mask>
                                 </variation>
                             </pickerView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4Q-BH-0qn">
+                            <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4Q-BH-0qn">
                                 <rect key="frame" x="0.0" y="-162" width="320" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="116" id="W3W-4Y-pAG"/>
@@ -694,6 +694,7 @@
                         <outlet property="playlistLabelStatic" destination="OlQ-Qp-wBL" id="t2f-bm-upB"/>
                         <outlet property="playlistPickerView" destination="AZ7-wR-EMs" id="zxP-hF-oWu"/>
                         <outlet property="playlistStepper" destination="6Qr-t8-qed" id="kC3-bW-F97"/>
+                        <outlet property="searchLabel" destination="QAt-ES-Qa5" id="Z2i-jF-Cfj"/>
                         <outlet property="songPickerView" destination="1ud-eC-3MT" id="vyV-z7-fxV"/>
                         <outlet property="songStepper" destination="vir-vS-a1i" id="94v-YX-akm"/>
                         <outlet property="songsLabelStatic" destination="IV7-KB-BUh" id="ORE-F2-5gn"/>

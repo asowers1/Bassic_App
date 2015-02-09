@@ -26,15 +26,24 @@ class playlistModel: NSObject {
         list.removeAtIndex(toRemove)
         list.sort({ $0.title < $1.title })
     }
-    func removeByTitle(toRemove:String){
+    func removeByTitle(toRemove:String,artist:String){
         var index:Int=0
         for song in list{
-            if song.title == toRemove {
+            if song.title == toRemove && song.artist == artist {
                 list.removeAtIndex(index)
                 list.sort({ $0.title < $1.title })
             }
             index++
         }
+    }
+    
+    func checkIfSongExists(title:String,artist:String) -> Bool {
+        for song in list {
+            if song.title == title && song.artist == artist{
+                return true
+            }
+        }
+        return false
     }
     
     func listAllSongs()->[String]{

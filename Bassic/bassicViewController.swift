@@ -24,6 +24,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     @IBOutlet weak var yearLabel:     UILabel!
     @IBOutlet weak var composerLabel: UILabel!
 
+    @IBOutlet weak var searchLabel: UIBarButtonItem!
     
     // IBOutlet pickers
     @IBOutlet weak var playlistPickerView: UIPickerView!
@@ -98,9 +99,16 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     var songList:[String]           = []
     var yearList:[String]           = []
     var lengthList:[String]         = []
+    var artistList:[String]         = []
+    
+    var lengthValue:String = String()
+    var yearValue:String = String()
     
     // playlist input field
     var playlistTextField:UITextField = UITextField()
+    
+    // artist input field
+    var artistTextField:UITextField = UITextField()
     
     
     // build test set of playlist and music data
@@ -112,8 +120,9 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         playlists.addPlaylist("classical")
     
         // initial songs
-        playlists.addSongToPlaylist("All songs", songTitle: "Portway", songArtist: "Land Observations", songAlbum: "Roman Roads IV-XI", songLength: "3:34", songYear: 2012, songComposer: "Land Observations")
-        playlists.addSongToPlaylist("All songs", songTitle: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro", songArtist: "Johann Sebastian Bach", songAlbum: "Bach Brandenburg Concertos; Orchestra Suites", songLength: "4:44", songYear: 1988, songComposer: "Johann Sebastian Bach")
+        playlists.addSongToPlaylist("All songs", songTitle: "Portway", songArtist: "Land Observations", songAlbum: "Roman Roads IV-XI", songLength: "3:34", songYear: "2012", songComposer: "Land Observations")
+        playlists.addSongToPlaylist("All songs", songTitle: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro", songArtist: "Johann Sebastian Bach", songAlbum: "Bach Brandenburg Concertos; Orchestra Suites", songLength: "4:44", songYear: "1988"
+            , songComposer: "Johann Sebastian Bach")
         
         
         // copy some songs from "All songs" into other playlists
@@ -128,7 +137,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             artistLabel.text = initialSong.artist
             albumLabel.text = initialSong.album
             lengthLabel.text = initialSong.length
-            yearLabel.text = String(format: "%d", initialSong.year)
+            yearLabel.text = initialSong.year
             composerLabel.text = initialSong.composer
         }
     }
@@ -136,6 +145,23 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.toggleAddSongOutlets(true)
+        
+        for index in 1900...2015 {
+            yearList.append(String(index))
+        }
+        
+        for totalSeconds in 0...1800 {
+            var minutes:Int = totalSeconds / 60;
+            var seconds:Int = totalSeconds % 60;
+            if seconds < 10 {
+                lengthList.append(String("\(minutes):0\(seconds)"))
+            }else{
+                lengthList.append(String("\(minutes):\(seconds)"))
+            }
+        }
+        
         playlistPickerView.dataSource = self
         playlistPickerView.delegate   = self
         songPickerView.dataSource     = self
@@ -145,19 +171,10 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         lengthPickerView.dataSource   = self
         lengthPickerView.delegate     = self
         
-        //self.toggleAddSongOutlets(true)
+        yearValue = yearList[0]
+        lengthValue = lengthList[0]
         
-        for index in 1900...2015 {
-            yearList.append(String(index))
-        }
-        
-        for totalSeconds in 0...1800 {
-            var minutes:Int = totalSeconds / 60;
-            var seconds:Int = totalSeconds % 60;
-            lengthList.append(String("\(minutes):\(seconds)"))
-        }
-        
-        println("\(lengthList)")
+        println("\(yearList)")
         
         self.buildTestSet()
         playlistPickerData = playlists.getPlaylistList()
@@ -206,14 +223,18 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (pickerView.tag==1){
+        if (pickerView.tag==3){
+            self.yearValue = yearList[row]
+        }else if (pickerView.tag==2){
+            self.lengthValue = lengthList[row]
+        }else if (pickerView.tag==1){
             let selectedPlaylist:playlistModel = playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
             if let currentSong:songModel = selectedPlaylist.accessSong(row) as songModel! {
                 titleLabel.text = currentSong.title
                 artistLabel.text = currentSong.artist
                 albumLabel.text = currentSong.album
                 lengthLabel.text = currentSong.length
-                yearLabel.text = String(format: "%d", currentSong.year)
+                yearLabel.text = currentSong.year
                 composerLabel.text = currentSong.composer
             }
         }else if (pickerView.tag==0){
@@ -228,7 +249,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 artistLabel.text = currentSong.artist
                 albumLabel.text = currentSong.album
                 lengthLabel.text = currentSong.length
-                yearLabel.text = String(format: "%d", currentSong.year)
+                yearLabel.text = currentSong.year
                 composerLabel.text = currentSong.composer
             }else{
                 titleLabel.text =    ""
@@ -249,7 +270,6 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             var alert = UIAlertController(title: "Add Playlist", message: "Enter playlist name:", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addTextFieldWithConfigurationHandler(playlistConfigurationTextField)
-            
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
                 println("User click Ok button")
@@ -304,9 +324,8 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             //var alert = UIAlertController(title: "Add song", message: "Enter song details:", preferredStyle: UIAlertControllerStyle.Alert)
             
             self.toggleMainInterfaceOutlets(true)
-            self.songListStepperValue++
-                
-
+            self.toggleAddSongOutlets(false)
+        
 
             
         } else if sender.value <= songListStepperValue {
@@ -317,6 +336,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 let songIndex = songPickerView.selectedRowInComponent(0)
                 let playlist:playlistModel = playlists.playlistDict[playlistPickerData[playlistIndex]]!
                 let songTitle = playlist.accessSong(songIndex)?.title
+                let songArtist = playlist.accessSong(songIndex)?.artist
                 playlist.remove(songIndex)
                 songListStepperValue--
                 songList = playlist.listAllSongs()
@@ -324,7 +344,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 
                 // remove in other playlists
                 for list in playlists.playlistDict {
-                    list.1.removeByTitle(songTitle!)
+                    list.1.removeByTitle(songTitle!,artist: songArtist!)
                 }
                 
             }else{
@@ -335,6 +355,14 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             }
             
         }
+    }
+    
+    func getSelectedPlaylist() -> playlistModel {
+        return playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
+    }
+    
+    func getMainPlaylist() -> playlistModel {
+        return playlists.accessPlaylist("All songs")
     }
     
     
@@ -355,19 +383,89 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
+    func artistConfigurationTextField(textField: UITextField!){
+        if let tFild = textField {
+            self.artistTextField = textField!
+            self.artistTextField.placeholder = "Artist name"
+        }
+    }
+    
     func handleCancel(alertView: UIAlertAction!) {
-        println("Canceled add")
+
+
+    }
+    
+    func artistiListToStringList() -> String {
+        var toReturn:String = ""
+        for artist in artistList {
+            toReturn = artist + "\n"
+        }
+        return toReturn
     }
     
     @IBAction func searchByArtist(sender: AnyObject) {
         
         println("searching for selected artist")
+        var alert = UIAlertController(title: "List Artists in playlist", message: "Enter artist name:", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addTextFieldWithConfigurationHandler(artistConfigurationTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
+            println("User clicked Ok button")
+            var playlist:playlistModel = self.getSelectedPlaylist()
+            
+            self.artistList = playlist.listArtistSong(self.artistTextField.text)
+            if self.artistList.count == 0 {
+                let artists:String = self.artistiListToStringList()
+                let alert2 = UIAlertView(title: "Songs by \(self.artistTextField.text)", message: "none", delegate: self, cancelButtonTitle: "Okay")
+                alert2.show()
+            }else{
+                let artists:String = self.artistiListToStringList()
+                let alert2 = UIAlertView(title: "Songs by \(self.artistTextField.text)", message: artists, delegate: self, cancelButtonTitle: "Okay")
+                alert2.show()
+            }
+        }))
+        self.presentViewController(alert, animated: true, completion: {
+            println("completion block")
+            
+        })
+
+
     }
     @IBAction func addSong(sender: AnyObject) {
-        println("Add song")
+        if titleInput.text != "" && artistInput.text != "" && albumInput.text != "" && composerInput.text != "" {
+            
+            var selectedPlaylist:playlistModel = self.getSelectedPlaylist()
+            if selectedPlaylist.checkIfSongExists(titleInput.text,artist: artistInput.text){
+                let alert = UIAlertView(title: "Hey Buddy", message: "You can't add a song with the same title and artist in a playlist", delegate: self, cancelButtonTitle: "Okay")
+                alert.show()
+                return
+            }
+            
+            let newSong:songModel = songModel(title: titleInput.text, artist: artistInput.text, album: albumInput.text, length: self.lengthValue, year: self.yearValue, composer: composerInput.text)
+            
+            
+            if selectedPlaylist.name != "All songs" {
+                
+                let mainPlaylist:playlistModel = self.getMainPlaylist()
+                mainPlaylist.add(newSong)
+                selectedPlaylist.add(newSong)
+            }else {
+                selectedPlaylist.add(newSong)
+            }
+            songList = selectedPlaylist.listAllSongs()
+            songPickerView.reloadAllComponents()
+            songListStepperValue++
+            toggleAddSongOutlets(true)
+            toggleMainInterfaceOutlets(false)
+        }else{
+            let alert = UIAlertView(title: "Hey Buddy", message: "Aren't you forgetting a few fields?", delegate: self, cancelButtonTitle: "It seems you're right")
+            alert.show()
+        }
     }
     @IBAction func cancelAddSong(sender: AnyObject) {
         println("Cancel add song")
+        toggleAddSongOutlets(true)
+        toggleMainInterfaceOutlets(false)
     }
 
 }

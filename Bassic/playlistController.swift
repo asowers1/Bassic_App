@@ -37,7 +37,7 @@ class playlistController: NSObject {
         return sortedKeys
     }
     
-    func addSongToPlaylist(playlistName:String, songTitle:String, songArtist:String, songAlbum:String, songLength:String, songYear:Int, songComposer:String) -> Bool {
+    func addSongToPlaylist(playlistName:String, songTitle:String, songArtist:String, songAlbum:String, songLength:String, songYear:String, songComposer:String) -> Bool {
 
         var song:songModel = songModel(title: songTitle, artist: songArtist, album: songAlbum, length: songLength, year: songYear, composer: songComposer)
         playlistDict[playlistName]?.add(song)
