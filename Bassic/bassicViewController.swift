@@ -11,40 +11,97 @@ import Foundation
 
 class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIAlertViewDelegate {
 
-
-
-
     //MARK: - IBOutlets for user interface
-    @IBOutlet weak var playlistPickerView: UIPickerView!
-    @IBOutlet weak var songPickerView: UIPickerView!
+
     
-    @IBOutlet weak var playlistStepper: UIStepper!
-    @IBOutlet weak var songStepper: UIStepper!
+    // main screen outlets
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var artistLabel: UILabel!
-    @IBOutlet weak var albumLabel: UILabel!
-    @IBOutlet weak var lengthLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
+    // IBOutlet labels
+    @IBOutlet weak var titleLabel:    UILabel!
+    @IBOutlet weak var artistLabel:   UILabel!
+    @IBOutlet weak var albumLabel:    UILabel!
+    @IBOutlet weak var lengthLabel:   UILabel!
+    @IBOutlet weak var yearLabel:     UILabel!
     @IBOutlet weak var composerLabel: UILabel!
 
+    
+    // IBOutlet pickers
+    @IBOutlet weak var playlistPickerView: UIPickerView!
+    @IBOutlet weak var songPickerView:     UIPickerView!
+    
+    // IBOutlet steppers
+    @IBOutlet weak var playlistStepper: UIStepper!
+    @IBOutlet weak var songStepper:     UIStepper!
+    
+    @IBOutlet weak var composerLabelStatic: UILabel!
+    @IBOutlet weak var yearLabelStatic: UILabel!
+    @IBOutlet weak var lengthLabelStatic: UILabel!
+    @IBOutlet weak var albumLabelStatic: UILabel!
+    @IBOutlet weak var artistLabelStatic: UILabel!
+    @IBOutlet weak var titleLabelStatic: UILabel!
+    @IBOutlet weak var songsLabelStatic: UILabel!
+    @IBOutlet weak var playlistLabelStatic: UILabel!
+    
+    func toggleMainInterfaceOutlets(status:Bool){
+        titleLabel.hidden = status
+        artistLabel.hidden = status
+        albumLabel.hidden = status
+        lengthLabel.hidden = status
+        yearLabel.hidden = status
+        composerLabel.hidden = status
+        playlistPickerView.hidden = status
+        songPickerView.hidden = status
+        composerLabelStatic.hidden = status
+        yearLabelStatic.hidden = status
+        lengthLabelStatic.hidden = status
+        albumLabelStatic.hidden = status
+        artistLabelStatic.hidden = status
+        titleLabelStatic.hidden = status
+        songsLabelStatic.hidden = status
+        playlistLabelStatic.hidden = status
+        playlistStepper.hidden = status
+        songStepper.hidden = status
+    }
+    
+    
+    // add song outlets
+    
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var composerInput: UITextField!
+    @IBOutlet weak var albumInput: UITextField!
+    @IBOutlet weak var artistInput: UITextField!
+    @IBOutlet weak var titleInput: UITextField!
+    @IBOutlet weak var yearPickerView: UIPickerView!
+    @IBOutlet weak var lengthPickerView: UIPickerView!
+    @IBOutlet weak var addNewSongStatic: UILabel!
+
+    func toggleAddSongOutlets(status:Bool) {
+        addButton.hidden = status
+        cancelButton.hidden = status
+        composerInput.hidden = status
+        albumInput.hidden = status
+        artistInput.hidden = status
+        titleInput.hidden = status
+        yearPickerView.hidden = status
+        lengthPickerView.hidden = status
+        addNewSongStatic.hidden = status
+    }
+    
+
+    // local data
     var playlistStepperValue:Double=0
     var songListStepperValue:Double=0
     
     var playlists: playlistController = playlistController()
     var playlistPickerData:[String] = []
-    var songList:[String] = []
+    var songList:[String]           = []
+    var yearList:[String]           = []
+    var lengthList:[String]         = []
     
     // playlist input field
     var playlistTextField:UITextField = UITextField()
     
-    // song input fields
-    var titleTextField:UITextField    = UITextField()
-    var artistTextField:UITextField   = UITextField()
-    var albumTextField:UITextField    = UITextField()
-    var lengthTextField:UITextField   = UITextField()
-    var yearTextField:UITextField     = UITextField()
-    var composerTextField:UITextField = UITextField()
     
     // build test set of playlist and music data
     func buildTestSet() {
@@ -54,10 +111,9 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         playlists.addPlaylist("running")
         playlists.addPlaylist("classical")
     
-    
         // initial songs
-        playlists.addSongToPlaylist("All songs", songTitle: "Portway", songArtist: "Land Observations", songAlbum: "Roman Roads IV-XI", songLength: 3.34, songYear: 2012, songComposer: "Land Observations")
-        playlists.addSongToPlaylist("All songs", songTitle: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro", songArtist: "Johann Sebastian Bach", songAlbum: "Bach Brandenburg Concertos; Orchestra Suites", songLength: 4.44, songYear: 1988, songComposer: "Johann Sebastian Bach")
+        playlists.addSongToPlaylist("All songs", songTitle: "Portway", songArtist: "Land Observations", songAlbum: "Roman Roads IV-XI", songLength: "3:34", songYear: 2012, songComposer: "Land Observations")
+        playlists.addSongToPlaylist("All songs", songTitle: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro", songArtist: "Johann Sebastian Bach", songAlbum: "Bach Brandenburg Concertos; Orchestra Suites", songLength: "4:44", songYear: 1988, songComposer: "Johann Sebastian Bach")
         
         
         // copy some songs from "All songs" into other playlists
@@ -71,7 +127,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             titleLabel.text = initialSong.title
             artistLabel.text = initialSong.artist
             albumLabel.text = initialSong.album
-            lengthLabel.text = String(format: "%.02f",initialSong.length)
+            lengthLabel.text = initialSong.length
             yearLabel.text = String(format: "%d", initialSong.year)
             composerLabel.text = initialSong.composer
         }
@@ -81,12 +137,32 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         playlistPickerView.dataSource = self
-        playlistPickerView.delegate = self
-        songPickerView.dataSource = self
-        songPickerView.delegate = self
+        playlistPickerView.delegate   = self
+        songPickerView.dataSource     = self
+        songPickerView.delegate       = self
+        yearPickerView.dataSource     = self
+        yearPickerView.delegate       = self
+        lengthPickerView.dataSource   = self
+        lengthPickerView.delegate     = self
+        
+        //self.toggleAddSongOutlets(true)
+        
+        for index in 1900...2015 {
+            yearList.append(String(index))
+        }
+        
+        for totalSeconds in 0...1800 {
+            var minutes:Int = totalSeconds / 60;
+            var seconds:Int = totalSeconds % 60;
+            lengthList.append(String("\(minutes):\(seconds)"))
+        }
+        
+        println("\(lengthList)")
         
         self.buildTestSet()
         playlistPickerData = playlists.getPlaylistList()
+        
+        
         
         playlistStepperValue = Double(playlistPickerData.count)
         songListStepperValue = Double(songList.count)
@@ -107,6 +183,10 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             return playlistPickerData.count
         }else if (pickerView.tag==1){
             return songList.count
+        }else if(pickerView.tag==2){
+            return lengthList.count
+        }else if(pickerView.tag==3){
+            return yearList.count
         }
         return 0
     }
@@ -117,6 +197,10 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             return playlistPickerData[row]
         }else if(pickerView.tag==1){
             return songList[row]
+        }else if(pickerView.tag==2){
+            return lengthList[row]
+        }else if(pickerView.tag==3){
+            return yearList[row]
         }
         return ""
     }
@@ -128,7 +212,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 titleLabel.text = currentSong.title
                 artistLabel.text = currentSong.artist
                 albumLabel.text = currentSong.album
-                lengthLabel.text = String(format: "%.02f", currentSong.length)
+                lengthLabel.text = currentSong.length
                 yearLabel.text = String(format: "%d", currentSong.year)
                 composerLabel.text = currentSong.composer
             }
@@ -143,19 +227,17 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 titleLabel.text = currentSong.title
                 artistLabel.text = currentSong.artist
                 albumLabel.text = currentSong.album
-                lengthLabel.text = String(format: "%.02f", currentSong.length)
+                lengthLabel.text = currentSong.length
                 yearLabel.text = String(format: "%d", currentSong.year)
                 composerLabel.text = currentSong.composer
             }else{
-                titleLabel.text = ""
-                artistLabel.text = ""
-                albumLabel.text = ""
-                lengthLabel.text = ""
-                yearLabel.text = ""
+                titleLabel.text =    ""
+                artistLabel.text =   ""
+                albumLabel.text =    ""
+                lengthLabel.text =   ""
+                yearLabel.text =     ""
                 composerLabel.text = ""
             }
-            
-            
         }
     }
     
@@ -219,23 +301,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         println("song stepper")
         if sender.value >= songListStepperValue {
             // add song
-            var alert = UIAlertController(title: "Add song", message: "Enter song details:", preferredStyle: UIAlertControllerStyle.Alert)
+            //var alert = UIAlertController(title: "Add song", message: "Enter song details:", preferredStyle: UIAlertControllerStyle.Alert)
             
-            alert.addTextFieldWithConfigurationHandler(titleConfigurationTextField)
-            alert.addTextFieldWithConfigurationHandler(artistConfigurationTextField)
-            alert.addTextFieldWithConfigurationHandler(albumConfigureationTextField)
-            alert.addTextFieldWithConfigurationHandler(lengthConfigurationTextField)
-            alert.addTextFieldWithConfigurationHandler(yearConfigurationTextField)
-            alert.addTextFieldWithConfigurationHandler(composerConfigurationTextField)
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
-                println("User click Ok button")
-                               
-            }))
-            self.presentViewController(alert, animated: true, completion: {
-                println("completion block")
-            })
+            self.toggleMainInterfaceOutlets(true)
+            self.songListStepperValue++
+                
+
 
             
         } else if sender.value <= songListStepperValue {
@@ -247,6 +318,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 let playlist:playlistModel = playlists.playlistDict[playlistPickerData[playlistIndex]]!
                 let songTitle = playlist.accessSong(songIndex)?.title
                 playlist.remove(songIndex)
+                songListStepperValue--
                 songList = playlist.listAllSongs()
                 songPickerView.reloadAllComponents()
                 
@@ -283,57 +355,19 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
-    func titleConfigurationTextField(textField:UITextField!){
-        if let tField = textField {
-            
-            self.titleTextField = textField!
-            self.titleTextField.placeholder = "Song Title"
-        }
-    }
-    
-    func artistConfigurationTextField(textField:UITextField!) {
-        if let tField = textField {
-            
-            self.artistTextField = textField!
-            self.artistTextField.placeholder = "Artist Name"
-        }
-    }
-    
-    func albumConfigureationTextField(textField:UITextField!) {
-        if let tField = textField {
-            
-            self.albumTextField = textField!
-            self.albumTextField.placeholder = "Album Title"
-        }
-    }
-    
-    func lengthConfigurationTextField(textField:UITextField!) {
-        if let tField = textField {
-            
-            self.lengthTextField = textField!
-            self.lengthTextField.placeholder = "Song Length"
-        }
-    }
-    
-    func yearConfigurationTextField(textField:UITextField!){
-        if let tField = textField {
-            
-            self.yearTextField = textField!
-            self.yearTextField.placeholder = "Song Year"
-        }
-    }
-    
-    func composerConfigurationTextField(textField:UITextField!){
-        if let tField = textField {
-            
-            self.composerTextField = textField!
-            self.composerTextField.placeholder = "Composer Name"
-        }
-    }
-    
-    
     func handleCancel(alertView: UIAlertAction!) {
         println("Canceled add")
+    }
+    
+    @IBAction func searchByArtist(sender: AnyObject) {
+        
+        println("searching for selected artist")
+    }
+    @IBAction func addSong(sender: AnyObject) {
+        println("Add song")
+    }
+    @IBAction func cancelAddSong(sender: AnyObject) {
+        println("Cancel add song")
     }
 
 }
