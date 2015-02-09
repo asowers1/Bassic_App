@@ -316,7 +316,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
-    
+    // adds or deletes new song based on stepper value
     @IBAction func songStepperCallback(sender: UIStepper) {
         println("song stepper")
         if sender.value >= songListStepperValue {
@@ -357,10 +357,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
+    // gets current selected playlist from playlistPickerView
     func getSelectedPlaylist() -> playlistModel {
         return playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
     }
     
+    // gets the main playlist object
     func getMainPlaylist() -> playlistModel {
         return playlists.accessPlaylist("All songs")
     }
@@ -374,6 +376,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     
     //MARK alertView input
     
+    // text field for add playlist UIAlertView
     func playlistConfigurationTextField(textField: UITextField!) {
         
         if let tField = textField {
@@ -383,6 +386,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
+     // text field for add artist UIAlertVie
     func artistConfigurationTextField(textField: UITextField!){
         if let tFild = textField {
             self.artistTextField = textField!
@@ -390,11 +394,13 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
+     // text field for add playlist UIAlertVie
     func handleCancel(alertView: UIAlertAction!) {
-
+        // may be surpufolous
 
     }
     
+     // turns [Srting] to String
     func artistiListToStringList() -> String {
         var toReturn:String = ""
         for artist in artistList {
@@ -403,6 +409,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         return toReturn
     }
     
+     // Search for titles by artist in a particular playlist
     @IBAction func searchByArtist(sender: AnyObject) {
         
         println("searching for selected artist")
@@ -431,6 +438,8 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
 
 
     }
+    
+     // add song IBAction
     @IBAction func addSong(sender: AnyObject) {
         if titleInput.text != "" && artistInput.text != "" && albumInput.text != "" && composerInput.text != "" {
             
@@ -462,6 +471,8 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             alert.show()
         }
     }
+    
+     // Cancel add song IBAction
     @IBAction func cancelAddSong(sender: AnyObject) {
         println("Cancel add song")
         toggleAddSongOutlets(true)
@@ -469,10 +480,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     }
     
    
+     // Dismiss Keyboard IBAction
     @IBAction func dismissKeyboard(sender: AnyObject) {
         self.dismissKeyboards()
     }
     
+     // Dismiss Keyboard method
     func dismissKeyboards(){
         titleInput.endEditing(true)
         artistInput.endEditing(true)
