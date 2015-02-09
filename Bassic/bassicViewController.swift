@@ -467,5 +467,17 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         toggleAddSongOutlets(true)
         toggleMainInterfaceOutlets(false)
     }
+    
+   
+    @IBAction func dismissKeyboard(sender: AnyObject) {
+        self.dismissKeyboards()
+    }
+    
+    func dismissKeyboards(){
+        titleInput.endEditing(true)
+        artistInput.endEditing(true)
+        albumInput.endEditing(true)
+        composerInput.endEditing(true)
+    }
 
 }

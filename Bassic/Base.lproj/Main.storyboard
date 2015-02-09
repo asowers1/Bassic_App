@@ -279,26 +279,6 @@
                                     <action selector="addSong:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aDe-ZE-x0Q"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Composer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6od-C4-8c2">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Album" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ab8-yE-4UO">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Artist" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s8G-eI-7Z8">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6NF-7I-beg">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new song:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fk-nh-SZo">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -311,8 +291,41 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Composer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6od-C4-8c2">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="Orp-81-3ou"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Album" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ab8-yE-4UO">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="lRI-TQ-gkR"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Artist" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s8G-eI-7Z8">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="2Lj-kb-ASI"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6NF-7I-beg">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="rkb-cB-WoK"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="qAO-Mh-7lt" firstAttribute="baseline" secondItem="ddw-nr-16R" secondAttribute="baseline" id="040-R3-UzU"/>
                             <constraint firstItem="dLs-LY-ujY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="19" id="10B-jC-NXd">
@@ -368,7 +381,9 @@
                             <constraint firstItem="IV7-KB-BUh" firstAttribute="centerX" secondItem="vir-vS-a1i" secondAttribute="centerX" id="WTL-6d-7Ko"/>
                             <constraint firstItem="6Qr-t8-qed" firstAttribute="top" secondItem="OlQ-Qp-wBL" secondAttribute="bottom" constant="8" symbolic="YES" id="WnS-a6-Sf8"/>
                             <constraint firstItem="6od-C4-8c2" firstAttribute="top" secondItem="Ab8-yE-4UO" secondAttribute="bottom" constant="8" id="XBU-Tq-X7v"/>
-                            <constraint firstItem="hva-Kk-zhC" firstAttribute="top" secondItem="6od-C4-8c2" secondAttribute="bottom" constant="53" id="XYc-zg-nAh"/>
+                            <constraint firstItem="hva-Kk-zhC" firstAttribute="top" secondItem="6od-C4-8c2" secondAttribute="bottom" constant="53" id="XYc-zg-nAh">
+                                <variation key="widthClass=compact" constant="89"/>
+                            </constraint>
                             <constraint firstItem="OlQ-Qp-wBL" firstAttribute="centerX" secondItem="6Qr-t8-qed" secondAttribute="centerX" id="ZEc-tD-Lu7"/>
                             <constraint firstItem="ddw-nr-16R" firstAttribute="trailing" secondItem="K22-z8-t1l" secondAttribute="trailing" id="ZS7-v8-5ei"/>
                             <constraint firstItem="AZ7-wR-EMs" firstAttribute="top" secondItem="1ud-eC-3MT" secondAttribute="top" id="Zzi-NG-aFD"/>
@@ -445,12 +460,12 @@
                                 <exclude reference="x4Q-BH-0qn"/>
                                 <exclude reference="sPL-Z4-oYC"/>
                                 <exclude reference="NT1-ip-Wkq"/>
+                                <exclude reference="3Fk-nh-SZo"/>
+                                <exclude reference="qAO-Mh-7lt"/>
                                 <exclude reference="6od-C4-8c2"/>
                                 <exclude reference="Ab8-yE-4UO"/>
                                 <exclude reference="s8G-eI-7Z8"/>
                                 <exclude reference="6NF-7I-beg"/>
-                                <exclude reference="3Fk-nh-SZo"/>
-                                <exclude reference="qAO-Mh-7lt"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="2T2-6w-2hi"/>
@@ -550,12 +565,12 @@
                                 <include reference="x4Q-BH-0qn"/>
                                 <include reference="sPL-Z4-oYC"/>
                                 <include reference="NT1-ip-Wkq"/>
+                                <include reference="3Fk-nh-SZo"/>
+                                <include reference="qAO-Mh-7lt"/>
                                 <include reference="6od-C4-8c2"/>
                                 <include reference="Ab8-yE-4UO"/>
                                 <include reference="s8G-eI-7Z8"/>
                                 <include reference="6NF-7I-beg"/>
-                                <include reference="3Fk-nh-SZo"/>
-                                <include reference="qAO-Mh-7lt"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="2T2-6w-2hi"/>
@@ -667,6 +682,9 @@
                                 <exclude reference="w3J-oG-AlO"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2lW-ZT-DFb" appends="YES" id="C9k-tm-5vZ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Bassic" id="6U4-3G-VMj">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="QAt-ES-Qa5">
@@ -707,6 +725,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2lW-ZT-DFb">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="vXZ-lx-hvc" id="g91-8m-v2R"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="879" y="317"/>
         </scene>
