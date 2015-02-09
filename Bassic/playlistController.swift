@@ -12,6 +12,7 @@ class playlistController: NSObject {
     
     var playlistDict:[String: playlistModel] = ["All songs":playlistModel(name: "All songs",list: [])]
     
+    
     func addPlaylist(name:String) -> Bool {
         if (playlistDict[name]==nil){
             playlistDict[name] = playlistModel(name: name, list: [])

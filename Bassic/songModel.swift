@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+
+//Builds a song object that includes the following attribute.
+
 class songModel: NSObject {
     var title:String     = ""
     var artist:String    = ""

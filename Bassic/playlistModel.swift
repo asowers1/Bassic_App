@@ -9,23 +9,31 @@
 import Foundation
 import UIKit
 
+
+//Creates a playlist object which is an array of song objects
 class playlistModel: NSObject {
     var name: String
     var list: [songModel] = []
+    
     
     init(name:String, list: [songModel]) {
         self.name = name
         self.list = list
     }
     
+    //adds new song to a playlist based on user input and sorts after adding
     func add(newSong:songModel){
         list.append(newSong)
         list.sort({ $0.title < $1.title })
     }
+    
+    //removes a song based on the index
     func remove(toRemove:Int){
         list.removeAtIndex(toRemove)
         list.sort({ $0.title < $1.title })
     }
+    
+    //uses the title entered by user to find and remove song
     func removeByTitle(toRemove:String,artist:String){
         var index:Int=0
         for song in list{
@@ -36,7 +44,7 @@ class playlistModel: NSObject {
             index++
         }
     }
-    
+    //searches for a song object based on the title
     func checkIfSongExists(title:String,artist:String) -> Bool {
         for song in list {
             if song.title == title && song.artist == artist{
@@ -46,6 +54,7 @@ class playlistModel: NSObject {
         return false
     }
     
+    //makes an array of the existing songs
     func listAllSongs()->[String]{
         var allSong: [String] = []
         for i in list{
@@ -53,6 +62,8 @@ class playlistModel: NSObject {
         }
         return allSong
     }
+    
+    //makes ana array of songs by one artist
     func listArtistSong(artist:String)->[String]{
         var artistList: [String] = []
         for i in list{
@@ -62,10 +73,12 @@ class playlistModel: NSObject {
         }
         return artistList
     }
+    //finds a song
     func accessSong(index:Int) -> songModel? {
         return index >= list.count ? nil : list[index]
     }
     
+    //finds a song using the title
     func accessSongByTitle(title:String) -> songModel?{
         for song in list {
             if song.title == title {
