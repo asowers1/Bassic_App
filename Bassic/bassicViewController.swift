@@ -110,8 +110,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     // artist input field
     var artistTextField:UITextField = UITextField()
     
-    
-    // build test set of playlist and music data
+    //Function buildTestSet
+    //Purpose: builds a few playlist objects with song objects in them
+    //Parameters: none
+    //Return value: none
+    //Properties modified: none
+    //Precondition - N/A
     func buildTestSet() {
         
         // initial playlists
@@ -189,12 +193,21 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         
     }
     
-    //MARK: - Delegates and data sources
-    
-    //MARK: Data Sources
+    //Function numberOfComponantsInPickerView
+    //Purpose:define number of componants in picker view
+    //Parameters: String artist - artist to compare to all songModel's artist attribute
+    //Return value: Int 1
+    //Properties modified: none
+    //Precondition - N/A
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
+    //Function pickerView
+    //Purpose: sets up the pickerview
+    //Parameters: UIPickerView numberOfRowsInComponent
+    //Return value: Int
+    //Properties:NA
+    //Precondition:NA
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView.tag==0){
             return playlistPickerData.count
@@ -208,7 +221,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         return 0
     }
     
-    //MARK: Delegates
+    //Function pickerView
+    //Purpose: same as above
+    //Parameters: UIPickerView - titleForRow, Int row
+    //Return value: String
+    //Properties modified: NA
+    //Precondition: NA
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if(pickerView.tag==0){
             return playlistPickerData[row]
@@ -222,6 +240,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         return ""
     }
     
+    //Function pickerView
+    //Purpose: same as above
+    //Parameters: UIPickerView - didSelectRow, Int row
+    //Return value: Int
+    //Properties modified: NA
+    //Precondition: NA
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView.tag==3){
             self.yearValue = yearList[row]
@@ -262,6 +286,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
+    //Function playlistStepperCallback
+    //Purpose: pop up window to create new playlist
+    //Parameters: a UIStepper
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     @IBAction func playlistStepperCallback(sender: UIStepper) {
         if sender.value >= playlistStepperValue {
             // add playlist
@@ -316,7 +346,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
-    // adds or deletes new song based on stepper value
+    //Function songStepperCallback
+    //Purpose:same as above but for songs
+    //Parameters: UIStepper
+    //Return value: NA
+    //Properties modified: allSongs playlist
+    //Precondition: none
     @IBAction func songStepperCallback(sender: UIStepper) {
         println("song stepper")
         if sender.value >= songListStepperValue {
@@ -356,27 +391,44 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             
         }
     }
-    
-    // gets current selected playlist from playlistPickerView
+    //Function getSelctedPlaylist
+    //Purpose: return selected playlist
+    //Parameters: none
+    //Return value: desired playlist
+    //Properties modified: NA
+    //Precondition: NA
     func getSelectedPlaylist() -> playlistModel {
         return playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
     }
     
-    // gets the main playlist object
+    //Function getMainPlaylist
+    //Purpose: return main playlist
+    //Parameters: none
+    //Return value: All Songs playlist
+    //Properties modified: NA
+    //Precondition: NA
     func getMainPlaylist() -> playlistModel {
         return playlists.accessPlaylist("All songs")
     }
     
+    //Function alertView
+    //Purpose: MARK UIAlertView Delegate
+    //Parameters:UIAertView  - alertView, Int clickedButtonAtIndex buttonIndex
+    //Return value:
+    //Properties modified: NA
+    //Precondition: NA
     
-    //MARK UIAlertView Delegate
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         println("test")
     }
     
     
-    //MARK alertView input
-    
-    // text field for add playlist UIAlertView
+    //Function playlistConfigurationTextField
+    //Purpose: text field for add playlist UIAlertView
+    //Parameters: UITextField - textField
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     func playlistConfigurationTextField(textField: UITextField!) {
         
         if let tField = textField {
@@ -386,7 +438,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
-     // text field for add artist UIAlertVie
+    //Function artistConfigurationTextField
+    //Purpose: text field for add artist UIAlertView
+    //Parameters:UITextField textField
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     func artistConfigurationTextField(textField: UITextField!){
         if let tFild = textField {
             self.artistTextField = textField!
@@ -394,13 +451,22 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
-     // text field for add playlist UIAlertVie
+    //Function handleCancel
+    //Purpose: text field for add playlist UIAlertVie
+    //Parameters:UIAlertAction alertView
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     func handleCancel(alertView: UIAlertAction!) {
         // may be surpufolous
 
     }
-    
-     // turns [Srting] to String
+    //Function artistiListToStringList
+    //Purpose: turns [Srting] to String
+    //Parameters: NA
+    //Return value: String toReturn
+    //Properties modified:
+    //Precondition
     func artistiListToStringList() -> String {
         var toReturn:String = ""
         for artist in artistList {
@@ -408,8 +474,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
         return toReturn
     }
-    
-     // Search for titles by artist in a particular playlist
+    //Function searchByArtist
+    //Purpose: Search for titles by artist in a particular playlist
+    //Parameters: AnyObject sender
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     @IBAction func searchByArtist(sender: AnyObject) {
         
         println("searching for selected artist")
@@ -438,8 +508,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
 
 
     }
-    
-     // add song IBAction
+    //Function addSong
+    //Purpose: add song IBAction
+    //Parameters: AnyObject sender
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     @IBAction func addSong(sender: AnyObject) {
         if titleInput.text != "" && artistInput.text != "" && albumInput.text != "" && composerInput.text != "" {
             
@@ -472,20 +546,34 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         }
     }
     
-     // Cancel add song IBAction
+    //Function cancelAddSong
+    //Purpose: Cancel add song IBAction
+    //Parameters: AnyObject sender
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     @IBAction func cancelAddSong(sender: AnyObject) {
         println("Cancel add song")
         toggleAddSongOutlets(true)
         toggleMainInterfaceOutlets(false)
     }
     
-   
-     // Dismiss Keyboard IBAction
+    //Function dismissKeyboard
+    //Purpose: Dismiss Keyboard IBAction
+    //Parameters: AnyObject sender
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     @IBAction func dismissKeyboard(sender: AnyObject) {
         self.dismissKeyboards()
     }
     
-     // Dismiss Keyboard method
+    //Function dismissKeyboards
+    //Purpose: Dismiss Keyboard method
+    //Parameters: NA
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
     func dismissKeyboards(){
         titleInput.endEditing(true)
         artistInput.endEditing(true)
