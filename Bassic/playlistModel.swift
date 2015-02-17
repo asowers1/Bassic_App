@@ -21,19 +21,36 @@ class playlistModel: NSObject {
         self.list = list
     }
     
-    //adds new song to a playlist based on user input and sorts after adding
+    
+    //Function add
+    //Purpose: add song object to list object
+    //Parameters: songModel newSong - song to be added
+    //Return value: none
+    //Properties modified: list object - now contains newSong
+    //Precondition - N/A
     func add(newSong:songModel){
         list.append(newSong)
         list.sort({ $0.title < $1.title })
     }
     
-    //removes a song based on the index
+    //Function remove
+    //Purpose: removes song from the list object
+    //Parameters: Int toRemove: index of song to be removed
+    //Return value: none
+    //Properties modified: list object - song at index toRemove is no longer in the song object
+    //Precondition - N/A
     func remove(toRemove:Int){
         list.removeAtIndex(toRemove)
         list.sort({ $0.title < $1.title })
     }
     
-    //uses the title entered by user to find and remove song
+    //Function removeByTitle
+    //Purpose: removed a song object from list based on the songsModel's title
+    //Parameters: String toRemove: title of the songModel to be removed
+                //String artist: artist of the songModel to be removed
+    //Return value: none
+    //Properties modified: list object - songModel with title toRemove and artist artist is no longer in list object
+    //Precondition - N/A
     func removeByTitle(toRemove:String,artist:String){
         var index:Int=0
         for song in list{
@@ -44,7 +61,14 @@ class playlistModel: NSObject {
             index++
         }
     }
-    //searches for a song object based on the title
+    
+    //Function checkIfSongExsists
+    //Purpose: Make sure songModel user is looking for is in list
+    //Parameters: String toRemove: title of the songModel to be removed
+                //String artist: artist of the songModel to be removed
+    //Return value: true or false depending on if songModel with title and artist is in list
+    //Properties modified: none
+    //Precondition - N/A
     func checkIfSongExists(title:String,artist:String) -> Bool {
         for song in list {
             if song.title == title && song.artist == artist{
@@ -54,7 +78,12 @@ class playlistModel: NSObject {
         return false
     }
     
-    //makes an array of the existing songs
+    //Function listAllSongs
+    //Purpose: create and display a list of all the songs within the app
+    //Parameters: None
+    //Return value: list containing all the songs in the application
+    //Properties modified: none
+    //Precondition - N/A
     func listAllSongs()->[String]{
         var allSong: [String] = []
         for i in list{
@@ -63,7 +92,12 @@ class playlistModel: NSObject {
         return allSong
     }
     
-    //makes ana array of songs by one artist
+    //Function listArtistSongs
+    //Purpose: create and display a list of all the songs by one artisit
+    //Parameters: String artist - artist to compare to all songModel's artist attribute
+    //Return value: list containing all the songs by an artist
+    //Properties modified: none
+    //Precondition - N/A
     func listArtistSong(artist:String)->[String]{
         var artistList: [String] = []
         for i in list{
@@ -73,12 +107,25 @@ class playlistModel: NSObject {
         }
         return artistList
     }
-    //finds a song
+    
+    //THIS ONE
+    //Function accessSong
+    //Purpose: locate a songModel using the index
+    //Parameters: Int index - index of songModel in list to remove
+    //Return value: index
+    //Properties modified: none
+    //Precondition - N/A
     func accessSong(index:Int) -> songModel? {
         return index >= list.count ? nil : list[index]
     }
-    
-    //finds a song using the title
+
+    //THIS ONE
+    //Function accessSongByTitle
+    //Purpose: locate songModel in list object using title property
+    //Parameters: String title - title of songModel in list to remove
+    //Return value: songModel searching for or nothing if songModel doesn't exsist
+    //Properties modified: none
+    //Precondition - N/A
     func accessSongByTitle(title:String) -> songModel?{
         for song in list {
             if song.title == title {
