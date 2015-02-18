@@ -22,6 +22,7 @@ class playlistModel: NSObject {
     }
     
     
+    
     //Function add
     //Purpose: add song object to list object
     //Parameters: songModel newSong - song to be added
