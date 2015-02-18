@@ -13,10 +13,10 @@ import UIKit
 //Creates a playlist object which is an array of song objects
 class playlistModel: NSObject {
     var name: String
-    var list: [songModel] = []
+    var list: [Song] = []
     
     
-    init(name:String, list: [songModel]) {
+    init(name:String, list: [Song]) {
         self.name = name
         self.list = list
     }
@@ -29,9 +29,9 @@ class playlistModel: NSObject {
     //Return value: none
     //Properties modified: list object - now contains newSong
     //Precondition - N/A
-    func add(newSong:songModel){
+    func add(newSong:Song){
         list.append(newSong)
-        list.sort({ $0.title < $1.title })
+        list.sort({ $0.name < $1.name })
     }
     
     //Function remove
@@ -42,7 +42,7 @@ class playlistModel: NSObject {
     //Precondition - N/A
     func remove(toRemove:Int){
         list.removeAtIndex(toRemove)
-        list.sort({ $0.title < $1.title })
+        list.sort({ $0.name < $1.name })
     }
     
     //Function removeByTitle
@@ -55,9 +55,9 @@ class playlistModel: NSObject {
     func removeByTitle(toRemove:String,artist:String){
         var index:Int=0
         for song in list{
-            if song.title == toRemove && song.artist == artist {
+            if song.name == toRemove && song.artist == artist {
                 list.removeAtIndex(index)
-                list.sort({ $0.title < $1.title })
+                list.sort({ $0.name < $1.name })
             }
             index++
         }
@@ -72,7 +72,7 @@ class playlistModel: NSObject {
     //Precondition - N/A
     func checkIfSongExists(title:String,artist:String) -> Bool {
         for song in list {
-            if song.title == title && song.artist == artist{
+            if song.name == title && song.artist == artist{
                 return true
             }
         }
@@ -88,7 +88,7 @@ class playlistModel: NSObject {
     func listAllSongs()->[String]{
         var allSong: [String] = []
         for i in list{
-            allSong.append(i.title)
+            allSong.append(i.name)
         }
         return allSong
     }
@@ -103,7 +103,7 @@ class playlistModel: NSObject {
         var artistList: [String] = []
         for i in list{
             if(artist == i.artist){
-                artistList.append(i.title)
+                artistList.append(i.name)
             }
         }
         return artistList
@@ -116,7 +116,7 @@ class playlistModel: NSObject {
     //Return value: index
     //Properties modified: none
     //Precondition - N/A
-    func accessSong(index:Int) -> songModel? {
+    func accessSong(index:Int) -> Song? {
         return index >= list.count ? nil : list[index]
     }
 
@@ -127,9 +127,9 @@ class playlistModel: NSObject {
     //Return value: songModel searching for or nothing if songModel doesn't exsist
     //Properties modified: none
     //Precondition - N/A
-    func accessSongByTitle(title:String) -> songModel?{
+    func accessSongByTitle(title:String) -> Song?{
         for song in list {
-            if song.title == title {
+            if song.name == name {
                 return song
             }
         }

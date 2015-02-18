@@ -124,8 +124,8 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         playlists.addPlaylist("classical")
     
         // initial songs
-        playlists.addSongToPlaylist("All songs", songTitle: "Portway", songArtist: "Land Observations", songAlbum: "Roman Roads IV-XI", songLength: "3:34", songYear: "2012", songComposer: "Land Observations")
-        playlists.addSongToPlaylist("All songs", songTitle: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro", songArtist: "Johann Sebastian Bach", songAlbum: "Bach Brandenburg Concertos; Orchestra Suites", songLength: "4:44", songYear: "1988"
+        playlists.addSongToPlaylist("All songs", songTitle: "Portway", songArtist: "Land Observations", songAlbum: "Roman Roads IV-XI", songLength: String(convertStringToTime("3:34")), songYear: "2012", songComposer: "Land Observations")
+        playlists.addSongToPlaylist("All songs", songTitle: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro", songArtist: "Johann Sebastian Bach", songAlbum: "Bach Brandenburg Concertos; Orchestra Suites", songLength: String(convertStringToTime("4:44")), songYear: "1988"
             , songComposer: "Johann Sebastian Bach")
         
         
@@ -136,12 +136,14 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         songList = playlists.accessPlaylist("All songs").listAllSongs()
         
         // put initial song from "All songs" onto UI
-        if let initialSong:songModel = playlists.accessPlaylist("All songs").accessSong(0) as songModel! {
-            titleLabel.text = initialSong.title
+        if let initialSong:Song = playlists.accessPlaylist("All songs").accessSong(0) as Song! {
+            titleLabel.text = initialSong.name
             artistLabel.text = initialSong.artist
             albumLabel.text = initialSong.album
-            lengthLabel.text = initialSong.length
-            yearLabel.text = initialSong.year
+            //Converting types from Int to Str
+            lengthLabel.text = String(initialSong.length)
+            //Converting types from Int to Str
+            yearLabel.text = String(initialSong.year)
             composerLabel.text = initialSong.composer
         }
     }
@@ -253,12 +255,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             self.lengthValue = lengthList[row]
         }else if (pickerView.tag==1){
             let selectedPlaylist:playlistModel = playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
-            if let currentSong:songModel = selectedPlaylist.accessSong(row) as songModel! {
-                titleLabel.text = currentSong.title
+            if let currentSong:Song = selectedPlaylist.accessSong(row) as Song! {
+                titleLabel.text = currentSong.name
                 artistLabel.text = currentSong.artist
                 albumLabel.text = currentSong.album
-                lengthLabel.text = currentSong.length
-                yearLabel.text = currentSong.year
+                lengthLabel.text = String(currentSong.length)
+                yearLabel.text = String(currentSong.year)
                 composerLabel.text = currentSong.composer
             }
         }else if (pickerView.tag==0){
@@ -268,12 +270,12 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             songListStepperValue = Double(songList.count)
             songStepper.value = songListStepperValue
             
-            if let currentSong:songModel = selectedPlaylist.accessSong(0) as songModel! {
-                titleLabel.text = currentSong.title
+            if let currentSong:Song = selectedPlaylist.accessSong(0) as Song! {
+                titleLabel.text = currentSong.name
                 artistLabel.text = currentSong.artist
                 albumLabel.text = currentSong.album
-                lengthLabel.text = currentSong.length
-                yearLabel.text = currentSong.year
+                lengthLabel.text = String(currentSong.length)
+                yearLabel.text = String(currentSong.year)
                 composerLabel.text = currentSong.composer
             }else{
                 titleLabel.text =    ""
@@ -329,7 +331,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                     let selectedPlaylist:playlistModel = playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
                     songList = selectedPlaylist.listAllSongs()
                     songPickerView.reloadAllComponents()
-                    if let currentSong:songModel = selectedPlaylist.accessSong(0) as songModel! {
+                    if let currentSong:Song = selectedPlaylist.accessSong(0) as Song! {
                         
                     }
                 }else{
@@ -370,7 +372,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 // remove song in current playlist and update UI
                 let songIndex = songPickerView.selectedRowInComponent(0)
                 let playlist:playlistModel = playlists.playlistDict[playlistPickerData[playlistIndex]]!
-                let songTitle = playlist.accessSong(songIndex)?.title
+                let songTitle = playlist.accessSong(songIndex)?.name
                 let songArtist = playlist.accessSong(songIndex)?.artist
                 playlist.remove(songIndex)
                 songListStepperValue--
@@ -458,7 +460,9 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     //Properties modified: NA
     //Precondition: NA
     func handleCancel(alertView: UIAlertAction!) {
-        // may be surpufolous
+        
+        self.playlistPickerData = self.playlists.getPlaylistList()
+        self.playlistPickerView.reloadAllComponents()
 
     }
     //Function artistiListToStringList
@@ -508,6 +512,20 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
 
 
     }
+    
+    //Function convertStringToTime
+    //Purpose: convert from UIPicker String selection to Int
+    //Parameters: String time - 3:16
+    //Return value: Int timeInt - in seconds
+    //Properties modified: NA
+    //Precondition: NA
+    func convertStringToTime(time:String )->Int{
+        let separated = split(time, {(c:Character)->Bool in return c==":"}, allowEmptySlices: false)
+        let timeInt = ((separated[0].toInt()!*60)+separated[1].toInt()!)
+        return timeInt
+    }
+    
+    
     //Function addSong
     //Purpose: add song IBAction
     //Parameters: AnyObject sender
@@ -524,7 +542,7 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 return
             }
             
-            let newSong:songModel = songModel(title: titleInput.text, artist: artistInput.text, album: albumInput.text, length: self.lengthValue, year: self.yearValue, composer: composerInput.text)
+            let newSong:Song = Song(name: titleInput.text, artist: artistInput.text, album: albumInput.text, year: self.yearValue.toInt()!, composer: composerInput.text, length: self.lengthValue.toInt()!)
             
             
             if selectedPlaylist.name != "All songs" {

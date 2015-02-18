@@ -71,8 +71,8 @@ class playlistController: NSObject {
     //Properties modified: playList
     //Precondition: NA
     func addSongToPlaylist(playlistName:String, songTitle:String, songArtist:String, songAlbum:String, songLength:String, songYear:String, songComposer:String) -> Bool {
-
-        var song:songModel = songModel(title: songTitle, artist: songArtist, album: songAlbum, length: songLength, year: songYear, composer: songComposer)
+    
+        var song:Song = Song(name: songTitle, artist: songArtist, album: songAlbum, year: songYear.toInt()!, composer: songComposer, length: songLength.toInt()!)
         playlistDict[playlistName]?.add(song)
         return true
     }
@@ -86,7 +86,7 @@ class playlistController: NSObject {
     func referenceSongFromPLaylistToPlaylist(sourcePLaylistName:String,destPlaylistName:String,songName:String) -> Bool{
         let sourcePlaylist = playlistDict[sourcePLaylistName]
         let destPlaylist   = playlistDict[destPlaylistName]
-        if let song:songModel = sourcePlaylist?.accessSongByTitle(songName) as songModel! {
+        if let song:Song = sourcePlaylist?.accessSongByTitle(songName) as Song! {
             destPlaylist?.add(song)
             return true
         }

@@ -25,7 +25,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-3f-3Tw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-3f-3Tw">
                                 <rect key="frame" x="83" y="419" width="37" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="37" id="7uM-SS-9yT"/>
@@ -41,7 +41,8 @@
                                         <exclude reference="K5Q-ic-Nax"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="64" y="431" width="37" height="21"/>
                                     <mask key="constraints">
                                         <include reference="7uM-SS-9yT"/>
                                         <include reference="K5Q-ic-Nax"/>
@@ -49,7 +50,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqm-ik-0NC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Artist:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqm-ik-0NC">
                                 <rect key="frame" x="75" y="448" width="45" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6zr-X4-OF7"/>
@@ -63,14 +64,15 @@
                                         <exclude reference="IZl-uy-45P"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="56" y="460" width="45" height="21"/>
                                     <mask key="constraints">
                                         <exclude reference="6zr-X4-OF7"/>
                                         <include reference="IZl-uy-45P"/>
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nm6-OE-w85">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Album:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nm6-OE-w85">
                                 <rect key="frame" x="66" y="477" width="54" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="T2v-SG-jbh"/>
@@ -84,14 +86,15 @@
                                         <exclude reference="T2v-SG-jbh"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="47" y="489" width="54" height="21"/>
                                     <mask key="constraints">
                                         <include reference="T2v-SG-jbh"/>
                                         <exclude reference="qXb-WI-cU8"/>
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Length:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddw-nr-16R">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Length:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddw-nr-16R">
                                 <rect key="frame" x="62" y="506" width="58" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6CP-7y-IhD"/>
@@ -105,14 +108,15 @@
                                         <exclude reference="6CP-7y-IhD"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="43" y="518" width="58" height="21"/>
                                     <mask key="constraints">
                                         <include reference="6CP-7y-IhD"/>
                                         <exclude reference="cCb-9n-iJw"/>
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K22-z8-t1l">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Year:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K22-z8-t1l">
                                 <rect key="frame" x="81" y="535" width="39" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Wr1-AR-cTH"/>
@@ -126,14 +130,15 @@
                                         <exclude reference="dYy-dc-oY1"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="62" y="547" width="39" height="21"/>
                                     <mask key="constraints">
                                         <exclude reference="Wr1-AR-cTH"/>
                                         <include reference="dYy-dc-oY1"/>
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Composer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLs-LY-ujY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Composer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLs-LY-ujY">
                                 <rect key="frame" x="35" y="559" width="85" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ufU-vc-D9C"/>
@@ -146,7 +151,8 @@
                                         <exclude reference="ufU-vc-D9C"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="571" width="85" height="21"/>
                                     <mask key="constraints">
                                         <include reference="ufU-vc-D9C"/>
                                     </mask>
@@ -686,6 +692,7 @@
                             <outletCollection property="gestureRecognizers" destination="2lW-ZT-DFb" appends="YES" id="C9k-tm-5vZ"/>
                         </connections>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ioF-m9-GNa"/>
                     <navigationItem key="navigationItem" title="Bassic" id="6U4-3G-VMj">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="QAt-ES-Qa5">
                             <connections>
@@ -731,7 +738,26 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="879" y="317"/>
+            <point key="canvasLocation" x="1797" y="317"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="3pD-vh-bu6">
+            <objects>
+                <viewController id="V78-Fv-I5H" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pmO-0o-ogG"/>
+                        <viewControllerLayoutGuide type="bottom" id="qRe-vv-kXx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xX1-8P-VWN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="YQA-s3-CBM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="noW-fd-28Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1797" y="1065"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qDh-6v-vVC">
@@ -744,12 +770,32 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="c6z-hJ-dCR"/>
+                        <segue destination="A0u-cb-c2Y" kind="relationship" relationship="rootViewController" id="c6z-hJ-dCR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5r-Rd-yIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137" y="317"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="pUM-QR-PTO">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="A0u-cb-c2Y" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="naK-kP-zoC"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="X55-9G-xh9">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="mXb-fB-To4"/>
+                        <segue destination="V78-Fv-I5H" kind="relationship" relationship="viewControllers" id="uus-0d-rfq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eBR-4h-VPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879" y="317"/>
         </scene>
     </scenes>
 </document>
