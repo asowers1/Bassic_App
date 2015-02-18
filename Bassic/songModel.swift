@@ -1,4 +1,4 @@
-//
+/********************************************************************
 //  Song.swift
 //  IOS Music App
 //
@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Sugr. All rights reserved.
 //  class Song{} encapsulates the data for a single song
 //  class variables: string(Name of song); string(name of artist); string(name of album); int(year of release); string(name of composer); int(duration in seconds)
-
+********************************************************************/
 import Foundation
 
 class Song {

@@ -1,10 +1,12 @@
-//
-//  AppDelegate.swift
-//  Bassic
-//
-//  Created by Andrew Sowers on 2/3/15.
-//  Copyright (c) 2015 Andrew Sowers. All rights reserved.
-//
+/********************************************************************
+*  AppDelegate.swift
+*  Bassic
+*  purpose: this class is used to connect UI window
+*  input: NA
+*  output:NA
+*  Created by Andrew Sowers on 2/3/15.
+*  Copyright (c) 2015 Andrew Sowers. All rights reserved.
+*********************************************************************/
 
 import UIKit
 
