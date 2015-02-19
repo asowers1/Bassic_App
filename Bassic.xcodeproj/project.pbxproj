@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49372A3A1A9651A6001F7D50 /* SharedPlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49372A391A9651A6001F7D50 /* SharedPlaylistController.swift */; };
 		495E1A521A86D02B006AA76E /* bassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E1A511A86D02B006AA76E /* bassicViewController.swift */; };
 		4961DDAD1A812C2A009939ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961DDAC1A812C2A009939ED /* AppDelegate.swift */; };
 		4961DDB21A812C2A009939ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4961DDB01A812C2A009939ED /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49372A391A9651A6001F7D50 /* SharedPlaylistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedPlaylistController.swift; sourceTree = "<group>"; };
 		495E1A511A86D02B006AA76E /* bassicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bassicViewController.swift; sourceTree = "<group>"; };
 		4961DDA71A812C2A009939ED /* Bassic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4961DDAB1A812C2A009939ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				495E1A511A86D02B006AA76E /* bassicViewController.swift */,
 				4961DDD31A813030009939ED /* playlistModel.swift */,
 				4961DDD41A813030009939ED /* songModel.swift */,
+				49372A391A9651A6001F7D50 /* SharedPlaylistController.swift */,
 				4961DDAC1A812C2A009939ED /* AppDelegate.swift */,
 				4961DDB01A812C2A009939ED /* Main.storyboard */,
 				4961DDB31A812C2A009939ED /* Images.xcassets */,
@@ -225,6 +228,7 @@
 				4961DDD51A813030009939ED /* playlistController.swift in Sources */,
 				495E1A521A86D02B006AA76E /* bassicViewController.swift in Sources */,
 				4961DDAD1A812C2A009939ED /* AppDelegate.swift in Sources */,
+				49372A3A1A9651A6001F7D50 /* SharedPlaylistController.swift in Sources */,
 				4961DDD71A813030009939ED /* songModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
