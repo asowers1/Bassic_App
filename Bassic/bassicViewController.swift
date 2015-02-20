@@ -547,8 +547,25 @@ class bassicViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         let timeInt = ((separated[0].toInt()!*60)+separated[1].toInt()!)
         return timeInt
     }
-/********************************************************************
     
+    /********************************************************************
+    //Function secToString
+    //Purpose: converts time in seconds to time in "min:secs"
+    //Parameters: Int timeInt - 213
+    //Return value: String timeString - in min:secs
+    //Properties modified: NA
+    //Precondition: NA
+    ********************************************************************/
+    func secToString(timeInt:Int )->String{
+        var timeString:String
+        let first = String(timeInt/60)
+        let timeInt = timeInt/60
+        let last = String(timeInt)
+        timeString  = first+":"+last
+        return timeString
+    }
+    
+/********************************************************************
     //Function addSong
     //Purpose: add song IBAction
     //Parameters: AnyObject sender
