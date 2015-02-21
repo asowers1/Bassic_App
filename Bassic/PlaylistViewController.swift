@@ -103,7 +103,7 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         yearValue = yearList[0]
         lengthValue = lengthList[0]
         
-        println("\(yearList)")
+        
         
         self.buildTestSet()
         playlistTableData = playlists.getPlaylistList()

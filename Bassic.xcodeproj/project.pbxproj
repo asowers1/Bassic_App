@@ -87,7 +87,6 @@
 		494B485D1A98FC530016E35F /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				49372A391A9651A6001F7D50 /* SharedPlaylistViewController.swift */,
 				4961DDD21A813030009939ED /* playlistController.swift */,
 			);
 			name = controllers;
@@ -127,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4961DDAC1A812C2A009939ED /* AppDelegate.swift */,
+				49372A391A9651A6001F7D50 /* SharedPlaylistViewController.swift */,
 				494B485D1A98FC530016E35F /* controllers */,
 				494B485C1A98FC350016E35F /* models */,
 				494B485E1A98FC800016E35F /* views */,
