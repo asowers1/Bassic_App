@@ -11,7 +11,7 @@
 
 import Foundation
 
-class playlistController: NSObject {
+class playlistController {
     
     
     //made up of Playlist data structure [String : songModel]
@@ -41,7 +41,7 @@ class playlistController: NSObject {
 *Precondition: NA
 *********************************************************************/
     func removePlaylist(name:String) -> Bool {
-        if (playlistDict[name] != nil && playlistDict[name] != "All songs") {
+        if (playlistDict[name] != nil && name != "All songs") {
             playlistDict[name] = nil
             return true
         }

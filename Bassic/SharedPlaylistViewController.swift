@@ -10,7 +10,7 @@ import Foundation
 
 private let _sharedPlaylistController:playlistController = playlistController()
 
-class SharedPlaylistController: NSObject {
+class SharedPlaylistController {
     class var sharedInstance: playlistController {
         return _sharedPlaylistController
     }

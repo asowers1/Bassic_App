@@ -14,8 +14,8 @@ import UIKit
 
 
 //Creates a playlist object which is an array of song objects
-class playlistModel: NSObject {
-    var name: String
+class playlistModel {
+    var name: String = String()
     var list: [Song] = []
     
     
