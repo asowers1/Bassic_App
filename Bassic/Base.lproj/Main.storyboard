@@ -78,7 +78,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1797" y="317"/>
+            <point key="canvasLocation" x="1791" y="317"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bZ4-v2-4iP">
@@ -139,10 +139,10 @@
                                 <exclude reference="cWn-bo-Itb"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="bz5-Ph-cqF"/>
                                 <exclude reference="4R2-wO-aDU"/>
                                 <exclude reference="HHZ-F2-0f4"/>
                                 <exclude reference="HPP-YL-zIv"/>
-                                <exclude reference="bz5-Ph-cqF"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -150,10 +150,10 @@
                                 <include reference="cWn-bo-Itb"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="bz5-Ph-cqF"/>
                                 <include reference="4R2-wO-aDU"/>
                                 <include reference="HHZ-F2-0f4"/>
                                 <include reference="HPP-YL-zIv"/>
-                                <include reference="bz5-Ph-cqF"/>
                             </mask>
                         </variation>
                     </view>
@@ -203,10 +203,10 @@
                                 <exclude reference="uKp-R2-jvj"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Cfj-PK-MRq"/>
                                 <exclude reference="CQz-RH-TIc"/>
                                 <exclude reference="DDB-0m-BSP"/>
                                 <exclude reference="bXd-qu-ylv"/>
-                                <exclude reference="Cfj-PK-MRq"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -214,18 +214,21 @@
                                 <include reference="uKp-R2-jvj"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Cfj-PK-MRq"/>
                                 <include reference="CQz-RH-TIc"/>
                                 <include reference="DDB-0m-BSP"/>
                                 <include reference="bXd-qu-ylv"/>
-                                <include reference="Cfj-PK-MRq"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Songs" image="Music-50" id="1K6-4W-zlp"/>
+                    <connections>
+                        <outlet property="tableView" destination="uKp-R2-jvj" id="gzX-Ly-C30"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTU-UX-pMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797" y="-391"/>
+            <point key="canvasLocation" x="1817" y="-411"/>
         </scene>
         <!--Artists-->
         <scene sceneID="3pD-vh-bu6">
@@ -268,10 +271,10 @@
                                 <exclude reference="Bnw-xD-rmy"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="max-Oj-r97"/>
                                 <exclude reference="BKP-5L-eDn"/>
                                 <exclude reference="BUx-fK-lIT"/>
                                 <exclude reference="w3Z-8O-JaO"/>
-                                <exclude reference="max-Oj-r97"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -279,10 +282,10 @@
                                 <include reference="Bnw-xD-rmy"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="max-Oj-r97"/>
                                 <include reference="BKP-5L-eDn"/>
                                 <include reference="BUx-fK-lIT"/>
                                 <include reference="w3Z-8O-JaO"/>
-                                <include reference="max-Oj-r97"/>
                             </mask>
                         </variation>
                     </view>
@@ -339,6 +342,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Nwg-cJ-eGw"/>
-        <segue reference="Sx6-i6-L4e"/>
+        <segue reference="zgs-2S-arN"/>
     </inferredMetricsTieBreakers>
 </document>

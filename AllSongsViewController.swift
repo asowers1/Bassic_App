@@ -9,7 +9,21 @@
 import Foundation
 import UIKit
 
-class AllSongsViewController : UIViewController {
+class AllSongsViewController : UIViewController, UITableViewDataSource, UITableViewDelegate{
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var playlists:playlistController = SharedPlaylistController.sharedInstance
+    
+    var songList:[String]
+    
+    override init(){
+        self.songList = playlists.getPlaylistList()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+    }
+
+    
     
     
 }
