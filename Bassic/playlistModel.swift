@@ -24,6 +24,22 @@ class playlistModel {
         self.list = list
     }
     
+/********************************************************************
+    // Function: getArtistList
+    // Purpose: get a sorted list of artists from this playlist
+    // Parameters: None.
+    // Return Value: [String]
+    // Properties modified: None.
+    // Preconditions: NA
+********************************************************************/
+    func getArtistList() -> [String] {
+        var artistList:[String] = Array()
+        for song in list {
+            artistList.append(song.artist)
+        }
+        artistList.sort({$0 < $1})
+        return artistList
+    }
     
 /********************************************************************
     //Function add

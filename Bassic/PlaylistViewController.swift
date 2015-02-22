@@ -12,25 +12,29 @@
 import UIKit
 import Foundation
 
-class PlaylistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
+class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISearchBarDelegate {
 
     //MARK: - IBOutlets for user interface
 
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // main screen outlets
     
 
     @IBOutlet var playlistTableView: UITableView!
     
-    let textCellIdentifier = "TextCell"
+    let textCellIdentifier = "cell"
 
 
     // local data
-    var playlistStepperValue:Double=0
-    var songListStepperValue:Double=0
+    
+    var is_searching:Bool = false   // It's flag for searching
+    
     
     var playlists: playlistController = SharedPlaylistController.sharedInstance
     var playlistTableData:[String] = []
+    var searchingTableData:[String] = []
+    
     var songList:[String]           = []
     var yearList:[String]           = []
     var lengthList:[String]         = []
@@ -68,10 +72,10 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         // copy some songs from "All songs" into other playlists
-        playlists.referenceSongFromPLaylistToPlaylist("All songs", destPlaylistName: "classical", songName: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro")
+        //playlists.referenceSongFromPLaylistToPlaylist("All songs", destPlaylistName: "classical", songName: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro")
         
         // access intial song listing
-        songList = playlists.accessPlaylist("All songs").listAllSongs()
+        //songList = playlists.accessPlaylist("All songs").listAllSongs()
         
         
         
@@ -80,8 +84,8 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.playlistTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.navigationController?.navigationBar.topItem?.title = "Playlists"
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
         
         
         for index in 1900...2015 {
@@ -98,15 +102,13 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
-        
-        
+                
         yearValue = yearList[0]
         lengthValue = lengthList[0]
         
-        
-        
+
         self.buildTestSet()
-        playlistTableData = playlists.getPlaylistList()
+        playlistTableData = playlists.getPlaylistListMinusAllSongs()
         
         
         self.playlistTableView.dataSource = self
@@ -123,7 +125,7 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        self.navigationController?.navigationBar.topItem?.title = "Playlists"
     }
     
    override func viewDidAppear(animated: Bool) {
@@ -134,24 +136,62 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
 
 
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.playlistTableData.count;
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.is_searching == true {
+            return self.searchingTableData.count
+        }else{
+            return self.playlistTableData.count;
+        }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.playlistTableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
-        cell.textLabel?.text = self.playlistTableData[indexPath.row]
-        
+        if is_searching == true{
+            cell.textLabel?.text = self.searchingTableData[indexPath.row]
+        }else{
+            cell.textLabel?.text = self.playlistTableData[indexPath.row]
+        }
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.currentRow = indexPath.row
         
         performSegueWithIdentifier("songShow", sender: self)
+    }
+    
+    
+// MARK searching delegate logic
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
+        
+        if searchBar.text.isEmpty{
+            is_searching = false
+            
+            playlistTableView.reloadData()
+        } else {
+            println(" search text %@ ",searchBar.text as NSString)
+            is_searching = true
+            searchingTableData.removeAll(keepCapacity: false)
+            for var index = 0; index < playlistTableData.count; index++
+            {
+                var currentString = playlistTableData[index]
+                if currentString.lowercaseString.rangeOfString(searchText.lowercaseString)  != nil {
+                    searchingTableData.append(currentString)
+                    searchingTableData.sort({$0 < $1})
+                }
+            }
+            playlistTableView.reloadData()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        is_searching = false
+        
+        playlistTableView.reloadData()
     }
     
 // MARK segue logic
@@ -164,7 +204,13 @@ class PlaylistViewController: UIViewController, UITableViewDelegate, UITableView
         // Create a new variable to store the instance of PlayerTableViewController
         let destinationVC = segue.destinationViewController as songSelectViewController
         //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
-        destinationVC.navigationItem.title = self.playlistTableData[self.currentRow]
+        if is_searching == true{
+            destinationVC.navigationItem.title = self.searchingTableData[self.currentRow]
+        }else{
+            destinationVC.navigationItem.title = self.playlistTableData[self.currentRow]
+        }
+        
+        
     }
     
 

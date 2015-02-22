@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class songSelectViewController: UIViewController {
+class songSelectViewController: UITableViewController {
     var playlistTitle:String = String()
     
     override func viewDidLoad() {

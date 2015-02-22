@@ -2,84 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AHJ-Ir-lbb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Bassic-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController id="vXZ-lx-hvc" customClass="PlaylistViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VRh-wH-kFx"/>
-                        <viewControllerLayoutGuide type="bottom" id="y4F-33-FZX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="U7n-bb-BE3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="pew-C3-neV">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextCell" id="uIc-Zb-ueu">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uIc-Zb-ueu" id="cad-lZ-831">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="TwO-YV-Nyh" kind="show" identifier="songShow" id="zgs-2S-arN"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="pew-C3-neV" secondAttribute="trailing" constant="-16" id="AtE-zb-37v"/>
-                            <constraint firstItem="pew-C3-neV" firstAttribute="leading" secondItem="U7n-bb-BE3" secondAttribute="leadingMargin" constant="-16" id="FmY-pj-OSg"/>
-                            <constraint firstItem="y4F-33-FZX" firstAttribute="top" secondItem="pew-C3-neV" secondAttribute="bottom" id="Q4Q-TG-s4b"/>
-                            <constraint firstItem="pew-C3-neV" firstAttribute="top" secondItem="VRh-wH-kFx" secondAttribute="bottom" id="XTo-Sd-inc"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="pew-C3-neV"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="Q4Q-TG-s4b"/>
-                                <exclude reference="AtE-zb-37v"/>
-                                <exclude reference="FmY-pj-OSg"/>
-                                <exclude reference="XTo-Sd-inc"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="pew-C3-neV"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="Q4Q-TG-s4b"/>
-                                <include reference="AtE-zb-37v"/>
-                                <include reference="FmY-pj-OSg"/>
-                                <include reference="XTo-Sd-inc"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Playlists" image="To Do-50" id="ioF-m9-GNa"/>
-                    <navigationItem key="navigationItem" title="Bassic" id="6U4-3G-VMj"/>
-                    <connections>
-                        <outlet property="playlistTableView" destination="pew-C3-neV" id="CFv-8l-XFS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="2lW-ZT-DFb">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="vXZ-lx-hvc" id="g91-8m-v2R"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="1791" y="317"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="bZ4-v2-4iP">
             <objects>
@@ -96,211 +20,204 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koj-JY-0WE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3336" y="-391"/>
+            <point key="canvasLocation" x="4123.5" y="-399"/>
         </scene>
-        <!--Song Select View Controller-->
-        <scene sceneID="bDj-m7-UYj">
+        <!--All Songs View Controller-->
+        <scene sceneID="Vmf-dk-A6F">
             <objects>
-                <viewController id="TwO-YV-Nyh" customClass="songSelectViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BBu-Cc-hAY"/>
-                        <viewControllerLayoutGuide type="bottom" id="fRi-7S-S5r"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="G0c-er-prW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <tableViewController id="5RX-CR-2of" customClass="AllSongsViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="q4U-Wh-nNb">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="cWn-bo-Itb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" id="tQP-h0-di9">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tQP-h0-di9" id="zK8-gp-Z9Q">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="g4N-iI-ieD" kind="show" id="acK-gq-FL4"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="cWn-bo-Itb" firstAttribute="top" secondItem="BBu-Cc-hAY" secondAttribute="bottom" id="4R2-wO-aDU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cWn-bo-Itb" secondAttribute="trailing" constant="-16" id="HHZ-F2-0f4"/>
-                            <constraint firstItem="cWn-bo-Itb" firstAttribute="leading" secondItem="G0c-er-prW" secondAttribute="leadingMargin" constant="-16" id="HPP-YL-zIv"/>
-                            <constraint firstItem="fRi-7S-S5r" firstAttribute="top" secondItem="cWn-bo-Itb" secondAttribute="bottom" id="bz5-Ph-cqF"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="cWn-bo-Itb"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="bz5-Ph-cqF"/>
-                                <exclude reference="4R2-wO-aDU"/>
-                                <exclude reference="HHZ-F2-0f4"/>
-                                <exclude reference="HPP-YL-zIv"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="cWn-bo-Itb"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="bz5-Ph-cqF"/>
-                                <include reference="4R2-wO-aDU"/>
-                                <include reference="HHZ-F2-0f4"/>
-                                <include reference="HPP-YL-zIv"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YWt-Gs-EYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2566.5" y="317"/>
-        </scene>
-        <!--Songs-->
-        <scene sceneID="yAV-pT-7nu">
-            <objects>
-                <viewController id="Q9b-j1-lcH" customClass="AllSongsViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cJQ-AQ-mKV"/>
-                        <viewControllerLayoutGuide type="bottom" id="a9T-0P-NeT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oQA-D8-QqC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="uKp-R2-jvj">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" id="dzJ-Tu-5Tl">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzJ-Tu-5Tl" id="C6p-EM-z1W">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="g4N-iI-ieD" kind="show" id="Nwg-cJ-eGw"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="uKp-R2-jvj" secondAttribute="trailing" constant="-16" id="CQz-RH-TIc"/>
-                            <constraint firstItem="a9T-0P-NeT" firstAttribute="top" secondItem="uKp-R2-jvj" secondAttribute="bottom" id="Cfj-PK-MRq"/>
-                            <constraint firstItem="uKp-R2-jvj" firstAttribute="top" secondItem="cJQ-AQ-mKV" secondAttribute="bottom" id="DDB-0m-BSP"/>
-                            <constraint firstItem="uKp-R2-jvj" firstAttribute="leading" secondItem="oQA-D8-QqC" secondAttribute="leadingMargin" constant="-16" id="bXd-qu-ylv"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="uKp-R2-jvj"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="Cfj-PK-MRq"/>
-                                <exclude reference="CQz-RH-TIc"/>
-                                <exclude reference="DDB-0m-BSP"/>
-                                <exclude reference="bXd-qu-ylv"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="uKp-R2-jvj"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="Cfj-PK-MRq"/>
-                                <include reference="CQz-RH-TIc"/>
-                                <include reference="DDB-0m-BSP"/>
-                                <include reference="bXd-qu-ylv"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Songs" image="Music-50" id="1K6-4W-zlp"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Songs" id="B2Z-hb-NTQ">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="5RX-CR-2of" id="DnF-UW-FHc"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="RIH-RA-mLu">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RIH-RA-mLu" id="cgW-RA-V9B">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="g4N-iI-ieD" kind="show" id="hSn-I2-ce8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5RX-CR-2of" id="Cga-aI-Hw6"/>
+                            <outlet property="delegate" destination="5RX-CR-2of" id="wkl-9b-ZpU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="PSm-TB-NbR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JBx-WO-qHp">
+                            <color key="tintColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="uKp-R2-jvj" id="gzX-Ly-C30"/>
+                        <outlet property="artistTableView" destination="q4U-Wh-nNb" id="vKA-u5-AyY"/>
+                        <outlet property="searchBar" destination="q4U-Wh-nNb" id="efX-3U-ebt"/>
+                        <outlet property="searchDisplayController" destination="4NV-Gc-kLm" id="fjL-TC-o4R"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wTU-UX-pMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T7u-MV-5Jl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="4NV-Gc-kLm">
+                    <connections>
+                        <outlet property="delegate" destination="5RX-CR-2of" id="Sac-uD-hh8"/>
+                        <outlet property="searchBar" destination="B2Z-hb-NTQ" id="4rp-UR-Ke8"/>
+                        <outlet property="searchContentsController" destination="5RX-CR-2of" id="dm7-W4-cvJ"/>
+                        <outlet property="searchResultsDataSource" destination="5RX-CR-2of" id="NXP-r4-dRM"/>
+                        <outlet property="searchResultsDelegate" destination="5RX-CR-2of" id="JqI-Lh-KQg"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1797" y="-383"/>
+            <point key="canvasLocation" x="2569.5" y="-408"/>
+        </scene>
+        <!--Playlists-->
+        <scene sceneID="TFr-FI-cg8">
+            <objects>
+                <tableViewController id="gHw-bs-9QN" customClass="PlaylistViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="redraw" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QrT-WQ-k1W">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="scaleToFill" text="" placeholder="Search Playlists" id="2sh-Pm-rSx">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="gHw-bs-9QN" id="bmI-IS-MqL"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ZBx-J4-h7o">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZBx-J4-h7o" id="AkW-at-G8H">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="bvA-7t-l2a" kind="show" identifier="songShow" id="ECh-yk-eRb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gHw-bs-9QN" id="o2d-QT-lSr"/>
+                            <outlet property="delegate" destination="gHw-bs-9QN" id="KPJ-3I-gUr"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Playlists" image="To Do-50" id="nWZ-eq-QoV"/>
+                    <connections>
+                        <outlet property="playlistTableView" destination="QrT-WQ-k1W" id="QIj-JL-2Mg"/>
+                        <outlet property="searchBar" destination="2sh-Pm-rSx" id="KIG-F8-8wO"/>
+                        <outlet property="searchDisplayController" destination="bIR-0d-4NX" id="hVW-sF-5v5"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQz-Hm-Vph" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="bIR-0d-4NX">
+                    <connections>
+                        <outlet property="delegate" destination="gHw-bs-9QN" id="kej-bw-nKd"/>
+                        <outlet property="searchBar" destination="2sh-Pm-rSx" id="he6-K3-RBA"/>
+                        <outlet property="searchContentsController" destination="gHw-bs-9QN" id="FJZ-ZQ-jS3"/>
+                        <outlet property="searchResultsDataSource" destination="gHw-bs-9QN" id="XHX-uw-wPv"/>
+                        <outlet property="searchResultsDelegate" destination="gHw-bs-9QN" id="w8b-V4-I75"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1665" y="317"/>
         </scene>
         <!--Artists-->
-        <scene sceneID="3pD-vh-bu6">
+        <scene sceneID="eGI-DS-oi7">
             <objects>
-                <viewController id="V78-Fv-I5H" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pmO-0o-ogG"/>
-                        <viewControllerLayoutGuide type="bottom" id="qRe-vv-kXx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xX1-8P-VWN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <tableViewController id="k8m-co-NOV" customClass="ArtistViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="bhR-s3-L71">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bnw-xD-rmy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" id="y1a-RO-26d">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y1a-RO-26d" id="AMe-p3-oa9">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="TwO-YV-Nyh" kind="show" id="Sx6-i6-L4e"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1450980392" green="0.1529411765" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="Bnw-xD-rmy" firstAttribute="leading" secondItem="xX1-8P-VWN" secondAttribute="leadingMargin" constant="-16" id="BKP-5L-eDn"/>
-                            <constraint firstItem="Bnw-xD-rmy" firstAttribute="top" secondItem="pmO-0o-ogG" secondAttribute="bottom" id="BUx-fK-lIT"/>
-                            <constraint firstItem="qRe-vv-kXx" firstAttribute="top" secondItem="Bnw-xD-rmy" secondAttribute="bottom" id="max-Oj-r97"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Bnw-xD-rmy" secondAttribute="trailing" constant="-16" id="w3Z-8O-JaO"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Bnw-xD-rmy"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="max-Oj-r97"/>
-                                <exclude reference="BKP-5L-eDn"/>
-                                <exclude reference="BUx-fK-lIT"/>
-                                <exclude reference="w3Z-8O-JaO"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="Bnw-xD-rmy"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="max-Oj-r97"/>
-                                <include reference="BKP-5L-eDn"/>
-                                <include reference="BUx-fK-lIT"/>
-                                <include reference="w3Z-8O-JaO"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Artists" image="Side Dram-50" id="YQA-s3-CBM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="noW-fd-28Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Artists" id="qsr-EK-Dcm">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="k8m-co-NOV" id="v5h-jP-6F9"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="p6x-nf-Mq6">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p6x-nf-Mq6" id="ELV-Xr-hsN">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="bvA-7t-l2a" kind="show" id="8jL-Bx-a1w"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="k8m-co-NOV" id="nV3-rm-m8Y"/>
+                            <outlet property="delegate" destination="k8m-co-NOV" id="s0G-uK-N63"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Artists" image="Side Dram-50" id="TfE-kq-ChA"/>
+                    <connections>
+                        <outlet property="artistTableView" destination="bhR-s3-L71" id="3bc-VU-1k5"/>
+                        <outlet property="searchBar" destination="qsr-EK-Dcm" id="Sm6-Ec-Ynx"/>
+                        <outlet property="searchDisplayController" destination="EQG-Yj-frq" id="rPs-FP-8fe"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cVc-zJ-XNp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="EQG-Yj-frq">
+                    <connections>
+                        <outlet property="delegate" destination="k8m-co-NOV" id="dzz-Aj-aeX"/>
+                        <outlet property="searchBar" destination="qsr-EK-Dcm" id="gs8-q4-gzM"/>
+                        <outlet property="searchContentsController" destination="k8m-co-NOV" id="08q-OD-5F4"/>
+                        <outlet property="searchResultsDataSource" destination="k8m-co-NOV" id="qrm-qc-dK3"/>
+                        <outlet property="searchResultsDelegate" destination="k8m-co-NOV" id="fOS-eb-wjM"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1797" y="1065"/>
+            <point key="canvasLocation" x="1665" y="1066"/>
+        </scene>
+        <!--Song Select View Controller-->
+        <scene sceneID="IFo-eV-rnp">
+            <objects>
+                <tableViewController id="bvA-7t-l2a" customClass="songSelectViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gpt-df-2nL">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZoF-Uk-D91">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZoF-Uk-D91" id="LvB-YX-Rhb">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="g4N-iI-ieD" kind="show" id="EFu-02-OzI"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bvA-7t-l2a" id="ZSr-hT-XMi"/>
+                            <outlet property="delegate" destination="bvA-7t-l2a" id="prY-uf-2u2"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nU9-kz-mdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2440.5" y="317"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qDh-6v-vVC">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R5r-Rd-yIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AHJ-Ir-lbb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7nX-ds-Zi7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="7nX-ds-Zi7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -309,7 +226,6 @@
                         <segue destination="A0u-cb-c2Y" kind="relationship" relationship="rootViewController" id="c6z-hJ-dCR"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R5r-Rd-yIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137" y="317"/>
         </scene>
@@ -325,14 +241,33 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="mXb-fB-To4"/>
-                        <segue destination="V78-Fv-I5H" kind="relationship" relationship="viewControllers" id="uus-0d-rfq"/>
-                        <segue destination="Q9b-j1-lcH" kind="relationship" relationship="viewControllers" id="uzr-wY-siA"/>
+                        <segue destination="gHw-bs-9QN" kind="relationship" relationship="viewControllers" id="3dn-Ha-2RD"/>
+                        <segue destination="k8m-co-NOV" kind="relationship" relationship="viewControllers" id="YTV-gP-5OL"/>
+                        <segue destination="f5I-C4-6rl" kind="relationship" relationship="viewControllers" id="R2i-cc-KZH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBR-4h-VPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="879" y="317"/>
+        </scene>
+        <!--Songs-->
+        <scene sceneID="OSU-ja-j5f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f5I-C4-6rl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Songs" image="Music-50" id="Yv3-tT-xNn"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="e5w-Nr-JlX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5RX-CR-2of" kind="relationship" relationship="rootViewController" id="uKB-1P-mki"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yer-2h-jlH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1651.5" y="-408"/>
         </scene>
     </scenes>
     <resources>
@@ -341,7 +276,7 @@
         <image name="To Do-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Nwg-cJ-eGw"/>
-        <segue reference="zgs-2S-arN"/>
+        <segue reference="hSn-I2-ce8"/>
+        <segue reference="8jL-Bx-a1w"/>
     </inferredMetricsTieBreakers>
 </document>
