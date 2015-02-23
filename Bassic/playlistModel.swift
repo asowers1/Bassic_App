@@ -18,10 +18,12 @@ class playlistModel {
     var name: String = String()
     var list: [Song] = []
     
+    var playlistType:String = String()
     
-    init(name:String, list: [Song]) {
+    init(name:String, list: [Song], type:String) {
         self.name = name
         self.list = list
+        self.playlistType = type
     }
     
 /********************************************************************
@@ -39,6 +41,15 @@ class playlistModel {
         }
         artistList.sort({$0 < $1})
         return artistList
+    }
+    
+    func getAlbumList() -> [String] {
+        var albumList:[String] = Array()
+        for song in list {
+            albumList.append(song.album)
+        }
+        albumList.sort({$0 < $1})
+        return albumList
     }
     
 /********************************************************************
@@ -123,6 +134,37 @@ class playlistModel {
         }
         return allSong
     }
+    
+    func listArtistSong()->[String:(String,String)]{
+        var toReturn:[String:(String,String)] = Dictionary()
+        for song in list {
+            toReturn["\(song.artist) - \(song.name)"] = (song.artist,song.name)
+        }
+        return toReturn
+    }
+    
+    func listArtistSongByAlbum(album:String)->[String:(String,String)]{
+        var toReturn:[String:(String,String)] = Dictionary()
+        for song in list {
+            if song.album == album {
+                toReturn["\(song.artist) - \(song.name)"] = (song.artist,song.name)
+            }
+        }
+        return toReturn
+    }
+    
+    func listArtistSongByArtist(artist:String)->[String:(String,String)]{
+        var toReturn:[String:(String,String)] = Dictionary()
+        for song in list {
+            if song.artist == artist {
+                toReturn["\(song.artist) - \(song.name)"] = (song.artist,song.name)
+            }
+        }
+        return toReturn
+    }
+    
+
+    
 /********************************************************************
     //Function listArtistSongs
     //Purpose: create and display a list of all the songs by one 
@@ -141,6 +183,41 @@ class playlistModel {
             }
         }
         return artistList
+    }
+/********************************************************************
+//Function calcPlaylistLength
+//Purpose: to calculate the total the amount of time in the playlist
+//Parameters: NA
+//Return value: Int - total, the total amount of seconds on the playlist
+//Properties modified: none
+//Precondition - N/A
+*********************************************************************/
+    func calcPlaylistLength()->Int{
+        var total:Int = 0
+        for song in self.list{
+            total += song.length
+        }
+        return total
+    }
+    
+    func calcAlbumLength(album:String)->Int{
+        var total:Int = 0
+        for song in self.list {
+            if song.album == album {
+                total += song.length
+            }
+        }
+        return total
+    }
+    
+    func calcArtistLength(artist:String)->Int{
+        var total:Int = 0
+        for song in list {
+            if song.artist == artist {
+                total += song.length
+            }
+        }
+        return total
     }
 /********************************************************************
     //THIS ONE
@@ -166,10 +243,12 @@ class playlistModel {
 *********************************************************************/
     func accessSongByTitle(title:String) -> Song?{
         for song in list {
-            if song.name == name {
+            if song.name == title {
                 return song
             }
         }
         return nil
     }
+    
+    
 }

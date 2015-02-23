@@ -1,20 +1,18 @@
 //
-//  songSelectView.swift
+//  PlaylistNavigationController.swift
 //  Bassic
 //
-//  Created by Andrew Sowers on 2/21/15.
+//  Created by Andrew Sowers on 2/23/15.
 //  Copyright (c) 2015 Andrew Sowers. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class songSelectViewController: UITableViewController {
-    var playlistTitle:String = String()
-    
-    override func viewDidLoad() {
-        //self.navigationController?.navigationItem.title = self.playlistTitle
-        self.navigationController?.navigationBar.tintColor = uicolorFromHex(0x111111)
+class PlaylistNavigationController : UINavigationController, UISearchBarDelegate {
+
+    override func viewDidLoad(){
+        self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
     }
     
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
@@ -25,6 +23,4 @@ class songSelectViewController: UITableViewController {
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
-    
-    
 }

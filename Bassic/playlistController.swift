@@ -14,9 +14,12 @@ import Foundation
 class playlistController {
     
     
+    var activePlaylist:String = String()
+    var activePlaylistTitle:String = String()
+    
     //made up of Playlist data structure [String : songModel]
     
-    var playlistDict:[String: playlistModel] = ["All songs":playlistModel(name: "All songs",list: [])]
+    var playlistDict:[String: playlistModel] = ["All songs":playlistModel(name: "All songs",list: [], type: "playlist")]
 /********************************************************************
 *Function addPlaylist
 *Purpose: creates a new playlist object
@@ -25,9 +28,9 @@ class playlistController {
 *Properties modified: playListController
 *Precondition: NA
 *********************************************************************/
-    func addPlaylist(name:String) -> Bool {
+    func addPlaylist(name:String,type:String) -> Bool {
         if (playlistDict[name]==nil){
-            playlistDict[name] = playlistModel(name: name, list: [])
+            playlistDict[name] = playlistModel(name: name, list: [], type: type)
             return true
         }
         return false
@@ -45,6 +48,16 @@ class playlistController {
             playlistDict[name] = nil
             return true
         }
+        // remove all songs with album name
+        for playlist in playlistDict {
+            for song in playlist.1.list {
+                if song.album == name {
+                    playlist.1.removeByTitle(song.name, artist: song.artist)
+                }
+            }
+        }
+        
+        
         return false
     }
 /********************************************************************
@@ -56,6 +69,7 @@ class playlistController {
 *Precondition: NA
 *********************************************************************/
     func accessPlaylist(name:String)->playlistModel {
+        println("NAME: \(name)")
         return playlistDict[name]!
     }
 /********************************************************************
@@ -90,6 +104,21 @@ class playlistController {
         return returnList
     }
     
+    func getAllAlbums() -> [String] {
+        let sortedKeys = Array(playlistDict.keys).sorted(<)
+        var returnlist:[String] = Array()
+        for key in sortedKeys {
+            let playlist = playlistDict[key]
+            if playlist?.playlistType == "album" {
+                returnlist.append(key)
+            }
+        }
+        returnlist += self.getAllAlbumsFromPlaylists()
+        returnlist.sort({$0 < $1})
+        return returnlist
+    }
+    
+    
 /********************************************************************
 *Function getAllArtistsFromPlaylists
 *Purpose: displays the sorted artists from all playlists
@@ -100,9 +129,37 @@ class playlistController {
 *********************************************************************/
     func getAllArtistsFromPlaylists() -> [String] {
         var artistList:[String] = Array()
-        for artist in playlistDict {
-            artistList += artist.1.getArtistList()
+        for playlist in playlistDict {
+            artistList += playlist.1.getArtistList()
         }
+        artistList = self.removeDuplicates(artistList)
+        artistList.sort({$0 < $1})
+        return artistList
+    }
+    
+    func removeDuplicates(arrIn:[String]) -> [String] {
+        var arr = arrIn
+        var filter = Dictionary<String,Int>()
+        var len = arr.count
+        for var index = 0; index < len  ;++index {
+            var value = arr[index]
+            if (filter[value] != nil) {
+                arr.removeAtIndex(index--)
+                len--
+            }else{
+                filter[value] = 1
+            }
+        }
+        return arr
+    }
+    
+    func getAllAlbumsFromPlaylists() -> [String] {
+        var artistList:[String] = Array()
+        for playlist in playlistDict {
+            artistList += playlist.1.getAlbumList()
+            
+        }
+        artistList = self.removeDuplicates(artistList)
         artistList.sort({$0 < $1})
         return artistList
     }
@@ -121,6 +178,18 @@ class playlistController {
         playlistDict[playlistName]?.add(song)
         return true
     }
+    
+    func removeSongByArtist(songName:String,songArtist:String){
+        for playlist in playlistDict {
+            playlist.1.removeByTitle(songName, artist: songArtist)
+        }
+    }
+    
+    func removeSongFromPlaylist(playlistName:String,songName:String,artistName:String){
+        println("songName: \(songName) artistName: \(artistName)")
+        playlistDict[playlistName]?.removeByTitle(songName, artist: artistName)
+    }
+    
 /********************************************************************
 *Function referenceSongFromPLaylistToPlaylist
 *Purpose: lests user reference songs from other playlists

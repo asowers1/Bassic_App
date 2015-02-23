@@ -50,6 +50,8 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
     
     // artist input field
     var artistTextField:UITextField = UITextField()
+    
+    
 /********************************************************************
 *Function buildTestSet
 *Purpose: builds a few playlist objects with song objects in them
@@ -61,9 +63,9 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
     func buildTestSet() {
         
         // initial playlists
-        playlists.addPlaylist("rock")
-        playlists.addPlaylist("running")
-        playlists.addPlaylist("classical")
+        playlists.addPlaylist("rock",type: "playlist")
+        playlists.addPlaylist("running",type: "playlist")
+        playlists.addPlaylist("classical",type: "playlist")
     
         // initial songs
         playlists.addSongToPlaylist("All songs", songTitle: "Portway", songArtist: "Land Observations", songAlbum: "Roman Roads IV-XI", songLength: String(convertStringToTime("3:34")), songYear: "2012", songComposer: "Land Observations")
@@ -72,7 +74,7 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         
         
         // copy some songs from "All songs" into other playlists
-        //playlists.referenceSongFromPLaylistToPlaylist("All songs", destPlaylistName: "classical", songName: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro")
+        println(playlists.referenceSongFromPLaylistToPlaylist("All songs", destPlaylistName: "classical", songName: "Brandonburg Concerto No.1 in G, BWV 1048: 3. Allegro"))
         
         // access intial song listing
         //songList = playlists.accessPlaylist("All songs").listAllSongs()
@@ -86,26 +88,6 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
-        
-        
-        for index in 1900...2015 {
-            yearList.append(String(index))
-        }
-        
-        for totalSeconds in 0...1800 {
-            var minutes:Int = totalSeconds / 60;
-            var seconds:Int = totalSeconds % 60;
-            if seconds < 10 {
-                lengthList.append(String("\(minutes):0\(seconds)"))
-            }else{
-                lengthList.append(String("\(minutes):\(seconds)"))
-            }
-        }
-        
-                
-        yearValue = yearList[0]
-        lengthValue = lengthList[0]
-        
 
         self.buildTestSet()
         playlistTableData = playlists.getPlaylistListMinusAllSongs()
@@ -115,27 +97,21 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         self.playlistTableView.delegate   = self
         
         
-        /*
-        playlistStepperValue = Double(playlistPickerData.count)
-        songListStepperValue = Double(songList.count)
-        
-        playlistStepper.value = playlistStepperValue
-        songStepper.value = songListStepperValue
-        */
+        for playlist in playlists.playlistDict{
+            println("Length: \(playlist.1.calcPlaylistLength())")
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Playlists"
     }
     
-   override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
     
     }
     
 // MARK UITableView implementation
-
-
-    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
@@ -146,11 +122,11 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.playlistTableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
-        
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
             cell.textLabel?.text = self.searchingTableData[indexPath.row]
         }else{
+            //cell.textLabel?.text = self.songList[indexPath.row]
             cell.textLabel?.text = self.playlistTableData[indexPath.row]
         }
         return cell
@@ -194,9 +170,9 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         playlistTableView.reloadData()
     }
     
-// MARK segue logic
     
-
+    
+// MARK segue logic
     
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -205,48 +181,59 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         let destinationVC = segue.destinationViewController as songSelectViewController
         //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
         if is_searching == true{
-            destinationVC.navigationItem.title = self.searchingTableData[self.currentRow]
+            var data:Int = self.playlists.accessPlaylist(searchingTableData[self.currentRow]).calcPlaylistLength()
+            let time = self.secondsToHoursMinutesSeconds(data)
+            playlists.activePlaylist = searchingTableData[self.currentRow]
+            destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):\(time.2)")
+            
         }else{
-            destinationVC.navigationItem.title = self.playlistTableData[self.currentRow]
+            var data:Int = self.playlists.accessPlaylist(playlistTableData[self.currentRow]).calcPlaylistLength()
+            let time = self.secondsToHoursMinutesSeconds(data)
+            playlists.activePlaylist = playlistTableData[self.currentRow]
+            destinationVC.navigationItem.title = String("\(self.playlistTableData[self.currentRow]) - \(time.1):\(time.2)")
         }
         
         
     }
     
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+// MARK Title Bar Icons
+    
+    @IBAction func addPlaylist(sender: AnyObject) {
+        var alert = UIAlertController(title: "Add Playlist", message: "Enter playlist name:", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addTextFieldWithConfigurationHandler(playlistConfigurationTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
+            println("User click Ok button")
+            println(self.playlistTextField.text)
+            if(self.playlists.addPlaylist(self.playlistTextField.text,type:"playlist")){
+                self.playlistTableData = self.playlists.getPlaylistListMinusAllSongs()
+                self.playlistTableView.reloadData()
+            }
+            
+        }))
+        self.presentViewController(alert, animated: true, completion: {
+            println("completion block")
+        })
+    }
+    
+    func handleCancel() {
+        
+    }
 
 
 
 /********************************************************************
-*Function numberOfComponantsInPickerView
-*Purpose:define number of componants in picker view
-*Parameters: String artist - artist to compare to all songModel's artist attribute
-*Return value: Int 1
-*Properties modified: none
-*Precondition - N/A
-*********************************************************************/
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-/********************************************************************
-    //Function getSelctedPlaylist
-    //Purpose: return selected playlist
-    //Parameters: none
-    //Return value: desired playlist
-    //Properties modified: NA
-    //Precondition: NA
-
-    func getSelectedPlaylist() -> playlistModel {
-        return playlists.accessPlaylist(playlistPickerData[playlistPickerView.selectedRowInComponent(0)])
-    }
-*********************************************************************/
-    /********************************************************************
-    //Function getMainPlaylist
-    //Purpose: return main playlist
-    //Parameters: none
-    //Return value: All Songs playlist
-    //Properties modified: NA
-    //Precondition: NA
+//Function getMainPlaylist
+//Purpose: return main playlist
+//Parameters: none
+//Return value: All Songs playlist
+//Properties modified: NA
+//Precondition: NA
 ********************************************************************/
     func getMainPlaylist() -> playlistModel {
         return playlists.accessPlaylist("All songs")
@@ -261,7 +248,7 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
 *********************************************************************/
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        println("test")
+        println("Cancled UIAlert")
     }
     
 /********************************************************************
@@ -280,86 +267,7 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
             self.playlistTextField.placeholder = "Playlist Title"
         }
     }
-/********************************************************************
-    //Function artistConfigurationTextField
-    //Purpose: text field for add artist UIAlertView
-    //Parameters:UITextField textField
-    //Return value: NA
-    //Properties modified: NA
-    //Precondition: NA
-*********************************************************************/
-    func artistConfigurationTextField(textField: UITextField!){
-        if let tFild = textField {
-            self.artistTextField = textField!
-            self.artistTextField.placeholder = "Artist name"
-        }
-    }
-/********************************************************************
-    //Function handleCancel
-    //Purpose: text field for add playlist UIAlertVie
-    //Parameters:UIAlertAction alertView
-    //Return value: NA
-    //Properties modified: NA
-    //Precondition: NA
 
-    func handleCancel(alertView: UIAlertAction!) {
-        
-        self.playlistPickerData = self.playlists.getPlaylistList()
-        self.playlistPickerView.reloadAllComponents()
-
-    }
-*********************************************************************/
-/********************************************************************
-    //Function artistiListToStringList
-    //Purpose: turns [Srting] to String
-    //Parameters: NA
-    //Return value: String toReturn
-    //Properties modified:
-    //Precondition
-*********************************************************************/
-    func artistiListToStringList() -> String {
-        var toReturn:String = ""
-        for artist in artistList {
-            toReturn = artist + "\n"
-        }
-        return toReturn
-    }
-/********************************************************************
-    //Function searchByArtist
-    //Purpose: Search for titles by artist in a particular playlist
-    //Parameters: AnyObject sender
-    //Return value: NA
-    //Properties modified: NA
-    //Precondition: NA
-*********************************************************************/
-    @IBAction func searchByArtist(sender: AnyObject) {
-        
-        println("searching for selected artist")
-        var alert = UIAlertController(title: "List Artists in playlist", message: "Enter artist name:", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addTextFieldWithConfigurationHandler(artistConfigurationTextField)
-        //alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
-            println("User clicked Ok button")
-            //var playlist:playlistModel = self.getSelectedPlaylist()
-            
-            //self.artistList = playlist.listArtistSong(self.artistTextField.text)
-            if self.artistList.count == 0 {
-                let artists:String = self.artistiListToStringList()
-                let alert2 = UIAlertView(title: "Songs by \(self.artistTextField.text)", message: "none", delegate: self, cancelButtonTitle: "Okay")
-                alert2.show()
-            }else{
-                let artists:String = self.artistiListToStringList()
-                let alert2 = UIAlertView(title: "Songs by \(self.artistTextField.text)", message: artists, delegate: self, cancelButtonTitle: "Okay")
-                alert2.show()
-            }
-        }))
-        self.presentViewController(alert, animated: true, completion: {
-            println("completion block")
-            
-        })
-
-
-    }
 /********************************************************************
     //Function convertStringToTime
     //Purpose: convert from UIPicker String selection to Int
@@ -373,38 +281,4 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         let timeInt = ((separated[0].toInt()!*60)+separated[1].toInt()!)
         return timeInt
     }
- /********************************************************************
-    //Function cancelAddSong
-    //Purpose: Cancel add song IBAction
-    //Parameters: AnyObject sender
-    //Return value: NA
-    //Properties modified: NA
-    //Precondition: NA
-********************************************************************/
-    @IBAction func cancelAddSong(sender: AnyObject) {
-        println("Cancel add song")
-    }
-/********************************************************************
-    //Function dismissKeyboard
-    //Purpose: Dismiss Keyboard IBAction
-    //Parameters: AnyObject sender
-    //Return value: NA
-    //Properties modified: NA
-    //Precondition: NA
-*********************************************************************/
-    @IBAction func dismissKeyboard(sender: AnyObject) {
-        self.dismissKeyboards()
-    }
-/********************************************************************
-    //Function dismissKeyboards
-    //Purpose: Dismiss Keyboard method
-    //Parameters: NA
-    //Return value: NA
-    //Properties modified: NA
-    //Precondition: NA
-*********************************************************************/
-    func dismissKeyboards(){
-        
-    }
-
 }

@@ -12,12 +12,11 @@ class albumModel : playlistModel {
     var albumName:String = String()
     var albumArtist:String = String()
     var albumYear:String = String()
+    var albumProducer:String = String()
 
     init(){
         
-        super.init(name:String(), list: [Song]())
+        super.init(name:String(), list: [Song](), type: "album")
     }
-    func setAlbumName(name:String){
-        
-    }
+    
 }
