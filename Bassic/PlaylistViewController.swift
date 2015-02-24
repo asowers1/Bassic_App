@@ -140,6 +140,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         performSegueWithIdentifier("songShow", sender: self)
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            self.playlists.removePlaylist(playlistTableData[indexPath.row])
+            self.playlistTableData.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
     
 // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
