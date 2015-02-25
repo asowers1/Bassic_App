@@ -481,9 +481,9 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMh-PF-kN2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMh-PF-kN2">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal">
+                                <state key="normal" image="Help Filled-50">
                                     <color key="titleColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1128,6 +1128,7 @@
     </scenes>
     <resources>
         <image name="Create New-50" width="25" height="25"/>
+        <image name="Help Filled-50" width="25" height="25"/>
         <image name="Music Record-50" width="25" height="25"/>
         <image name="Music-50" width="25" height="25"/>
         <image name="Side Dram-50" width="25" height="25"/>
