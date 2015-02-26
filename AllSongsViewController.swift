@@ -35,7 +35,7 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Songs"
-        self.songList = playlists.accessPlaylist("All songs").listArtistSong()
+        self.songList = playlists.accessPlaylist("All songs").listSongArtistAlbum()
         self.allSongsTableView.reloadData()
     }
     
@@ -129,6 +129,7 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
                         destinationVC.year     = String(songInList.year)
                         destinationVC.composer = songInList.composer
                         destinationVC.length   = String(" \(time.1):\(time.2)")
+                        destinationVC.lengthInSeconds = songInList.length
                         
                         
                     }
@@ -146,6 +147,7 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
                         destinationVC.year     = String(songInList.year)
                         destinationVC.composer = songInList.composer
                         destinationVC.length   = String(" \(time.1):\(time.2)")
+                        destinationVC.lengthInSeconds = songInList.length
                         
                     }
                 }

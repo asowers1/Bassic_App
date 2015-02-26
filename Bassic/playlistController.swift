@@ -60,6 +60,8 @@ class playlistController {
         
         return false
     }
+    
+    
 /********************************************************************
 *Function accessPlaylist
 *Purpose: allows user to edit playlist
@@ -141,7 +143,7 @@ class playlistController {
         var arr = arrIn
         var filter = Dictionary<String,Int>()
         var len = arr.count
-        for var index = 0; index < len  ;++index {
+        for var index = 0;index < len;++index {
             var value = arr[index]
             if (filter[value] != nil) {
                 arr.removeAtIndex(index--)
@@ -164,6 +166,15 @@ class playlistController {
         return artistList
     }
     
+    func checkIfPlaylistExists(name:String) -> Bool {
+        for playlist in self.playlistDict {
+            if playlist.1.name == name {
+                return true
+            }
+        }
+        return false
+    }
+    
 /********************************************************************
 *Function addSongToPlaylist
 *Purpose: adds a song object to a playlist
@@ -172,11 +183,11 @@ class playlistController {
 *Properties modified: playList
 *Precondition: NA
 *********************************************************************/
-    func addSongToPlaylist(playlistName:String, songTitle:String, songArtist:String, songAlbum:String, songLength:String, songYear:String, songComposer:String) -> Bool {
+    func addSongToPlaylist(playlistName:String, songTitle:String, songArtist:String, songAlbum:String, songLength:String, songYear:String, songComposer:String) {
     
         var song:Song = Song(name: songTitle, artist: songArtist, album: songAlbum, year: songYear.toInt()!, composer: songComposer, length: songLength.toInt()!)
         playlistDict[playlistName]?.add(song)
-        return true
+        println(playlistDict[playlistName]?.listAllSongs())
     }
     
     func removeSongByArtist(songName:String,songArtist:String){

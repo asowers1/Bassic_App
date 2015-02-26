@@ -324,11 +324,12 @@
             <objects>
                 <tableViewController id="Dfu-zK-Uen" customClass="ArtistSongSelectViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="xLO-nL-q8O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Songs" id="Siw-6d-x5Z">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -473,6 +474,9 @@
                                     <color key="titleColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addToPlaylist:" destination="g4N-iI-ieD" eventType="touchUpInside" id="w4O-bL-7WE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMc-M6-eu2">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -480,6 +484,9 @@
                                     <color key="titleColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addToAlbum:" destination="g4N-iI-ieD" eventType="touchUpInside" id="LcN-BO-3aT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMh-PF-kN2">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -487,6 +494,9 @@
                                     <color key="titleColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="helpAlert:" destination="g4N-iI-ieD" eventType="touchUpInside" id="qh2-fe-8gD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -561,6 +571,18 @@
                                 <exclude reference="ZSx-xi-9hp"/>
                                 <exclude reference="jLN-8A-7Vc"/>
                                 <exclude reference="uOf-eQ-gPb"/>
+                                <exclude reference="boB-AY-p4O"/>
+                                <exclude reference="jRB-Bh-Xbg"/>
+                                <exclude reference="md7-mM-05X"/>
+                                <exclude reference="6As-Fw-58O"/>
+                                <exclude reference="FI8-BS-VHo"/>
+                                <exclude reference="WPk-sv-EgW"/>
+                                <exclude reference="hv9-9v-aPW"/>
+                                <exclude reference="BvM-93-PUI"/>
+                                <exclude reference="I8I-YW-m6W"/>
+                                <exclude reference="liS-bA-Dwv"/>
+                                <exclude reference="uem-Xn-Fdc"/>
+                                <exclude reference="pMf-Nh-foe"/>
                                 <exclude reference="giX-Fx-ipa"/>
                                 <exclude reference="ruS-t1-PbR"/>
                                 <exclude reference="xxd-RK-q5f"/>
@@ -569,40 +591,28 @@
                                 <exclude reference="JIu-JQ-0MO"/>
                                 <exclude reference="Qjq-F4-ggs"/>
                                 <exclude reference="bel-DY-xFC"/>
-                                <exclude reference="X2q-qt-TPX"/>
-                                <exclude reference="BvM-93-PUI"/>
-                                <exclude reference="I8I-YW-m6W"/>
-                                <exclude reference="liS-bA-Dwv"/>
-                                <exclude reference="uem-Xn-Fdc"/>
+                                <exclude reference="aq2-Tg-kFU"/>
+                                <exclude reference="blt-0N-S97"/>
+                                <exclude reference="kRD-ld-Z3m"/>
+                                <exclude reference="kf7-xC-xkh"/>
                                 <exclude reference="9jO-lD-Fng"/>
                                 <exclude reference="EBd-ae-bne"/>
                                 <exclude reference="Geo-Hc-Mty"/>
                                 <exclude reference="Pjk-5W-MEm"/>
                                 <exclude reference="bnc-6J-Kcs"/>
                                 <exclude reference="zBh-ku-nNE"/>
-                                <exclude reference="pMf-Nh-foe"/>
-                                <exclude reference="aq2-Tg-kFU"/>
-                                <exclude reference="blt-0N-S97"/>
-                                <exclude reference="kRD-ld-Z3m"/>
-                                <exclude reference="kf7-xC-xkh"/>
-                                <exclude reference="B0A-Jp-NGp"/>
-                                <exclude reference="SRP-U3-CWI"/>
-                                <exclude reference="TKh-Ux-luO"/>
-                                <exclude reference="oat-d6-IvO"/>
-                                <exclude reference="6As-Fw-58O"/>
-                                <exclude reference="FI8-BS-VHo"/>
-                                <exclude reference="WPk-sv-EgW"/>
-                                <exclude reference="hv9-9v-aPW"/>
                                 <exclude reference="1Xx-sM-lT1"/>
                                 <exclude reference="QjU-ss-zS7"/>
                                 <exclude reference="kyC-U0-4y9"/>
                                 <exclude reference="qCs-AH-ELC"/>
-                                <exclude reference="boB-AY-p4O"/>
-                                <exclude reference="jRB-Bh-Xbg"/>
-                                <exclude reference="md7-mM-05X"/>
+                                <exclude reference="X2q-qt-TPX"/>
+                                <exclude reference="B0A-Jp-NGp"/>
+                                <exclude reference="SRP-U3-CWI"/>
+                                <exclude reference="TKh-Ux-luO"/>
+                                <exclude reference="oat-d6-IvO"/>
+                                <exclude reference="Xdd-2I-0J6"/>
                                 <exclude reference="3kC-oY-3pZ"/>
                                 <exclude reference="Sp4-b9-HyC"/>
-                                <exclude reference="Xdd-2I-0J6"/>
                                 <exclude reference="R2D-tZ-1wG"/>
                                 <exclude reference="SMr-NF-9sx"/>
                             </mask>
@@ -629,6 +639,18 @@
                                 <include reference="ZSx-xi-9hp"/>
                                 <include reference="jLN-8A-7Vc"/>
                                 <include reference="uOf-eQ-gPb"/>
+                                <include reference="boB-AY-p4O"/>
+                                <include reference="jRB-Bh-Xbg"/>
+                                <include reference="md7-mM-05X"/>
+                                <include reference="6As-Fw-58O"/>
+                                <include reference="FI8-BS-VHo"/>
+                                <include reference="WPk-sv-EgW"/>
+                                <include reference="hv9-9v-aPW"/>
+                                <include reference="BvM-93-PUI"/>
+                                <include reference="I8I-YW-m6W"/>
+                                <include reference="liS-bA-Dwv"/>
+                                <include reference="uem-Xn-Fdc"/>
+                                <include reference="pMf-Nh-foe"/>
                                 <include reference="giX-Fx-ipa"/>
                                 <include reference="ruS-t1-PbR"/>
                                 <include reference="xxd-RK-q5f"/>
@@ -637,40 +659,28 @@
                                 <include reference="JIu-JQ-0MO"/>
                                 <include reference="Qjq-F4-ggs"/>
                                 <include reference="bel-DY-xFC"/>
-                                <include reference="X2q-qt-TPX"/>
-                                <include reference="BvM-93-PUI"/>
-                                <include reference="I8I-YW-m6W"/>
-                                <include reference="liS-bA-Dwv"/>
-                                <include reference="uem-Xn-Fdc"/>
+                                <include reference="aq2-Tg-kFU"/>
+                                <include reference="blt-0N-S97"/>
+                                <include reference="kRD-ld-Z3m"/>
+                                <include reference="kf7-xC-xkh"/>
                                 <include reference="9jO-lD-Fng"/>
                                 <include reference="EBd-ae-bne"/>
                                 <include reference="Geo-Hc-Mty"/>
                                 <include reference="Pjk-5W-MEm"/>
                                 <include reference="bnc-6J-Kcs"/>
                                 <include reference="zBh-ku-nNE"/>
-                                <include reference="pMf-Nh-foe"/>
-                                <include reference="aq2-Tg-kFU"/>
-                                <include reference="blt-0N-S97"/>
-                                <include reference="kRD-ld-Z3m"/>
-                                <include reference="kf7-xC-xkh"/>
-                                <include reference="B0A-Jp-NGp"/>
-                                <include reference="SRP-U3-CWI"/>
-                                <include reference="TKh-Ux-luO"/>
-                                <include reference="oat-d6-IvO"/>
-                                <include reference="6As-Fw-58O"/>
-                                <include reference="FI8-BS-VHo"/>
-                                <include reference="WPk-sv-EgW"/>
-                                <include reference="hv9-9v-aPW"/>
                                 <include reference="1Xx-sM-lT1"/>
                                 <include reference="QjU-ss-zS7"/>
                                 <include reference="kyC-U0-4y9"/>
                                 <include reference="qCs-AH-ELC"/>
-                                <include reference="boB-AY-p4O"/>
-                                <include reference="jRB-Bh-Xbg"/>
-                                <include reference="md7-mM-05X"/>
+                                <include reference="X2q-qt-TPX"/>
+                                <include reference="B0A-Jp-NGp"/>
+                                <include reference="SRP-U3-CWI"/>
+                                <include reference="TKh-Ux-luO"/>
+                                <include reference="oat-d6-IvO"/>
+                                <include reference="Xdd-2I-0J6"/>
                                 <include reference="3kC-oY-3pZ"/>
                                 <include reference="Sp4-b9-HyC"/>
-                                <include reference="Xdd-2I-0J6"/>
                                 <include reference="R2D-tZ-1wG"/>
                                 <include reference="SMr-NF-9sx"/>
                             </mask>
@@ -687,7 +697,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koj-JY-0WE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4272" y="1066"/>
+            <point key="canvasLocation" x="4266" y="1066"/>
         </scene>
         <!--All Songs View Controller-->
         <scene sceneID="Vmf-dk-A6F">

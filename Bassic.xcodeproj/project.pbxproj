@@ -13,6 +13,7 @@
 		494B485B1A98FAD00016E35F /* albumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494B485A1A98FAD00016E35F /* albumModel.swift */; };
 		494B48601A9906840016E35F /* ArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494B485F1A9906840016E35F /* ArtistViewController.swift */; };
 		494B48621A9906E90016E35F /* AllSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494B48611A9906E90016E35F /* AllSongsViewController.swift */; };
+		495A5B401A9E9F7800740D52 /* songViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A5B3E1A9E9ED800740D52 /* songViewController.swift */; };
 		495E1A521A86D02B006AA76E /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E1A511A86D02B006AA76E /* PlaylistViewController.swift */; };
 		4961DDAD1A812C2A009939ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961DDAC1A812C2A009939ED /* AppDelegate.swift */; };
 		4961DDB21A812C2A009939ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4961DDB01A812C2A009939ED /* Main.storyboard */; };
@@ -25,7 +26,6 @@
 		499270961A9AFF3A00BF8B3F /* ListAllSongsAddSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499270951A9AFF3A00BF8B3F /* ListAllSongsAddSongViewController.swift */; };
 		49B3E5261A9A6412002B0ABA /* addSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3E5251A9A6412002B0ABA /* addSongViewController.swift */; };
 		49B3E5281A9AA0AA002B0ABA /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3E5271A9AA0AA002B0ABA /* AlbumViewController.swift */; };
-		49B3E52A1A9ABC50002B0ABA /* songViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3E5291A9ABC50002B0ABA /* songViewController.swift */; };
 		49B3E52E1A9AEBB9002B0ABA /* ArtistSongSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3E52D1A9AEBB9002B0ABA /* ArtistSongSelectViewController.swift */; };
 		49B3E5301A9AEC69002B0ABA /* albumSongSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3E52F1A9AEC69002B0ABA /* albumSongSelectViewController.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +47,7 @@
 		494B485A1A98FAD00016E35F /* albumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = albumModel.swift; sourceTree = "<group>"; };
 		494B485F1A9906840016E35F /* ArtistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistViewController.swift; sourceTree = "<group>"; };
 		494B48611A9906E90016E35F /* AllSongsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllSongsViewController.swift; path = ../AllSongsViewController.swift; sourceTree = "<group>"; };
+		495A5B3E1A9E9ED800740D52 /* songViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = songViewController.swift; path = ../songViewController.swift; sourceTree = "<group>"; };
 		495E1A511A86D02B006AA76E /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		4961DDA71A812C2A009939ED /* Bassic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4961DDAB1A812C2A009939ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		499270951A9AFF3A00BF8B3F /* ListAllSongsAddSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAllSongsAddSongViewController.swift; sourceTree = "<group>"; };
 		49B3E5251A9A6412002B0ABA /* addSongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addSongViewController.swift; sourceTree = "<group>"; };
 		49B3E5271A9AA0AA002B0ABA /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
-		49B3E5291A9ABC50002B0ABA /* songViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = songViewController.swift; sourceTree = "<group>"; };
 		49B3E52D1A9AEBB9002B0ABA /* ArtistSongSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtistSongSelectViewController.swift; path = ../ArtistSongSelectViewController.swift; sourceTree = "<group>"; };
 		49B3E52F1A9AEC69002B0ABA /* albumSongSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = albumSongSelectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,10 +107,10 @@
 		494B485E1A98FC800016E35F /* views */ = {
 			isa = PBXGroup;
 			children = (
+				495A5B3E1A9E9ED800740D52 /* songViewController.swift */,
 				49B3E52D1A9AEBB9002B0ABA /* ArtistSongSelectViewController.swift */,
 				499270951A9AFF3A00BF8B3F /* ListAllSongsAddSongViewController.swift */,
 				49B3E52F1A9AEC69002B0ABA /* albumSongSelectViewController.swift */,
-				49B3E5291A9ABC50002B0ABA /* songViewController.swift */,
 				49B3E5271A9AA0AA002B0ABA /* AlbumViewController.swift */,
 				49B3E5251A9A6412002B0ABA /* addSongViewController.swift */,
 				495E1A511A86D02B006AA76E /* PlaylistViewController.swift */,
@@ -281,9 +281,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495A5B401A9E9F7800740D52 /* songViewController.swift in Sources */,
 				49B3E52E1A9AEBB9002B0ABA /* ArtistSongSelectViewController.swift in Sources */,
 				4961DDD61A813030009939ED /* playlistModel.swift in Sources */,
-				49B3E52A1A9ABC50002B0ABA /* songViewController.swift in Sources */,
 				49372A3E1A985DBC001F7D50 /* SongSelectViewController.swift in Sources */,
 				49B3E5281A9AA0AA002B0ABA /* AlbumViewController.swift in Sources */,
 				4961DDD51A813030009939ED /* playlistController.swift in Sources */,

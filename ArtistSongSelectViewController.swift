@@ -37,6 +37,13 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
     override func viewWillAppear(animated:Bool){
         self.songList = playlist.listArtistSongByArtist(self.artistName)
         self.songTableView.reloadData()
+        var artistLength:Int = playlist.calcArtistLength(self.artistName)
+        let time = self.secondsToHoursMinutesSeconds(artistLength)
+        if time.2 < 9 {
+            self.navigationItem.title =  String("\(self.artistName) - \(time.1):0\(time.2)")
+        }else{
+            self.navigationItem.title =  String("\(self.artistName) - \(time.1):\(time.2)")
+        }
         
     }
     

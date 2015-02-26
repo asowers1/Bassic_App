@@ -35,8 +35,15 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
     }
     
     override func viewWillAppear(animated:Bool){
-         self.songList = playlist.listArtistSongByAlbum(self.albumName)
+        self.songList = playlist.listArtistSongByAlbum(self.albumName)
         self.songTableView.reloadData()
+        var albumLength:Int = playlist.calcAlbumLength(self.albumName)
+        let time = self.secondsToHoursMinutesSeconds(albumLength)
+        if time.2 < 9 {
+            self.navigationItem.title =  String("\(self.albumName) - \(time.1):0\(time.2)")
+        }else{
+            self.navigationItem.title =  String("\(self.albumName) - \(time.1):\(time.2)")
+        }
     }
     
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
@@ -127,6 +134,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
                     destinationVC.length   = String(" \(time.1):\(time.2)")
+                    destinationVC.lengthInSeconds = songInList.length
                     
                     
                 }
@@ -143,6 +151,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
                     destinationVC.length   = String(" \(time.1):\(time.2)")
+                    destinationVC.lengthInSeconds = songInList.length
                     
                 }
             }

@@ -159,13 +159,21 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
             var data:Int = self.playlists.accessPlaylist("All songs").calcAlbumLength(searchingTableData[self.currentRow])
             let time = self.secondsToHoursMinutesSeconds(data)
             destinationVC.albumName = searchingTableData[self.currentRow]
-            destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):\(time.2)")
+            if time.2 < 9 {
+                destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):0\(time.2)")
+            }else{
+                destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):\(time.2)")
+            }
             
         }else{
             var data:Int = self.playlists.accessPlaylist("All songs").calcAlbumLength(albumList[self.currentRow])
             let time = self.secondsToHoursMinutesSeconds(data)
             destinationVC.albumName = albumList[self.currentRow]
-            destinationVC.navigationItem.title = String("\(self.albumList[self.currentRow]) - \(time.1):\(time.2)")
+            if time.2 < 9 {
+                destinationVC.navigationItem.title = String("\(self.albumList[self.currentRow]) - \(time.1):0\(time.2)")
+            }else{
+                destinationVC.navigationItem.title = String("\(self.albumList[self.currentRow]) - \(time.1):\(time.2)")
+            }
         }
         
         

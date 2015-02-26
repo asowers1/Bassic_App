@@ -192,13 +192,22 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
             var data:Int = self.playlists.accessPlaylist(searchingTableData[self.currentRow]).calcPlaylistLength()
             let time = self.secondsToHoursMinutesSeconds(data)
             playlists.activePlaylist = searchingTableData[self.currentRow]
-            destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):\(time.2)")
+            if time.2 < 9 {
+                destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):0\(time.2)")
+            }else{
+                destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):\(time.2)")
+            }
             
         }else{
             var data:Int = self.playlists.accessPlaylist(playlistTableData[self.currentRow]).calcPlaylistLength()
             let time = self.secondsToHoursMinutesSeconds(data)
             playlists.activePlaylist = playlistTableData[self.currentRow]
-            destinationVC.navigationItem.title = String("\(self.playlistTableData[self.currentRow]) - \(time.1):\(time.2)")
+            
+            if time.2 < 9 {
+                destinationVC.navigationItem.title = String("\(self.playlistTableData[self.currentRow]) - \(time.1):0\(time.2)")
+            }else{
+                destinationVC.navigationItem.title = String("\(self.playlistTableData[self.currentRow]) - \(time.1):\(time.2)")
+            }
         }
         
         

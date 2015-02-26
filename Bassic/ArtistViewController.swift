@@ -109,13 +109,21 @@ class ArtistViewController : UITableViewController, UIAlertViewDelegate, UISearc
             var data:Int = self.playlists.accessPlaylist("All songs").calcArtistLength(searchingTableData[self.currentRow])
             let time = self.secondsToHoursMinutesSeconds(data)
             destinationVC.artistName = searchingTableData[self.currentRow]
-            destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):\(time.2)")
+            if time.2 < 9 {
+                destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):0\(time.2)")
+            }else{
+                destinationVC.navigationItem.title = String("\(self.searchingTableData[self.currentRow]) - \(time.1):\(time.2)")
+            }
             
         }else{
             var data:Int = self.playlists.accessPlaylist("All songs").calcArtistLength(artistList[self.currentRow])
             let time = self.secondsToHoursMinutesSeconds(data)
             destinationVC.artistName = artistList[self.currentRow]
-            destinationVC.navigationItem.title = String("\(self.artistList[self.currentRow]) - \(time.1):\(time.2)")
+            if time.2 < 9 {
+                destinationVC.navigationItem.title = String("\(self.artistList[self.currentRow]) - \(time.1):0\(time.2)")
+            }else{
+                destinationVC.navigationItem.title = String("\(self.artistList[self.currentRow]) - \(time.1):\(time.2)")
+            }
         }
         
         

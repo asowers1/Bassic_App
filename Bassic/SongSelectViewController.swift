@@ -29,19 +29,26 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
     
     
     override func viewDidLoad() {
-        //self.navigationController?.navigationItem.title = self.playlistTitle
         self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
         songSelectTableView.dataSource = self
         songSelectTableView.delegate = self
         playlistTitle = playlists.activePlaylist
-        
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.songList = playlists.accessPlaylist(self.playlistTitle).listArtistSong()
+        self.songList = playlists.accessPlaylist(self.playlistTitle).listSongArtistAlbum()
+        
+        println(playlists.accessPlaylist(self.playlistTitle).listSongArtistAlbum())
+        
         self.songSelectTableView.reloadData()
+        var data:Int = self.playlists.accessPlaylist(self.playlistTitle).calcPlaylistLength()
+        let time = self.secondsToHoursMinutesSeconds(data)
+        if time.2 < 9 {
+            self.navigationItem.title =  String("\(self.playlistTitle) - \(time.1):0\(time.2)")
+        }else{
+            self.navigationItem.title =  String("\(self.playlistTitle) - \(time.1):\(time.2)")
+        }
+        
     }
     
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
@@ -51,6 +58,10 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK UITableView implementation
@@ -132,7 +143,6 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         
         // Create a new variable to store the instance of PlayerTableViewController
         let destinationVC = segue.destinationViewController as songViewController
-        //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
         
         if is_searching == true{
             let currentPlaylist = playlists.accessPlaylist(self.playlistTitle)
@@ -146,6 +156,7 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
                     destinationVC.length   = String(" \(time.1):\(time.2)")
+                    destinationVC.lengthInSeconds = songInList.length
                     
                     
                 }
@@ -163,6 +174,8 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
                     destinationVC.length   = String(" \(time.1):\(time.2)")
+                    destinationVC.lengthInSeconds = songInList.length
+
                     
                 }
             }

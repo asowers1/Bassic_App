@@ -35,7 +35,7 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
     
     
     override func viewWillAppear(animated:Bool){
-        self.songList = playlist.listArtistSong()
+        self.songList = playlist.listSongArtistAlbum()
         self.songTableView.reloadData()
     }
     

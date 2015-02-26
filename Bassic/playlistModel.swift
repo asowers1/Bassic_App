@@ -118,6 +118,15 @@ class playlistModel {
         }
         return false
     }
+    
+    func checkIfSongExistsByAlbum(title:String,artist:String,album:String) -> Bool {
+        for song in list {
+            if song.name == title && song.artist == artist && song.album == album{
+                return true
+            }
+        }
+        return false
+    }
 /********************************************************************
     //Function listAllSongs
     //Purpose: create and display a list of all the songs within the
@@ -138,7 +147,7 @@ class playlistModel {
     func listArtistSong()->[String:(String,String)]{
         var toReturn:[String:(String,String)] = Dictionary()
         for song in list {
-            toReturn["\(song.artist) - \(song.name)"] = (song.artist,song.name)
+            toReturn["\(song.artist) - \(song.name) - \(song.album)"] = (song.artist,song.name)
         }
         return toReturn
     }
@@ -153,11 +162,20 @@ class playlistModel {
         return toReturn
     }
     
+    func listSongArtistAlbum()->[String:(String,String)] {
+        var toReturn:[String:(String,String)] = Dictionary()
+        for i in list{
+            println(i.album)
+            toReturn["\(i.name) - \(i.artist) - \(i.album)"] = (i.artist,i.name)
+        }
+        return toReturn
+    }
+    
     func listArtistSongByArtist(artist:String)->[String:(String,String)]{
         var toReturn:[String:(String,String)] = Dictionary()
         for song in list {
             if song.artist == artist {
-                toReturn["\(song.artist) - \(song.name)"] = (song.artist,song.name)
+                toReturn["\(song.artist) - \(song.name) - \(song.album)"] = (song.artist,song.name)
             }
         }
         return toReturn
@@ -165,25 +183,8 @@ class playlistModel {
     
 
     
-/********************************************************************
-    //Function listArtistSongs
-    //Purpose: create and display a list of all the songs by one 
-    artisit
-    //Parameters: String artist - artist to compare to all 
-    songModel's artist attribute
-    //Return value: list containing all the songs by an artist
-    //Properties modified: none
-    //Precondition - N/A
-*********************************************************************/
-    func listArtistSong(artist:String)->[String]{
-        var artistList: [String] = []
-        for i in list{
-            if(artist == i.artist){
-                artistList.append(i.name)
-            }
-        }
-        return artistList
-    }
+
+
 /********************************************************************
 //Function calcPlaylistLength
 //Purpose: to calculate the total the amount of time in the playlist
