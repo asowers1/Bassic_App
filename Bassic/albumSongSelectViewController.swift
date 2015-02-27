@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+
+/*******************************************************************
+//Class AlbumSongSelectViewController
+//Purpose: Creates a view for the album class
+*********************************************************************/
 class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -26,7 +31,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
     
     var albumName:String = String()
     
-    
+    //loads in a navbar
     override func viewDidLoad(){
         self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
         songTableView.delegate = self
@@ -34,6 +39,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         
     }
     
+    //creates the title in the nav
     override func viewWillAppear(animated:Bool){
         self.songList = playlist.listArtistSongByAlbum(self.albumName)
         self.songTableView.reloadData()
@@ -46,6 +52,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         }
     }
     
+    //changes some colors
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -55,9 +62,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
-    
-    // MARK UITableView implementation
-    
+    //UITableView implementation
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
             return self.searchingTableData.count
@@ -66,6 +71,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         }
     }
     
+    //fills the tableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -76,21 +82,20 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         return cell
     }
     
+    //performSegueWithIdentifier("songShow", sender: self)
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.currentRow = indexPath.row
-        
-        //performSegueWithIdentifier("songShow", sender: self)
     }
     
-    
+    //converts Int in seconds to String
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
     
-    // MARK searching delegate logic
+    //searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
         if searchBar.text.isEmpty{
@@ -112,17 +117,16 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         }
     }
     
+    //closes the search bar
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         
         songTableView.reloadData()
     }
-    
+    // Create a new variable to store the instance of PlayerTableViewController
+    //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        
-        // Create a new variable to store the instance of PlayerTableViewController
         let destinationVC = segue.destinationViewController as songViewController
-        //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
         if is_searching == true{
             let song:(String,String) =  songList[searchingTableData[self.currentRow]]!
             for songInList in playlist.list {

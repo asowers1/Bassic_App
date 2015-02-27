@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+/********************************************************************
+//Class songViewController
+//Purpose: Creates a view for the addSong functionality
+*********************************************************************/
+
 class songViewController : UIViewController, UIAlertViewDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -54,13 +59,15 @@ class songViewController : UIViewController, UIAlertViewDelegate {
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
+    /********************************************************************
+    *Function addToPlaylist
+    *Purpose: check to see if in playlist already
+    *Parameters: none
+    *Return value: none
+    *Properties modified: playlistController
+    *Precondition - N/A
+    ********************************************************************/
     @IBAction func addToPlaylist(sender: AnyObject) {
-        // lookup song
-        // check to see if in playlist already
-            // alert(alerady added)
-        // else
-            // add to playlist
-        
         var alert = UIAlertController(title: "Add song to playlist", message: "Enter playlist name:", preferredStyle: UIAlertControllerStyle.Alert)
         
         var innerAlertPlaylist = UIAlertController(title: "Error", message: "Song is already in playlist", preferredStyle: UIAlertControllerStyle.Alert)
@@ -93,16 +100,17 @@ class songViewController : UIViewController, UIAlertViewDelegate {
             println("completion block")
         })
 
-        
-        //
     }
+    
+    /********************************************************************
+    *Function addToAlbum
+    *Purpose: adds a song to an album if song is not already there
+    *Parameters: none
+    *Return value: none
+    *Properties modified: album controller
+    *Precondition - N/A
+    ********************************************************************/
     @IBAction func addToAlbum(sender: AnyObject) {
-        // lookup song
-        // check to see if in album already
-            // alert(already added)
-        //else
-            // create new song
-            // add to playlist structure
         var alert = UIAlertController(title: "Add song to album", message: "Enter album name:", preferredStyle: UIAlertControllerStyle.Alert)
         
         var innerAlertAlbum = UIAlertController(title: "Error", message: "Song is already in album", preferredStyle: UIAlertControllerStyle.Alert)
@@ -164,6 +172,14 @@ class songViewController : UIViewController, UIAlertViewDelegate {
             self.albumTextField.placeholder = "Album Title"
         }
     }
+    /********************************************************************
+    //Function helpAlert
+    //Purpose: pops up an alert that helps user use the app
+    //Parameters: UITextField - textField
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
+    *********************************************************************/
     @IBAction func helpAlert(sender: AnyObject) {
         
         var alert = UIAlertController(title: "Info", message: "Add to playlist will add a song to a playlist\nAdd to album will create a new song with the new desired album name", preferredStyle: UIAlertControllerStyle.Alert)

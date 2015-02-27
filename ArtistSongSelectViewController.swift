@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/********************************************************************
+//Class ArtistSongSelectViewController
+//Purpose: dictionary that stores artists and their songs as value:key
+*********************************************************************/
 class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -34,6 +38,15 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         
     }
     
+    /********************************************************************
+    //Function viewWillAppear
+    //Purpose: Displays time
+    //Parameters: animated Bool
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
+    *********************************************************************/
+    
     override func viewWillAppear(animated:Bool){
         self.songList = playlist.listArtistSongByArtist(self.artistName)
         self.songTableView.reloadData()
@@ -47,6 +60,8 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         
     }
     
+    
+    // changes some colors
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -57,8 +72,8 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
     }
     
     
-    // MARK UITableView implementation
-    
+    //UITableView implementation
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
             return self.searchingTableData.count
@@ -67,6 +82,7 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         }
     }
     
+    //fills the UItableview
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -81,17 +97,22 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.currentRow = indexPath.row
-        
-        //performSegueWithIdentifier("songShow", sender: self)
     }
     
-    
+    //converts an Int of seconds to a String
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
     
-    // MARK searching delegate logic
+    /********************************************************************
+    //Function searchBar
+    //Purpose: allows users to search for something
+    //Parameters: UISearchBar:searchBar String: textDidChangr, searchText
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
+    *********************************************************************/
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
         if searchBar.text.isEmpty{
@@ -112,18 +133,18 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
             songTableView.reloadData()
         }
     }
-    
+    //removes the search view
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         
         songTableView.reloadData()
     }
     
+    //Create a new variable to store the instance of PlayerTableViewController
+    //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        // Create a new variable to store the instance of PlayerTableViewController
         let destinationVC = segue.destinationViewController as songViewController
-        //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
         if is_searching == true{
             let song:(String,String) =  songList[searchingTableData[self.currentRow]]!
             for songInList in playlist.list {

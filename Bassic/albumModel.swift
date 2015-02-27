@@ -8,6 +8,8 @@
 
 import Foundation
 
+//Creates an album object which is an array of song objects
+//uses the playlstModel
 class albumModel : playlistModel {
     var albumName:String = String()
     var albumArtist:String = String()

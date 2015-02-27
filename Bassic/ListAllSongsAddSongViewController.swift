@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+
+/*******************************************************************
+//Class ListAllSongsAddSongViewController
+//Purpose: Creates a view for the addSong and allSongs page
+*********************************************************************/
 class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
