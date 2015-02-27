@@ -764,20 +764,12 @@
             <objects>
                 <tableViewController id="gHw-bs-9QN" customClass="PlaylistViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="redraw" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QrT-WQ-k1W">
-<<<<<<< Updated upstream
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-=======
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
->>>>>>> Stashed changes
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <searchBar key="tableHeaderView" contentMode="scaleToFill" text="" placeholder="Search Playlists" id="2sh-Pm-rSx">
-<<<<<<< Updated upstream
                             <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-=======
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
->>>>>>> Stashed changes
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                             <textInputTraits key="textInputTraits"/>
@@ -833,20 +825,12 @@
             <objects>
                 <tableViewController id="k8m-co-NOV" customClass="ArtistViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="bhR-s3-L71">
-<<<<<<< Updated upstream
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-=======
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
->>>>>>> Stashed changes
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Artists" id="qsr-EK-Dcm">
-<<<<<<< Updated upstream
                             <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-=======
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
->>>>>>> Stashed changes
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -893,13 +877,8 @@
         <scene sceneID="IFo-eV-rnp">
             <objects>
                 <tableViewController id="bvA-7t-l2a" customClass="songSelectViewController" customModule="Bassic" customModuleProvider="target" sceneMemberID="viewController">
-<<<<<<< Updated upstream
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gpt-df-2nL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-=======
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gpt-df-2nL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
->>>>>>> Stashed changes
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="0.85098039219999999" green="0.57647058819999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -934,23 +913,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU9-kz-mdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-<<<<<<< Updated upstream
                 <searchDisplayController id="IO0-PH-XQ2">
-=======
-            </objects>
-            <point key="canvasLocation" x="2440.5" y="317"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="qDh-6v-vVC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AHJ-Ir-lbb" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="7nX-ds-Zi7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
->>>>>>> Stashed changes
                     <connections>
                         <outlet property="delegate" destination="bvA-7t-l2a" id="EzL-YP-sCp"/>
                         <outlet property="searchBar" destination="baB-X9-kZ4" id="Ljk-bR-Dnw"/>
@@ -958,12 +921,7 @@
                         <outlet property="searchResultsDataSource" destination="bvA-7t-l2a" id="Vsj-iq-aJZ"/>
                         <outlet property="searchResultsDelegate" destination="bvA-7t-l2a" id="1Ut-gi-e48"/>
                     </connections>
-<<<<<<< Updated upstream
                 </searchDisplayController>
-=======
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R5r-Rd-yIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
->>>>>>> Stashed changes
             </objects>
             <point key="canvasLocation" x="3351" y="317"/>
         </scene>

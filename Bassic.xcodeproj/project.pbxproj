@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49372A3A1A9651A6001F7D50 /* SharedPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49372A391A9651A6001F7D50 /* SharedPlaylistViewController.swift */; };
+		49372A3A1A9651A6001F7D50 /* SharedPlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49372A391A9651A6001F7D50 /* SharedPlaylistController.swift */; };
 		49372A3C1A98445A001F7D50 /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49372A3B1A98445A001F7D50 /* tabBarViewController.swift */; };
 		49372A3E1A985DBC001F7D50 /* SongSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49372A3D1A985DBC001F7D50 /* SongSelectViewController.swift */; };
 		494B485B1A98FAD00016E35F /* albumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494B485A1A98FAD00016E35F /* albumModel.swift */; };
@@ -41,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		49372A391A9651A6001F7D50 /* SharedPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedPlaylistViewController.swift; sourceTree = "<group>"; };
+		49372A391A9651A6001F7D50 /* SharedPlaylistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedPlaylistController.swift; sourceTree = "<group>"; };
 		49372A3B1A98445A001F7D50 /* tabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
 		49372A3D1A985DBC001F7D50 /* SongSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSelectViewController.swift; sourceTree = "<group>"; };
 		494B485A1A98FAD00016E35F /* albumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = albumModel.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				4961DDAC1A812C2A009939ED /* AppDelegate.swift */,
-				49372A391A9651A6001F7D50 /* SharedPlaylistViewController.swift */,
+				49372A391A9651A6001F7D50 /* SharedPlaylistController.swift */,
 				494B485D1A98FC530016E35F /* controllers */,
 				494B485C1A98FC350016E35F /* models */,
 				494B485E1A98FC800016E35F /* views */,
@@ -291,7 +291,7 @@
 				495E1A521A86D02B006AA76E /* PlaylistViewController.swift in Sources */,
 				49372A3C1A98445A001F7D50 /* tabBarViewController.swift in Sources */,
 				4961DDAD1A812C2A009939ED /* AppDelegate.swift in Sources */,
-				49372A3A1A9651A6001F7D50 /* SharedPlaylistViewController.swift in Sources */,
+				49372A3A1A9651A6001F7D50 /* SharedPlaylistController.swift in Sources */,
 				4961DDD71A813030009939ED /* songModel.swift in Sources */,
 				494B485B1A98FAD00016E35F /* albumModel.swift in Sources */,
 				49B3E5261A9A6412002B0ABA /* addSongViewController.swift in Sources */,
