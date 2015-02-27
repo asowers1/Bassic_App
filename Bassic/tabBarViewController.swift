@@ -16,7 +16,14 @@ class tabBarViewController: UITabBarController {
         self.tabBar.tintColor = uicolorFromHex(0xCC9933)
         
     }
-        
+    /********************************************************************
+    *Function:uicolorFromHex
+    *Purpose:change color from hex to UIColor
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0

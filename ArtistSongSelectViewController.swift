@@ -60,8 +60,14 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         
     }
     
-    
-    // changes some colors
+    /********************************************************************
+    *Function:uicolorFromHex
+    *Purpose:change color from hex to UIColor
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -70,9 +76,15 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
+    /********************************************************************
+    *Function:tableView
+    *Purpose:UITable view implementation
+    *Parameters:tableView UITableView
+    *Return:int count
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     
-    
-    //UITableView implementation
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
@@ -81,8 +93,14 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
             return self.songList.count;
         }
     }
-    
-    //fills the UItableview
+    /********************************************************************
+    *Function:tableView
+    *Purpose:fills the table view
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -92,14 +110,27 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         }
         return cell
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.currentRow = indexPath.row
     }
-    
-    //converts an Int of seconds to a String
+    /********************************************************************
+    *Function:secondsToHoursMinutesSeconds
+    *Purpose:change seconds to format hours:minutes:seconds
+    *Parameters:int seconds
+    *Return:int hours, int minutes,int seconds
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
@@ -133,13 +164,28 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
             songTableView.reloadData()
         }
     }
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     //removes the search view
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         
         songTableView.reloadData()
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     //Create a new variable to store the instance of PlayerTableViewController
     //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

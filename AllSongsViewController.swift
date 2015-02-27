@@ -38,7 +38,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         self.songList = playlists.accessPlaylist("All songs").listSongArtistAlbum()
         self.allSongsTableView.reloadData()
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
             return self.searchingTableData.count
@@ -46,7 +53,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
             return self.songList.count;
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -57,13 +71,27 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         }
         return cell
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         allSongsTableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.currentRow = indexPath.row
         self.performSegueWithIdentifier("songShow", sender: nil)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             println("remove: \(Array(songList.keys)[indexPath.row])")
@@ -79,7 +107,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         }
     }
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
@@ -108,7 +143,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
     }
     
     // MARK segue logic
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
@@ -157,7 +199,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         
         
     }
-    
+    /********************************************************************
+    *Function:secondsToHoursMinutesSeconds
+    *Purpose:change seconds to format hours:minutes:seconds
+    *Parameters:int seconds
+    *Return:int hours, int minutes,int seconds
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }

@@ -36,6 +36,7 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBOutlet weak var yearPickerView: UIPickerView!
     @IBOutlet weak var lengthPickerView: UIPickerView!
+    
     override func viewDidLoad()
     {
         self.yearPickerView.dataSource = self
@@ -93,10 +94,24 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
         */
         
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func viewWillAppear(animated: Bool) {
     }
-    
+    /********************************************************************
+    *Function:uicolorFromHex
+    *Purpose:change color from hex to UIColor
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -105,7 +120,14 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
             self.yearValue = ""
@@ -126,7 +148,14 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             self.didSelectLengthPicker = true
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         if pickerView.tag == 0 {
             return 4
@@ -138,7 +167,14 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             return 0
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0  && component == 0{
             return thousandsList.count
@@ -158,7 +194,14 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if pickerView.tag == 0  && component == 0{
             return thousandsList[row]
@@ -178,6 +221,14 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             
         }
     }
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     @IBAction func addSong(sender: AnyObject) {
         if titleField.text != "" && artistField.text != "" && albumField.text != "" && composerField.text != "" && self.didSelectLengthPicker == true && self.didSelectYearPicker == true{
             

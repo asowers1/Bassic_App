@@ -49,7 +49,14 @@ class songViewController : UIViewController, UIAlertViewDelegate {
         lengthLabel.text = length
         self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
     }
-    
+    /********************************************************************
+    *Function:uicolorFromHex
+    *Purpose:change color from hex to UIColor
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0

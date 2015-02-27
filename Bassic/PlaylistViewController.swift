@@ -110,7 +110,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
     override func viewDidAppear(animated: Bool) {
     
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
 // MARK UITableView implementation
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,7 +127,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
             return self.playlistTableData.count;
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -131,7 +145,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         }
         return cell
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
@@ -139,7 +160,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         
         performSegueWithIdentifier("songShow", sender: self)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             self.playlists.removePlaylist(playlistTableData[indexPath.row])
@@ -148,7 +176,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         }
     }
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
 // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
@@ -171,7 +206,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
             playlistTableView.reloadData()
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         
@@ -182,7 +224,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
     
 // MARK segue logic
     
-
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // Create a new variable to store the instance of PlayerTableViewController
@@ -212,11 +261,25 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         
         
     }
-    
+    /********************************************************************
+    *Function:secondsToHoursMinutesSeconds
+    *Purpose:change seconds to format hours:minutes:seconds
+    *Parameters:int seconds
+    *Return:int hours, int minutes,int seconds
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
 // MARK Title Bar Icons
     
     @IBAction func addPlaylist(sender: AnyObject) {

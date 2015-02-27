@@ -118,7 +118,14 @@ class playlistModel {
         }
         return false
     }
-    
+    /********************************************************************
+    *Function: checkIfSongExistsByAlbum
+    *Purpose: check if a certain song exist
+    *Parameters: String title, String artist, String album
+    *Return: boolean
+    *Properties modified:none
+    *Precondition: N/A
+    ********************************************************************/
     func checkIfSongExistsByAlbum(title:String,artist:String,album:String) -> Bool {
         for song in list {
             if song.name == title && song.artist == artist && song.album == album{
@@ -143,7 +150,14 @@ class playlistModel {
         }
         return allSong
     }
-    
+/********************************************************************
+*Function:listArtistSong
+*Purpose:list songs by artists
+*Parameters:String
+*Return:
+*Properties modified:
+*Precondition:
+********************************************************************/
     func listArtistSong()->[String:(String,String)]{
         var toReturn:[String:(String,String)] = Dictionary()
         for song in list {
@@ -151,7 +165,14 @@ class playlistModel {
         }
         return toReturn
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func listArtistSongByAlbum(album:String)->[String:(String,String)]{
         var toReturn:[String:(String,String)] = Dictionary()
         for song in list {
@@ -161,7 +182,14 @@ class playlistModel {
         }
         return toReturn
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func listSongArtistAlbum()->[String:(String,String)] {
         var toReturn:[String:(String,String)] = Dictionary()
         for i in list{
@@ -170,7 +198,14 @@ class playlistModel {
         }
         return toReturn
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func listArtistSongByArtist(artist:String)->[String:(String,String)]{
         var toReturn:[String:(String,String)] = Dictionary()
         for song in list {
@@ -200,7 +235,14 @@ class playlistModel {
         }
         return total
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func calcAlbumLength(album:String)->Int{
         var total:Int = 0
         for song in self.list {
@@ -210,7 +252,14 @@ class playlistModel {
         }
         return total
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func calcArtistLength(artist:String)->Int{
         var total:Int = 0
         for song in list {

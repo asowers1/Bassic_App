@@ -50,7 +50,14 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         }
         
     }
-    
+    /********************************************************************
+    *Function:uicolorFromHex
+    *Purpose:change color from hex to UIColor
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -59,11 +66,25 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func viewWillDisappear(animated: Bool) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     // MARK UITableView implementation
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,7 +94,14 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
             return self.songList.count;
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -83,7 +111,14 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         }
         return cell
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
@@ -91,7 +126,14 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         
         //performSegueWithIdentifier("songShow", sender: self)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             println("remove: \(Array(songList.keys)[indexPath.row])")
@@ -105,12 +147,26 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
-    
+    /********************************************************************
+    *Function:secondsToHoursMinutesSeconds
+    *Purpose:change seconds to format hours:minutes:seconds
+    *Parameters:int seconds
+    *Return:int hours, int minutes,int seconds
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
@@ -132,13 +188,27 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
             songSelectTableView.reloadData()
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         
         songSelectTableView.reloadData()
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // Create a new variable to store the instance of PlayerTableViewController

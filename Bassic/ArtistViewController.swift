@@ -41,7 +41,14 @@ class ArtistViewController : UITableViewController, UIAlertViewDelegate, UISearc
         self.artistTableView.reloadData()
         
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
             return self.searchingTableData.count
@@ -49,7 +56,14 @@ class ArtistViewController : UITableViewController, UIAlertViewDelegate, UISearc
             return self.artistList.count;
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -60,13 +74,27 @@ class ArtistViewController : UITableViewController, UIAlertViewDelegate, UISearc
         }
         return cell
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.currentRow = indexPath.row
         performSegueWithIdentifier("artistSongShow", sender: self)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
@@ -89,13 +117,27 @@ class ArtistViewController : UITableViewController, UIAlertViewDelegate, UISearc
         }
     }
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         artistTableView.reloadData()
     }
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     // MARK segue logic
     
     
@@ -128,7 +170,14 @@ class ArtistViewController : UITableViewController, UIAlertViewDelegate, UISearc
         
         
     }
-    
+    /********************************************************************
+    *Function:secondsToHoursMinutesSeconds
+    *Purpose:change seconds to format hours:minutes:seconds
+    *Parameters:int seconds
+    *Return:int hours, int minutes,int seconds
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }

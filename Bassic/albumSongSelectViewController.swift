@@ -38,8 +38,14 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         songTableView.dataSource = self
         
     }
-    
-    //creates the title in the nav
+    /********************************************************************
+    *Function:viewWillAppear
+    *Purpose:Creates the tile in the navigator
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     override func viewWillAppear(animated:Bool){
         self.songList = playlist.listArtistSongByAlbum(self.albumName)
         self.songTableView.reloadData()
@@ -52,7 +58,14 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         }
     }
     
-    //changes some colors
+    /********************************************************************
+    *Function:uicolorFromHex
+    *Purpose:change color from hex to UIColor
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
@@ -61,8 +74,14 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
-    
-    //UITableView implementation
+    /********************************************************************
+    *Function:tableView
+    *Purpose:UITable view implementation
+    *Parameters:tableView UITableView
+    *Return:int count
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
             return self.searchingTableData.count
@@ -70,7 +89,14 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
             return self.songList.count;
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     //fills the tableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
@@ -81,20 +107,40 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         }
         return cell
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     //performSegueWithIdentifier("songShow", sender: self)
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.currentRow = indexPath.row
     }
-    
-    //converts Int in seconds to String
+    /********************************************************************
+    *Function:secondsToHoursMinutesSeconds
+    *Purpose:change seconds to format hours:minutes:seconds
+    *Parameters:int seconds
+    *Return:int hours, int minutes,int seconds
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     //searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
@@ -116,13 +162,28 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
             songTableView.reloadData()
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     //closes the search bar
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         
         songTableView.reloadData()
     }
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     // Create a new variable to store the instance of PlayerTableViewController
     //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

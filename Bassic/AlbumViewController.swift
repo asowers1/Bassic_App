@@ -41,7 +41,14 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         albumList = self.playlists.getAllAlbums()
         albumTableView.reloadData()
     }
-    
+    /********************************************************************
+    *Function:tableView
+    *Purpose:UITable view implementation
+    *Parameters:tableView UITableView
+    *Return:int count
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
             return self.searchingTableData.count
@@ -50,7 +57,14 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         }
 
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         if is_searching == true{
@@ -60,13 +74,27 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         }
         return cell
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.currentRow = indexPath.row
         performSegueWithIdentifier("albumSongShow", sender: self)
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             println("remove: \(albumList[indexPath.row])")
@@ -81,7 +109,14 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
     }
     
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     @IBAction func addAlbum(sender: AnyObject) {
         var alert = UIAlertController(title: "Add Album", message: "Enter Album name:", preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -118,7 +153,14 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
@@ -140,7 +182,14 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
             albumTableView.reloadData()
         }
     }
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         albumTableView.reloadData()
@@ -148,7 +197,14 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK segue logic
     
-    
+    /********************************************************************
+    *Function:
+    *Purpose:
+    *Parameters:
+    *Return:
+    *Properties modified:
+    *Precondition:
+    ********************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // Create a new variable to store the instance of PlayerTableViewController
@@ -179,7 +235,14 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         
     }
     
-    
+    /********************************************************************
+    *Function:secondsToHoursMinutesSeconds
+    *Purpose:change seconds to format hours:minutes:seconds
+    *Parameters:int seconds
+    *Return:int hours, int minutes,int seconds
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
