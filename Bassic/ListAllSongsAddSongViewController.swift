@@ -30,7 +30,14 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
     
     var currentRow:Int = 0
     
-    
+    /********************************************************************
+    *Function:viewWillAppear
+    *Purpose:Displays time
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     override func viewDidLoad(){
         
         self.songTableView.dataSource = self
@@ -57,8 +64,8 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
     *Purpose:UITable view implementation
     *Parameters:tableView UITableView
     *Return:int count
-    *Properties modified:N/A
-    *Precondition:N/A
+    *Properties modified: NA
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
@@ -68,12 +75,12 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set cell for row in tableView
+    *Parameters: tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath
+    *Return: UITableViewCell
+    *Properties modified: tableView cells
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
@@ -87,12 +94,12 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
 
     
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set row color and set current row to index path row
+    *Parameters: tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath
+    *Return: Void.
+    *Properties modified: currentRow to indexPath row
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
@@ -100,28 +107,26 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
         self.currentRow = indexPath.row
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: handle the deselection of a table row
+    *Parameters: tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath
+    *Return: Void.
+    *Properties modified: cell contentView Background color
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
-    // if tableView is set in attribute inspector with selection to multiple Selection it should work.
-    
-    // Just set it back in deselect
-    
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        // if tableView is set in attribute inspector with selection to multiple Selection it should work.
+        // Just set it back in deselect
         var cellToDeSelect:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         cellToDeSelect.contentView.backgroundColor = UIColor.whiteColor()
     }
     /********************************************************************
     *Function:uicolorFromHex
     *Purpose:change color from hex to UIColor
-    *Parameters:animated bool
-    *Return:N/A
-    *Properties modified:N/A
-    *Precondition:N/A
+    *Parameters:animated rgbValue:UInt32
+    *Return: UIColor
+    *Properties modified: NA
+    *Precondition: NA
     ********************************************************************/
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
@@ -133,17 +138,18 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
     }
     
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
+    *Function: searchBar
+    *Purpose: update when new text is being searched for
+    *Parameters: searchBar: UISearchBar, textDidChange searchText
+    *Return: Void.
+    *Properties modified: is_Searching, searchingTableData, songList
     *Precondition:
     ********************************************************************/
     // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
         if searchBar.text.isEmpty{
+            // reset
             is_searching = false
             songTableView.reloadData()
         } else {
@@ -162,12 +168,12 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: searchBarCancelButtonClicked
+    *Purpose: reset data is search bar cancle button is clicked
+    *Parameters: searchBar: UISearchBar
+    *Return: Void.
+    *Properties modified: is_searching
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false

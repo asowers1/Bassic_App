@@ -17,12 +17,9 @@ class Song {
     var composer: String
     var length: Int
     
-    
-    
     //Constructor
     //Param in: string(Song Name); string(Artist Name); string(Album Name); int(Year of Release); int(Song Duration in sec)
     //Initializes an instance of the class with the passed values;
-    
     init(name: String, artist: String, album: String, year: Int, composer: String, length: Int){
         self.name = name
         self.artist = artist

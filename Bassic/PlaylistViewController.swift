@@ -175,14 +175,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         }
     }
     
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
-    ********************************************************************/
+/********************************************************************
+*Function: searchBar
+*Purpose: for UISearchBar Delegate
+*Parameters: searchBar: UISearchBar, textDidChange searchText: String
+*Return: Void.
+*Properties modified: searchingTableData
+*Precondition:
+********************************************************************/
 // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
@@ -223,14 +223,14 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
     
 // MARK segue logic
     
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
-    ********************************************************************/
+/********************************************************************
+*Function: prepareForSegue
+*Purpose: prepare for the next segue
+*Parameters: segue: UIStoryboardSegue, sender: AnyObject!
+*Return: Void.
+*Properties modified: NA
+*Precondition: must have playlist in playlists
+********************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // Create a new variable to store the instance of PlayerTableViewController
@@ -282,15 +282,18 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
 // MARK Title Bar Icons
     
     @IBAction func addPlaylist(sender: AnyObject) {
+        // new alert view
         var alert = UIAlertController(title: "Add Playlist", message: "Enter playlist name:", preferredStyle: UIAlertControllerStyle.Alert)
-        
+        // add conditions alerts
         alert.addTextFieldWithConfigurationHandler(playlistConfigurationTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:nil))
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
             println("User click Ok button")
             println(self.playlistTextField.text)
             if(self.playlists.addPlaylist(self.playlistTextField.text,type:"playlist")){
+                // get playlist data
                 self.playlistTableData = self.playlists.getPlaylistListMinusAllSongs()
+                // reload table data
                 self.playlistTableView.reloadData()
             }
             
@@ -300,11 +303,17 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         })
     }
     
+/********************************************************************
+//Function handleCancel
+//Purpose: handles cancle of alert, prints handle cancle
+//Parameters: none
+//Return value: Void.
+//Properties modified: NA
+//Precondition: NA
+********************************************************************/
     func handleCancel() {
-        
+        println("handleCancle")
     }
-
-
 
 /********************************************************************
 //Function getMainPlaylist

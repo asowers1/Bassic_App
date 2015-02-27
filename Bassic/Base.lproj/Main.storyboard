@@ -163,6 +163,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="IIp-Dc-2xv" firstAttribute="top" secondItem="A2E-w7-TGp" secondAttribute="bottom" constant="8" symbolic="YES" id="1oq-J1-wia"/>
                             <constraint firstItem="gXY-og-Ekx" firstAttribute="trailing" secondItem="wgW-rU-6sW" secondAttribute="trailing" id="3iw-T5-Bmd"/>
@@ -305,6 +306,9 @@
                                 <include reference="jxk-fK-awz"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="j6k-qS-RO3" appends="YES" id="M57-8c-Vos"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="albumField" destination="gXY-og-Ekx" id="S65-UB-bkM"/>
@@ -316,6 +320,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ltR-Zq-Tgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="j6k-qS-RO3">
+                    <connections>
+                        <action selector="tapToResignKeyboards:" destination="kIE-cg-Axi" id="ejT-b1-CXK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3351" y="-444"/>
         </scene>

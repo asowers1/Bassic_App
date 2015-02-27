@@ -40,6 +40,14 @@ class songViewController : UIViewController, UIAlertViewDelegate {
     // album input field
     var albumTextField:UITextField = UITextField()
     
+    /********************************************************************
+    *Function: viewDidLoad
+    *Purpose:change setup songViewControllerf
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     override func viewDidLoad(){
         nameLabel.text = name
         artistLabel.text = artist
@@ -77,27 +85,34 @@ class songViewController : UIViewController, UIAlertViewDelegate {
     @IBAction func addToPlaylist(sender: AnyObject) {
         var alert = UIAlertController(title: "Add song to playlist", message: "Enter playlist name:", preferredStyle: UIAlertControllerStyle.Alert)
         
+        // inner alert
         var innerAlertPlaylist = UIAlertController(title: "Error", message: "Song is already in playlist", preferredStyle: UIAlertControllerStyle.Alert)
         innerAlertPlaylist.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler:nil))
 
+        // invlaid alert
         var invalidPlaylistAlert = UIAlertController(title: "Error", message: "Invalid playlist", preferredStyle: UIAlertControllerStyle.Alert)
         invalidPlaylistAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler:nil))
         
+        // main alert with textfield
         alert.addTextFieldWithConfigurationHandler(playlistConfigurationTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:nil))
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
             println("User click Ok button")
             println(self.playlistTextField.text)
+            // check if playlist exists
             if self.playlists.checkIfPlaylistExists(self.playlistTextField.text) {
+                // check album
                 if self.playlists.accessPlaylist(self.playlistTextField.text).checkIfSongExistsByAlbum(self.name, artist: self.artist, album: self.album){
                     
                     self.presentViewController(innerAlertPlaylist, animated: true, completion: nil)
                 }else{
+                    // add to playlist
                     println("add to new playlist")
                     self.playlists.addSongToPlaylist(self.playlistTextField.text, songTitle: self.name, songArtist: self.artist, songAlbum: self.album, songLength: String(self.lengthInSeconds), songYear: self.year, songComposer: self.composer)
                 }
 
             }else{
+                // present ivalid playlist error
                 self.presentViewController(invalidPlaylistAlert, animated: true, completion: nil)
             }
             
@@ -120,22 +135,20 @@ class songViewController : UIViewController, UIAlertViewDelegate {
     @IBAction func addToAlbum(sender: AnyObject) {
         var alert = UIAlertController(title: "Add song to album", message: "Enter album name:", preferredStyle: UIAlertControllerStyle.Alert)
         
+        // inner alert
         var innerAlertAlbum = UIAlertController(title: "Error", message: "Song is already in album", preferredStyle: UIAlertControllerStyle.Alert)
         innerAlertAlbum.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler:nil))
         
+        
+        // text field alert view
         alert.addTextFieldWithConfigurationHandler(albumConfigurationTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:nil))
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
             println("User click Ok button")
             println(self.playlistTextField.text)
-            
-            var addFlag:Bool = false; 
-        
-                println("add to new album song")
-                self.playlists.addSongToPlaylist("All songs", songTitle: self.name, songArtist: self.artist, songAlbum: self.albumTextField.text, songLength: String(self.lengthInSeconds), songYear: self.year, songComposer: self.composer)
-                
-            
-            
+            // add to album
+            println("add to new album song")
+            self.playlists.addSongToPlaylist("All songs", songTitle: self.name, songArtist: self.artist, songAlbum: self.albumTextField.text, songLength: String(self.lengthInSeconds), songYear: self.year, songComposer: self.composer)
         }))
         self.presentViewController(alert, animated: true, completion: {
             println("completion block")

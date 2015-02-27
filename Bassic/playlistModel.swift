@@ -40,9 +40,17 @@ class playlistModel {
             artistList.append(song.artist)
         }
         artistList.sort({$0 < $1})
+       
         return artistList
     }
-    
+/********************************************************************
+// Function: getAlbumList
+// Purpose: get a sorted list of albums from this playlist
+// Parameters: None.
+// Return Value: [String]
+// Properties modified: None.
+// Preconditions: NA
+********************************************************************/
     func getAlbumList() -> [String] {
         var albumList:[String] = Array()
         for song in list {
@@ -235,14 +243,14 @@ class playlistModel {
         }
         return total
     }
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
-    ********************************************************************/
+/********************************************************************
+*Function:calcAlbumLength
+*Purpose: calculates an album length
+*Parameters: album:String
+*Return: length in seconds: Int
+*Properties modified: NA
+*Precondition: NA
+********************************************************************/
     func calcAlbumLength(album:String)->Int{
         var total:Int = 0
         for song in self.list {
@@ -252,14 +260,14 @@ class playlistModel {
         }
         return total
     }
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
-    ********************************************************************/
+/********************************************************************
+*Function: calcArtistLength
+*Purpose: calculates length of songs by artist
+*Parameters: artist
+*Return: length in seconds: Int
+*Properties modified: NA
+*Precondition: NA
+********************************************************************/
     func calcArtistLength(artist:String)->Int{
         var total:Int = 0
         for song in list {
@@ -270,26 +278,24 @@ class playlistModel {
         return total
     }
 /********************************************************************
-    //THIS ONE
-    //Function accessSong
-    //Purpose: locate a songModel using the index
-    //Parameters: Int index - index of songModel in list to remove
-    //Return value: index
-    //Properties modified: none
-    //Precondition - N/A
+//Function accessSong
+//Purpose: locate a songModel using the index
+//Parameters: Int index - index of songModel in list to remove
+//Return value: index
+//Properties modified: none
+//Precondition - N/A
 *********************************************************************/
     func accessSong(index:Int) -> Song? {
         return index >= list.count ? nil : list[index]
     }
 /********************************************************************
-    //THIS ONE
-    //Function accessSongByTitle
-    //Purpose: locate songModel in list object using title property
-    //Parameters: String title - title of songModel in list to remove
-    //Return value: songModel searching for or nothing if songModel 
-    doesn't exsist
-    //Properties modified: none
-    //Precondition - N/A
+//Function accessSongByTitle
+//Purpose: locate songModel in list object using title property
+//Parameters: String title - title of songModel in list to remove
+//Return value: songModel searching for or nothing if songModel 
+doesn't exsist
+//Properties modified: none
+//Precondition - N/A
 *********************************************************************/
     func accessSongByTitle(title:String) -> Song?{
         for song in list {

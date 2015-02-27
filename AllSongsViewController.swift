@@ -26,6 +26,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
     
     var is_searching:Bool = false
     
+    /********************************************************************
+    *Function: viewDidLoad
+    *Purpose: handle viewDidLoad
+    *Parameters: Void.
+    *Return: Void.
+    *Properties modified: allSongsTableView
+    *Precondition: Class must conform to UITableViewDelegate and UITableViewDataSource
+    ********************************************************************/
     override func viewDidLoad(){
         self.allSongsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.allSongsTableView.dataSource = self
@@ -33,18 +41,27 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
 
     }
     
+    /********************************************************************
+    *Function: viewWillAppear
+    *Purpose: handle viewWillAppear
+    *Parameters: animated: Bool
+    *Return: Void.
+    *Properties modified: songList
+    *Precondition: Class must conform to UITableViewDelegate and UITableViewDataSource
+    ********************************************************************/
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Songs"
         self.songList = playlists.accessPlaylist("All songs").listSongArtistAlbum()
         self.allSongsTableView.reloadData()
     }
+    
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set number of rows for tableView
+    *Parameters: tableView: UITableView, numberOfRowsInSection section: Int
+    *Return: Int
+    *Properties modified: NA
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
@@ -53,13 +70,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
             return self.songList.count;
         }
     }
+    
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set cell text for row index path
+    *Parameters: tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath
+    *Return: UITableViewCell
+    *Properties modified: NA
+    *Precondition: NA
     ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
@@ -72,12 +90,12 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         return cell
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set currentRow as indexpath
+    *Parameters: tableView: UITableView, didSelectRowIndexPath indexPath: NSIndexPath
+    *Return: Void.
+    *Properties modified: currentRow
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         allSongsTableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -85,12 +103,12 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         self.performSegueWithIdentifier("songShow", sender: nil)
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: delete item in rown
+    *Parameters: tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle
+    *Return: Void.
+    *Properties modified: NA
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
@@ -108,12 +126,12 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
     }
     
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: searchBar
+    *Purpose: update search based on text
+    *Parameters: searchBar: UISearchBar, textDidChange searchText: String
+    *Return: Void.
+    *Properties modified: is_searching, searcingTableData
+    *Precondition: Class must conform to UISearchBarDelegate
     ********************************************************************/
     // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
@@ -144,12 +162,12 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
     
     // MARK segue logic
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: prepareForSegue
+    *Purpose: prepare for segue to ArtistSongSelectViewController
+    *Parameters: segue: UIStoryboardSegue, sender AnyObject!
+    *Return: Void.
+    *Properties modified: NA
+    *Precondition: Class must have segue indentifiers setup
     ********************************************************************/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

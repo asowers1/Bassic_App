@@ -66,24 +66,14 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
+
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
-    ********************************************************************/
-    override func viewWillDisappear(animated: Bool) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: number of rows for selection
+    *Parameters: tableView: UITableView, numberOfRowsInSelection section: Int
+    *Return: number of rows Int
+    *Properties modified: NA
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     // MARK UITableView implementation
     
@@ -95,12 +85,12 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set cell for row at index path
+    *Parameters: tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath
+    *Return: UITableViewCell
+    *Properties modified: NA
+    *Precondition: NA
     ********************************************************************/
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
@@ -112,27 +102,25 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: handle selection of row with index path, set currentRow to indexPath.row
+    *Parameters: tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath
+    *Return: Void.
+    *Properties modified: currentRow
+    *Precondition: NA
     ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
         self.currentRow = indexPath.row
-        
-        //performSegueWithIdentifier("songShow", sender: self)
     }
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    
+    /*******************************************************************
+    *Function: tableView
+    *Purpose: set editing style for delete for item in row
+    *Parameters: tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle forRowAtIndexPath indexPath: NSIndexPath
+    *Return: Void.
+    *Properties modified: remove song from shared playlist
+    *Precondition: must have playlists and playlist in playlists
     ********************************************************************/
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
@@ -160,11 +148,11 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
     }
     
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
+    *Function: searchBar
+    *Purpose: for searching over table data
+    *Parameters: searchBar: UISearchBar textDidChange searchtext: String
+    *Return: Void.
+    *Properties modified: is_searching
     *Precondition:
     ********************************************************************/
     // MARK searching delegate logic
@@ -189,12 +177,12 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: searchBarCancelButtonClicked
+    *Purpose: handle the cancel of search bar
+    *Parameters: searchBar: UISearchBar
+    *Return: Void.
+    *Properties modified: is_searching
+    *Precondition: Class should conform to UITableViewDelegate
     ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
@@ -202,33 +190,43 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         songSelectTableView.reloadData()
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: prepareForSegue
+    *Purpose: preperation for segue to songViewController
+    *Parameters: segue: UIStoryboardSegue, sender AnyObject
+    *Return: Void.
+    *Properties modified: NA
+    *Precondition: must have song in songlists and playlists in playlists
     ********************************************************************/
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // Create a new variable to store the instance of PlayerTableViewController
         let destinationVC = segue.destinationViewController as songViewController
         
+        // searching
         if is_searching == true{
+            
+            // get playlist
             let currentPlaylist = playlists.accessPlaylist(self.playlistTitle)
+            
+            // get song data
             let song:(String,String) =  songList[searchingTableData[self.currentRow]]!
+            
+            // iterate through songs in current playlust
             for songInList in currentPlaylist.list {
                 if songInList.artist == song.0 && songInList.name == song.1 {
+                    // set data for song view
                     let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                     destinationVC.name     = songInList.name
                     destinationVC.artist   = songInList.artist
                     destinationVC.album    = songInList.album
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
-                    destinationVC.length   = String(" \(time.1):\(time.2)")
                     destinationVC.lengthInSeconds = songInList.length
-                    
-                    
+                    if time.2 < 9 {
+                        destinationVC.length   = String(" \(time.1):0\(time.2)")
+                    }else{
+                        destinationVC.length   = String(" \(time.1):\(time.2)")
+                    }
                 }
             }
         }else{
@@ -236,17 +234,19 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
             let song:(String,String) = songList[Array(songList.keys)[self.currentRow]]!
             for songInList in currentPlaylist.list {
                 if songInList.artist == song.0 && songInList.name == song.1 {
-                    
+                    // set data for song view
                     let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                     destinationVC.name     = songInList.name
                     destinationVC.artist   = songInList.artist
                     destinationVC.album    = songInList.album
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
-                    destinationVC.length   = String(" \(time.1):\(time.2)")
                     destinationVC.lengthInSeconds = songInList.length
-
-                    
+                    if time.2 < 9 {
+                        destinationVC.length   = String(" \(time.1):0\(time.2)")
+                    }else{
+                        destinationVC.length   = String(" \(time.1):\(time.2)")
+                    }
                 }
             }
         }

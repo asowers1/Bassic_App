@@ -15,7 +15,6 @@ import UIKit
 *********************************************************************/
 class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet var songTableView: UITableView!
     
     let playlist = SharedPlaylistController.sharedInstance.accessPlaylist("All songs")
@@ -25,12 +24,17 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
     
     
     var is_searching:Bool = false
-    
     var currentRow:Int = 0
-    
     var artistName:String = String()
     
-    
+    /********************************************************************
+    //Function viewDidLoad
+    //Purpose: set navigationController color, set songTableView delegate and datasource
+    //Parameters: animated Bool
+    //Return value: NA
+    //Properties modified: NA
+    //Precondition: NA
+    *********************************************************************/
     override func viewDidLoad(){
         self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
         songTableView.delegate = self
@@ -40,13 +44,12 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
     
     /********************************************************************
     //Function viewWillAppear
-    //Purpose: Displays time
+    //Purpose: reloads songList data, sets data in table, updates time in title
     //Parameters: animated Bool
     //Return value: NA
     //Properties modified: NA
     //Precondition: NA
     *********************************************************************/
-    
     override func viewWillAppear(animated:Bool){
         self.songList = playlist.listArtistSongByArtist(self.artistName)
         self.songTableView.reloadData()
@@ -63,8 +66,8 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
     /********************************************************************
     *Function:uicolorFromHex
     *Purpose:change color from hex to UIColor
-    *Parameters:animated bool
-    *Return:N/A
+    *Parameters: rgbValue:UInt32
+    *Return: UIColor
     *Properties modified:N/A
     *Precondition:N/A
     ********************************************************************/
@@ -76,16 +79,15 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
+    
     /********************************************************************
     *Function:tableView
     *Purpose:UITable view implementation
     *Parameters:tableView UITableView
-    *Return:int count
-    *Properties modified:N/A
-    *Precondition:N/A
+    *Return:int count: Int
+    *Properties modified: None
+    *Precondition: count properties are set
     ********************************************************************/
-    
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
             return self.searchingTableData.count
@@ -93,11 +95,12 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
             return self.songList.count;
         }
     }
+    
     /********************************************************************
     *Function:tableView
     *Purpose:fills the table view
-    *Parameters:
-    *Return:
+    *Parameters: tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath
+    *Return: UITableViewCell
     *Properties modified:
     *Precondition:
     ********************************************************************/
@@ -165,12 +168,12 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: searchBarCancelButtonClicked
+    *Purpose: when search bar cancle button is clicked, set is_searching to false, reload table view data
+    *Parameters: searchBar: UISearchBar
+    *Return: Void.
+    *Properties modified: is_searching
+    *Precondition: songTableView is instanciated
     ********************************************************************/
     //removes the search view
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -179,15 +182,14 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         songTableView.reloadData()
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: prepareForSegue
+    *Purpose: prepare for the segue
+    *Parameters: segue: UIStoryboardSegue, sender AnyObject!
+    *Return: Void.
+    *Properties modified: None.
+    *Precondition: None.
     ********************************************************************/
     //Create a new variable to store the instance of PlayerTableViewController
-    //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         let destinationVC = segue.destinationViewController as songViewController
@@ -201,9 +203,11 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
                     destinationVC.album    = songInList.album
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
-                    destinationVC.length   = String(" \(time.1):\(time.2)")
-                    
-                    
+                    if time.2 < 9 {
+                        destinationVC.length   = String(" \(time.1):0\(time.2)")
+                    }else{
+                        destinationVC.length   = String(" \(time.1):\(time.2)")
+                    }
                 }
             }
         }else{
@@ -217,13 +221,13 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
                     destinationVC.album    = songInList.album
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
-                    destinationVC.length   = String(" \(time.1):\(time.2)")
-                    
+                    if time.2 < 9 {
+                        destinationVC.length   = String(" \(time.1):0\(time.2)")
+                    }else{
+                        destinationVC.length   = String(" \(time.1):\(time.2)")
+                    }
                 }
             }
         }
-        
     }
-    
-    
 }

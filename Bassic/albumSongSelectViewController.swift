@@ -62,7 +62,7 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
     *Function:uicolorFromHex
     *Purpose:change color from hex to UIColor
     *Parameters:animated bool
-    *Return:N/A
+    *Return: UIColor
     *Properties modified:N/A
     *Precondition:N/A
     ********************************************************************/
@@ -198,10 +198,12 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
                     destinationVC.album    = songInList.album
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
-                    destinationVC.length   = String(" \(time.1):\(time.2)")
                     destinationVC.lengthInSeconds = songInList.length
-                    
-                    
+                    if time.2 < 9 {
+                        destinationVC.length   = String(" \(time.1):0\(time.2)")
+                    }else{
+                        destinationVC.length   = String(" \(time.1):\(time.2)")
+                    }
                 }
             }
         }else{
@@ -215,13 +217,14 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
                     destinationVC.album    = songInList.album
                     destinationVC.year     = String(songInList.year)
                     destinationVC.composer = songInList.composer
-                    destinationVC.length   = String(" \(time.1):\(time.2)")
                     destinationVC.lengthInSeconds = songInList.length
-                    
+                    if time.2 < 9 {
+                        destinationVC.length   = String(" \(time.1):0\(time.2)")
+                    }else{
+                        destinationVC.length   = String(" \(time.1):\(time.2)")
+                    }
                 }
             }
         }
-
     }
-    
 }

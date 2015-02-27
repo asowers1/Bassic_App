@@ -167,14 +167,15 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             return 0
         }
     }
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
-    ********************************************************************/
+
+/********************************************************************
+*Function: pickerView
+*Purpose: sets up numer of rows per tag and component
+*Parameters: pickerView: UIPickerView, numberofRowsInComponent component: Int
+*Return: number of rows: Int
+*Properties modified: picker view properties
+*Precondition: Class must conform to UIPickerView delegate
+********************************************************************/
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0  && component == 0{
             return thousandsList.count
@@ -194,14 +195,15 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             
         }
     }
-    /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
-    ********************************************************************/
+    
+/********************************************************************
+*Function: pickerView
+*Purpose: sets up title of rows per tag and component
+*Parameters: pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int
+*Return: title for row: String
+*Properties modified: picker view properties
+*Precondition: Class must conform to UIPickerView delegate
+********************************************************************/
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if pickerView.tag == 0  && component == 0{
             return thousandsList[row]
@@ -221,17 +223,34 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             
         }
     }
-    /********************************************************************
-    *Function:Add Song
-    *Purpose:add songs to the view
-    *Parameters:AnyObject
-    *Return:N/A
-    *Properties modified:N/A
-    *Precondition:N/A
-    ********************************************************************/
+    
+/********************************************************************
+*Function: tapToResignKeyboards
+*Purpose: resign first responder of all keyboards
+*Parameters: sender: AnyObject
+*Return: Void.
+*Properties modified: NA
+*Precondition: NA
+********************************************************************/
+    @IBAction func tapToResignKeyboards(sender: AnyObject) {
+        self.titleField.resignFirstResponder()
+        self.albumField.resignFirstResponder()
+        self.artistField.resignFirstResponder()
+        self.composerField.resignFirstResponder()
+    }
+    
+/********************************************************************
+*Function: addSong
+*Purpose: add a new song
+*Parameters: sender: AnyObject
+*Return: number of rows: Int
+*Properties modified: picker view properties
+*Precondition: Class must conform to UIPickerView delegate
+********************************************************************/
     @IBAction func addSong(sender: AnyObject) {
         if titleField.text != "" && artistField.text != "" && albumField.text != "" && composerField.text != "" && self.didSelectLengthPicker == true && self.didSelectYearPicker == true{
             
+            // get playlist model "All songs"
             var playlist:playlistModel = self.playlistController.accessPlaylist("All songs")
             if playlist.checkIfSongExists(titleField.text,artist: artistField.text){
                 let alert = UIAlertView(title: "Hey Buddy", message: "You can't add a song with the same title and artist in a playlist", delegate: self, cancelButtonTitle: "Okay")
@@ -239,19 +258,13 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
                 return
             }
             
+            // length in seconds
+            let lengthInSeconds:Int = (minuteValue.toInt()! * 60) + secondValue.toInt()!
             
-            let lengthInSeconds:Int = minuteValue.toInt()! * 60 + secondValue.toInt()!
-            
-            
-            println("Year: \(self.yearValue.toInt()!)")
-            println("Seconds: \(lengthInSeconds)")
-            
-            
+            // create new song
             let newSong:Song = Song(name: titleField.text, artist: artistField.text, album: albumField.text, year: self.yearValue.toInt()!, composer: composerField.text, length: lengthInSeconds)
             
-            //let newSong:Song = Song(name: titleField.text, artist: artistField.text, album: albumField.text, year: self.yearValue.toInt()!, composer: composerField.text, length: self.lengthValue.toInt()!)
-            
-            
+            // add new song to playlist
             playlist.add(newSong)
             if let navController = self.navigationController {
                 navController.popViewControllerAnimated(true)
@@ -260,7 +273,5 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
             let alert = UIAlertView(title: "Hey Buddy", message: "Aren't you forgetting a few fields?", delegate: self, cancelButtonTitle: "It seems you're right")
             alert.show()
         }
-
     }
-    
 }

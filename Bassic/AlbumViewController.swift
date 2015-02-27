@@ -153,6 +153,8 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    // MARK searching delegate methods
+    
     /********************************************************************
     *Function:searchBar
     *Purpose:
@@ -161,7 +163,6 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
     *Properties modified:
     *Precondition:
     ********************************************************************/
-    // MARK searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
         if searchBar.text.isEmpty{
@@ -195,7 +196,7 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         albumTableView.reloadData()
     }
     
-    // MARK segue logic
+    // MARK segue method
     
     /********************************************************************
     *Function:
@@ -234,6 +235,8 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
         
         
     }
+    
+    // MARK helper method
     
     /********************************************************************
     *Function:secondsToHoursMinutesSeconds

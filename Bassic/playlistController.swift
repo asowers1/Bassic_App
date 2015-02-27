@@ -56,8 +56,6 @@ class playlistController {
                 }
             }
         }
-        
-        
         return false
     }
     
@@ -105,7 +103,15 @@ class playlistController {
         }
         return returnList
     }
-    
+
+/********************************************************************
+*Function getAllAlbums
+*Purpose: Gets list of all albums
+*Parameters: NA
+*Return value: [String] sortedKays
+*Properties modified: NA
+*Precondition: NA
+*********************************************************************/
     func getAllAlbums() -> [String] {
         let sortedKeys = Array(playlistDict.keys).sorted(<)
         var returnlist:[String] = Array()
@@ -139,6 +145,15 @@ class playlistController {
         return artistList
     }
     
+    
+/********************************************************************
+*Function removeDuplicates
+*Purpose: removes duplicates from a playlist and returns list
+*Parameters: NA
+*Return value: [String] sortedKays
+*Properties modified: NA
+*Precondition: NA
+*********************************************************************/
     func removeDuplicates(arrIn:[String]) -> [String] {
         var arr = arrIn
         var filter = Dictionary<String,Int>()
@@ -155,17 +170,33 @@ class playlistController {
         return arr
     }
     
+/********************************************************************
+*Function getAllAlbumsFromPlaylists
+*Purpose: gets all albums from playlists
+*Parameters: NA
+*Return value: [String] sortedKays
+*Properties modified: NA
+*Precondition: NA
+*********************************************************************/
     func getAllAlbumsFromPlaylists() -> [String] {
-        var artistList:[String] = Array()
+        var albums:[String] = Array()
         for playlist in playlistDict {
-            artistList += playlist.1.getAlbumList()
+            albums += playlist.1.getAlbumList()
             
         }
-        artistList = self.removeDuplicates(artistList)
-        artistList.sort({$0 < $1})
-        return artistList
+        albums = self.removeDuplicates(albums)
+        albums.sort({$0 < $1})
+        return albums
     }
     
+/********************************************************************
+*Function checkIfPlaylistExists
+*Purpose: check if a playlist exists
+*Parameters: name:String
+*Return value: Bool
+*Properties modified: NA
+*Precondition: NA
+*********************************************************************/
     func checkIfPlaylistExists(name:String) -> Bool {
         for playlist in self.playlistDict {
             if playlist.1.name == name {
@@ -189,12 +220,28 @@ class playlistController {
         playlistDict[playlistName]?.add(song)
         println(playlistDict[playlistName]?.listAllSongs())
     }
-    
+
+/********************************************************************
+*Function removeSongByArtist
+*Purpose: check if a playlist exists
+*Parameters: name:String
+*Return value: Bool
+*Properties modified: NA
+*Precondition: NA
+*********************************************************************/
     func removeSongByArtist(songName:String,songArtist:String){
         for playlist in playlistDict {
             playlist.1.removeByTitle(songName, artist: songArtist)
         }
     }
+/********************************************************************
+*Function removeSongFromPlaylist
+*Purpose: removes a song from a playlist
+*Parameters: playlistName:String, songName:String, artistName:String
+*Return value: Void.
+*Properties modified: playlist[playlistName]
+*Precondition: playlist[playlistName] must exist
+*********************************************************************/
     
     func removeSongFromPlaylist(playlistName:String,songName:String,artistName:String){
         println("songName: \(songName) artistName: \(artistName)")
