@@ -90,12 +90,12 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set cell text for row index path
+    *Parameters: tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath
+    *Return: UITableViewCell
+    *Properties modified: NA
+    *Precondition: NA
     ********************************************************************/
     //fills the tableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -108,12 +108,12 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         return cell
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: tableView
+    *Purpose: set currentRow as indexpath
+    *Parameters: tableView: UITableView, didSelectRowIndexPath indexPath: NSIndexPath
+    *Return: Void.
+    *Properties modified: currentRow
+    *Precondition: Class must conform to UITableViewDelegate
     ********************************************************************/
     //performSegueWithIdentifier("songShow", sender: self)
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -134,12 +134,12 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
     }
     
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: searchBar
+    *Purpose: update search based on text
+    *Parameters: searchBar: UISearchBar, textDidChange searchText: String
+    *Return: Void.
+    *Properties modified: is_searching, searcingTableData
+    *Precondition: Class must conform to UISearchBarDelegate
     ********************************************************************/
     //searching delegate logic
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
@@ -177,15 +177,13 @@ class AlbumSongSelectViewController : UITableViewController, UISearchBarDelegate
         songTableView.reloadData()
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: searchBarCancelButtonClicked
+    *Purpose: handle cancle for search bar
+    *Parameters: searchBar: UISearchBar
+    *Return: Void.
+    *Properties modified: is_searching
+    *Precondition: Class must conform to UISearchBarDeletate and UITableViewDelegate
     ********************************************************************/
-    // Create a new variable to store the instance of PlayerTableViewController
-    //destinationVC.playlistTitle = self.playlistTableData[self.currentRow]
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let destinationVC = segue.destinationViewController as songViewController
         if is_searching == true{

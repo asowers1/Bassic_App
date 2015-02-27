@@ -89,6 +89,7 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         }
         return cell
     }
+    
     /********************************************************************
     *Function: tableView
     *Purpose: set currentRow as indexpath
@@ -155,6 +156,14 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         }
     }
     
+    /********************************************************************
+    *Function: searchBarCancelButtonClicked
+    *Purpose: handle cancle for search bar
+    *Parameters: searchBar: UISearchBar
+    *Return: Void.
+    *Properties modified: is_searching
+    *Precondition: Class must conform to UISearchBarDeletate and UITableViewDelegate
+    ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
         allSongsTableView.reloadData()
