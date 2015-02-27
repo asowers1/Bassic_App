@@ -110,12 +110,12 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
     
     
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function:addAlbum
+    *Purpose:add album to the view
+    *Parameters:sender AnyObject
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
     ********************************************************************/
     @IBAction func addAlbum(sender: AnyObject) {
         var alert = UIAlertController(title: "Add Album", message: "Enter Album name:", preferredStyle: UIAlertControllerStyle.Alert)
@@ -154,7 +154,7 @@ class AlbumViewController: UITableViewController, UISearchBarDelegate {
     }
     
     /********************************************************************
-    *Function:
+    *Function:searchBar
     *Purpose:
     *Parameters:
     *Return:

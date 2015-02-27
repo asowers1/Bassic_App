@@ -121,7 +121,7 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     /********************************************************************
-    *Function:
+    *Function:pickerView
     *Purpose:
     *Parameters:
     *Return:
@@ -149,12 +149,12 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function:numberOfComponentsInPickerView
+    *Purpose:count the number of components in picker view
+    *Parameters:UIPickerView
+    *Return:int
+    *Properties modified:N/A
+    *Precondition:N/A
     ********************************************************************/
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         if pickerView.tag == 0 {
@@ -222,12 +222,12 @@ class addSongViewController : UIViewController, UIPickerViewDataSource, UIPicker
         }
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function:Add Song
+    *Purpose:add songs to the view
+    *Parameters:AnyObject
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
     ********************************************************************/
     @IBAction func addSong(sender: AnyObject) {
         if titleField.text != "" && artistField.text != "" && albumField.text != "" && composerField.text != "" && self.didSelectLengthPicker == true && self.didSelectYearPicker == true{

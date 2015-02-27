@@ -111,14 +111,13 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
     
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function:tableView
+    *Purpose:UITable view implementation
+    *Parameters:tableView UITableView
+    *Return:int count
+    *Properties modified:N/A
+    *Precondition:N/A
     ********************************************************************/
-// MARK UITableView implementation
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.is_searching == true {
@@ -273,12 +272,12 @@ class PlaylistViewController: UITableViewController, UIAlertViewDelegate, UISear
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function:addPlayList
+    *Purpose:add playlist to the view
+    *Parameters:AnyObeject
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
     ********************************************************************/
 // MARK Title Bar Icons
     
