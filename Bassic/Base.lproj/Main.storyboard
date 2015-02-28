@@ -905,9 +905,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZoF-Uk-D91" id="LvB-YX-Rhb">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="g4N-iI-ieD" kind="show" identifier="showSong" id="EFu-02-OzI"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -919,6 +916,7 @@
                         <outlet property="searchBar" destination="baB-X9-kZ4" id="pMa-nh-ZPr"/>
                         <outlet property="searchDisplayController" destination="IO0-PH-XQ2" id="aDo-W5-Aml"/>
                         <outlet property="songSelectTableView" destination="gpt-df-2nL" id="kiD-Ee-fS0"/>
+                        <segue destination="g4N-iI-ieD" kind="show" identifier="showSong" id="ABw-J9-LYP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU9-kz-mdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -932,7 +930,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3351" y="317"/>
+            <point key="canvasLocation" x="3391.5" y="317"/>
         </scene>
         <!--Bassic-->
         <scene sceneID="pUM-QR-PTO">
@@ -1154,6 +1152,6 @@
         <image name="To Do-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EFu-02-OzI"/>
+        <segue reference="ABw-J9-LYP"/>
     </inferredMetricsTieBreakers>
 </document>

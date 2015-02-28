@@ -14,20 +14,26 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
     
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet var songSelectTableView: UITableView!
-    
-    var songList:[String:(String,String)] = Dictionary()
-    var searchingTableData:[String] = Array()
-    
     let playlists = SharedPlaylistController.sharedInstance
+    
+    var songList:[String:(String,String,String)] = Dictionary()
+    var searchingTableData:[String] = Array()
+
     
     var is_searching:Bool = false
     
     var currentRow:Int = 0
     
     
-    
+    /********************************************************************
+    *Function: viewDidLoad
+    *Purpose: handle view loading
+    *Parameters: Void.
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
         songSelectTableView.dataSource = self
@@ -35,6 +41,14 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         playlistTitle = playlists.activePlaylist
     }
     
+    /********************************************************************
+    *Function: viewWillAppear
+    *Purpose: handle view appear
+    *Parameters:animated bool
+    *Return:N/A
+    *Properties modified:N/A
+    *Precondition:N/A
+    ********************************************************************/
     override func viewWillAppear(animated: Bool) {
         self.songList = playlists.accessPlaylist(self.playlistTitle).listSongArtistAlbum()
         
@@ -110,8 +124,9 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
     *Precondition: NA
     ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        println("ROW: \(indexPath.row)")
         self.currentRow = indexPath.row
+        performSegueWithIdentifier("showSong", sender: self)
     }
     
     /*******************************************************************
@@ -125,7 +140,7 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             println("remove: \(Array(songList.keys)[indexPath.row])")
-            let song:(String,String) = songList[Array(songList.keys)[indexPath.row]]!
+            let song:(String,String,String) = songList[Array(songList.keys)[indexPath.row]]!
             self.playlists.removeSongFromPlaylist(self.playlistTitle, songName: song.1, artistName: song.0)
             self.songList.removeValueForKey(Array(songList.keys)[indexPath.row])
             
@@ -147,6 +162,8 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
+    // MARK searching delegate logic
+    
     /********************************************************************
     *Function: searchBar
     *Purpose: for searching over table data
@@ -155,7 +172,7 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
     *Properties modified: is_searching
     *Precondition:
     ********************************************************************/
-    // MARK searching delegate logic
+
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
         if searchBar.text.isEmpty{
@@ -186,8 +203,8 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
     ********************************************************************/
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         is_searching = false
-        
         songSelectTableView.reloadData()
+        
     }
     /********************************************************************
     *Function: prepareForSegue
@@ -209,11 +226,11 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
             let currentPlaylist = playlists.accessPlaylist(self.playlistTitle)
             
             // get song data
-            let song:(String,String) =  songList[searchingTableData[self.currentRow]]!
             
+            let song:(String,String,String) =  songList[searchingTableData[self.currentRow]]!
             // iterate through songs in current playlust
             for songInList in currentPlaylist.list {
-                if songInList.artist == song.0 && songInList.name == song.1 {
+                if songInList.artist == song.0 && songInList.name == song.1 && songInList.album == song.2 {
                     // set data for song view
                     let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                     destinationVC.name     = songInList.name
@@ -230,10 +247,12 @@ class songSelectViewController: UITableViewController, UISearchBarDelegate {
                 }
             }
         }else{
-            let currentPlaylist = playlists.accessPlaylist(self.playlistTitle)
-            let song:(String,String) = songList[Array(songList.keys)[self.currentRow]]!
+            let currentPlaylist = playlists.accessPlaylist("All songs")
+            println(Array(songList.keys))
+            println(self.currentRow)
+            let song:(String,String,String) = songList[Array(songList.keys)[self.currentRow]]!
             for songInList in currentPlaylist.list {
-                if songInList.artist == song.0 && songInList.name == song.1 {
+                if songInList.artist == song.0 && songInList.name == song.1 &&  songInList.album == song.2 {
                     // set data for song view
                     let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                     destinationVC.name     = songInList.name

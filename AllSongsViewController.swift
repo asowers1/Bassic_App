@@ -17,7 +17,7 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
     
     var playlists:playlistController = SharedPlaylistController.sharedInstance
     
-    var songList:[String:(String,String)] = Dictionary()
+    var songList:[String:(String,String,String)] = Dictionary()
     var searchingTableData:[String] = Array()
     
     var currentRow:Int = 0
@@ -115,7 +115,7 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
         if editingStyle == UITableViewCellEditingStyle.Delete {
             println("remove: \(Array(songList.keys)[indexPath.row])")
             //self.playlists.removePlaylist(albumList[indexPath.row])
-            let song:(String,String) = songList[Array(songList.keys)[indexPath.row]]!
+            let song:(String,String,String) = songList[Array(songList.keys)[indexPath.row]]!
             self.playlists.removeSongByArtist(song.1, songArtist: song.0)
             //self.albumList.removeAtIndex(indexPath.row)
             self.songList.removeValueForKey(Array(songList.keys)[indexPath.row])
@@ -188,9 +188,9 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
             
             if is_searching == true{
                 let currentPlaylist = playlists.accessPlaylist("All songs")
-                let song:(String,String) =  songList[searchingTableData[self.currentRow]]!
+                let song:(String,String,String) =  songList[searchingTableData[self.currentRow]]!
                 for songInList in currentPlaylist.list {
-                    if songInList.artist == song.0 && songInList.name == song.1 {
+                    if songInList.artist == song.0 && songInList.name == song.1 && songInList.album == song.2 {
                         let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                         destinationVC.name     = songInList.name
                         destinationVC.artist   = songInList.artist
@@ -205,9 +205,9 @@ class AllSongsViewController : UITableViewController, UIAlertViewDelegate, UISea
                 }
             }else{
                 let currentPlaylist = playlists.accessPlaylist("All songs")
-                let song:(String,String) = songList[Array(songList.keys)[self.currentRow]]!
+                let song:(String,String,String) = songList[Array(songList.keys)[self.currentRow]]!
                 for songInList in currentPlaylist.list {
-                    if songInList.artist == song.0 && songInList.name == song.1 {
+                    if songInList.artist == song.0 && songInList.name == song.1 && songInList.album == song.2 {
                         
                         let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                         destinationVC.name     = songInList.name

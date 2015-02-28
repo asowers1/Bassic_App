@@ -19,7 +19,7 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
     
     let playlist = SharedPlaylistController.sharedInstance.accessPlaylist("All songs")
     
-    var songList:[String:(String,String)] = Dictionary()
+    var songList:[String:(String,String,String)] = Dictionary()
     var searchingTableData:[String] = Array()
     
     
@@ -114,15 +114,14 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         return cell
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
+    *Function: tableView
+    *Purpose: did select row at indec
+    *Parameters: tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath
+    *Return: Void.
+    *Properties modified: currentRow
     *Precondition:
     ********************************************************************/
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.currentRow = indexPath.row
     }
@@ -194,9 +193,9 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
         
         let destinationVC = segue.destinationViewController as songViewController
         if is_searching == true{
-            let song:(String,String) =  songList[searchingTableData[self.currentRow]]!
+            let song:(String,String,String) =  songList[searchingTableData[self.currentRow]]!
             for songInList in playlist.list {
-                if songInList.artist == song.0 && songInList.name == song.1 {
+                if songInList.artist == song.0 && songInList.name == song.1 && songInList.album == song.2 {
                     let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                     destinationVC.name     = songInList.name
                     destinationVC.artist   = songInList.artist
@@ -211,9 +210,9 @@ class ArtistSongSelectViewController : UITableViewController, UISearchBarDelegat
                 }
             }
         }else{
-            let song:(String,String) = songList[Array(songList.keys)[self.currentRow]]!
+            let song:(String,String,String) = songList[Array(songList.keys)[self.currentRow]]!
             for songInList in playlist.list {
-                if songInList.artist == song.0 && songInList.name == song.1 {
+                if songInList.artist == song.0 && songInList.name == song.1 && songInList.album == song.2{
                     
                     let time:(Int,Int,Int) = self.secondsToHoursMinutesSeconds(songInList.length)
                     destinationVC.name     = songInList.name

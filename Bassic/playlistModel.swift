@@ -174,51 +174,50 @@ class playlistModel {
         return toReturn
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: listArtistSongByAlbum
+    *Purpose: list artist and songs by album
+    *Parameters: album:String
+    *Return: [String:(String,String,String)]
+    *Properties modified: NA
+    *Precondition: NA
     ********************************************************************/
-    func listArtistSongByAlbum(album:String)->[String:(String,String)]{
-        var toReturn:[String:(String,String)] = Dictionary()
+    func listArtistSongByAlbum(album:String)->[String:(String,String,String)]{
+        var toReturn:[String:(String,String,String)] = Dictionary()
         for song in list {
             if song.album == album {
-                toReturn["\(song.artist) - \(song.name)"] = (song.artist,song.name)
+                toReturn["\(song.artist) - \(song.name)"] = (song.artist,song.name,song.album)
             }
         }
         return toReturn
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: listSongArtistAlbum
+    *Purpose: gets song dictionary
+    *Parameters: Void.
+    *Return: [String:(String,String,String)]
+    *Properties modified: NA
+    *Precondition: NA
     ********************************************************************/
-    func listSongArtistAlbum()->[String:(String,String)] {
-        var toReturn:[String:(String,String)] = Dictionary()
+    func listSongArtistAlbum()->[String:(String,String,String)] {
+        var toReturn:[String:(String,String,String)] = Dictionary()
         for i in list{
-            println(i.album)
-            toReturn["\(i.name) - \(i.artist) - \(i.album)"] = (i.artist,i.name)
+            toReturn["\(i.name) - \(i.artist) - \(i.album)"] = (i.artist,i.name,i.album)
         }
         return toReturn
     }
     /********************************************************************
-    *Function:
-    *Purpose:
-    *Parameters:
-    *Return:
-    *Properties modified:
-    *Precondition:
+    *Function: listArtistSongByArtist
+    *Purpose: list artist song (and album) by artist
+    *Parameters: artist:String
+    *Return: [String:(String,String)]
+    *Properties modified: NA
+    *Precondition: NA
     ********************************************************************/
-    func listArtistSongByArtist(artist:String)->[String:(String,String)]{
-        var toReturn:[String:(String,String)] = Dictionary()
+    func listArtistSongByArtist(artist:String)->[String:(String,String,String)]{
+        var toReturn:[String:(String,String,String)] = Dictionary()
         for song in list {
             if song.artist == artist {
-                toReturn["\(song.artist) - \(song.name) - \(song.album)"] = (song.artist,song.name)
+                toReturn["\(song.artist) - \(song.name) - \(song.album)"] = (song.artist,song.name,song.album)
             }
         }
         return toReturn

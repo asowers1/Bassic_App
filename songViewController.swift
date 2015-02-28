@@ -49,13 +49,17 @@ class songViewController : UIViewController, UIAlertViewDelegate {
     *Precondition:N/A
     ********************************************************************/
     override func viewDidLoad(){
+
+        self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
+    }
+    
+    override func viewWillAppear(animated:Bool){
         nameLabel.text = name
         artistLabel.text = artist
         albumLabel.text = album
         yearLabel.text = year
         composerLabel.text = composer
         lengthLabel.text = length
-        self.navigationController?.navigationBar.tintColor = uicolorFromHex(0xe1a456)
     }
     /********************************************************************
     *Function:uicolorFromHex

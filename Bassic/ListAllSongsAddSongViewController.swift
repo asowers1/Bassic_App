@@ -22,7 +22,7 @@ class ListAllSongsAddSongViewController : UITableViewController, UISearchBarDele
     
     let playlist = SharedPlaylistController.sharedInstance.accessPlaylist("All songs")
     
-    var songList:[String:(String,String)] = Dictionary()
+    var songList:[String:(String,String,String)] = Dictionary()
     var searchingTableData:[String] = Array()
     
     
