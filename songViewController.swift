@@ -152,7 +152,12 @@ class songViewController : UIViewController, UIAlertViewDelegate {
             println(self.playlistTextField.text)
             // add to album
             println("add to new album song")
+            if self.playlists.accessPlaylist("All songs").checkIfSongExistsByAlbum(self.name, artist: self.artist, album: self.albumTextField.text){
+                self.presentViewController(innerAlertAlbum, animated: true, completion: nil)
+                
+            }else{
             self.playlists.addSongToPlaylist("All songs", songTitle: self.name, songArtist: self.artist, songAlbum: self.albumTextField.text, songLength: String(self.lengthInSeconds), songYear: self.year, songComposer: self.composer)
+            }
         }))
         self.presentViewController(alert, animated: true, completion: {
             println("completion block")
